@@ -2,368 +2,425 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Customer Billing | The Tipssy Toes Makeover Studio</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:#f6f4f1;
-  color:#292522;
+ margin:0;
+ font-family:Arial,Helvetica,sans-serif;
+ background:#f5f2ee;
+ color:#292522;
 }
 
 .header{
-  background:#292522;
-  color:white;
-  padding:28px 20px;
-  text-align:center;
+ background:#292522;
+ color:#fff;
+ padding:28px 20px;
+ text-align:center;
 }
 
 .header h1{
-  margin:0;
-  font-family:Georgia,serif;
-  font-size:28px;
-  letter-spacing:.5px;
+ margin:0;
+ font:700 28px Georgia,serif;
+ letter-spacing:.4px;
 }
 
 .header p{
-  margin:7px 0 0;
-  color:#d9c3a7;
-  font-size:13px;
-  letter-spacing:1.5px;
+ margin:7px 0 0;
+ color:#d9c2a5;
+ font-size:12px;
+ letter-spacing:2px;
 }
 
-.container{
-  max-width:900px;
-  margin:35px auto;
-  padding:0 18px;
+.wrap{
+ max-width:950px;
+ margin:35px auto;
+ padding:0 18px;
 }
 
 .card{
-  background:white;
-  border-radius:14px;
-  padding:28px;
-  box-shadow:0 8px 30px rgba(0,0,0,.07);
-  border:1px solid #eee8e1;
+ background:#fff;
+ border:1px solid #e7dfd7;
+ border-radius:16px;
+ box-shadow:0 8px 30px rgba(0,0,0,.06);
+ padding:30px;
 }
 
-.section-title{
-  font-family:Georgia,serif;
-  font-size:20px;
-  margin:0 0 20px;
-  padding-bottom:12px;
-  border-bottom:1px solid #eee5dc;
+.title{
+ font:700 22px Georgia,serif;
+ margin:0 0 22px;
+ padding-bottom:14px;
+ border-bottom:1px solid #eee7df;
 }
 
 .grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:18px;
 }
 
 .field{
-  margin-bottom:15px;
+ margin-bottom:17px;
 }
 
 label{
-  display:block;
-  font-size:13px;
-  font-weight:bold;
-  margin-bottom:7px;
-  color:#5d554e;
+ display:block;
+ margin-bottom:7px;
+ font-size:12px;
+ font-weight:700;
+ color:#665d55;
+ text-transform:uppercase;
+ letter-spacing:.5px;
 }
 
-input,
-select{
-  width:100%;
-  padding:12px 13px;
-  border:1px solid #dcd5ce;
-  border-radius:8px;
-  font-size:14px;
-  background:#fff;
-  outline:none;
+input,select{
+ width:100%;
+ height:43px;
+ border:1px solid #dcd4cc;
+ border-radius:8px;
+ padding:0 12px;
+ font-size:14px;
+ outline:none;
+ background:#fff;
+ color:#292522;
 }
 
-input:focus,
-select:focus{
-  border-color:#b58b5b;
-  box-shadow:0 0 0 3px rgba(181,139,91,.10);
+input:focus,select:focus{
+ border-color:#b58b5b;
+ box-shadow:0 0 0 3px rgba(181,139,91,.10);
 }
 
-.service-row{
-  display:grid;
-  grid-template-columns:1fr 100px 120px 45px;
-  gap:10px;
-  align-items:end;
-  margin-bottom:12px;
+.items-head{
+ display:grid;
+ grid-template-columns:1fr 120px 90px 42px;
+ gap:10px;
+ color:#766b62;
+ font-size:11px;
+ font-weight:bold;
+ text-transform:uppercase;
+ margin-bottom:8px;
 }
 
-.amount{
-  background:#f7f4f0;
-  font-weight:bold;
+.bill-row{
+ display:grid;
+ grid-template-columns:1fr 120px 90px 42px;
+ gap:10px;
+ margin-bottom:12px;
+ align-items:end;
 }
 
 .remove{
-  height:42px;
-  border:0;
-  border-radius:8px;
-  background:#eee8e1;
-  cursor:pointer;
-  font-size:18px;
+ height:43px;
+ border:0;
+ border-radius:8px;
+ background:#eee9e3;
+ color:#5e554d;
+ font-size:20px;
+ cursor:pointer;
 }
 
 .remove:hover{
-  background:#e2d9cf;
+ background:#ded5cb;
 }
 
-.add-btn{
-  border:1px solid #b58b5b;
-  color:#8d673d;
-  background:white;
-  padding:10px 15px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
+.add{
+ margin-top:5px;
+ padding:10px 15px;
+ border:1px solid #b58b5b;
+ border-radius:8px;
+ background:#fff;
+ color:#8a6339;
+ font-weight:bold;
+ cursor:pointer;
 }
 
-.add-btn:hover{
-  background:#faf6f0;
+.add:hover{
+ background:#fbf7f1;
+}
+
+.discount-area{
+ margin-top:25px;
+ display:flex;
+ justify-content:flex-end;
+}
+
+.discount-box{
+ width:340px;
+}
+
+.discount-line{
+ display:grid;
+ grid-template-columns:1fr 110px;
+ gap:10px;
 }
 
 .summary{
-  margin-top:25px;
-  margin-left:auto;
-  max-width:360px;
-  border-top:1px solid #eee5dc;
-  padding-top:15px;
+ margin-top:18px;
+ margin-left:auto;
+ width:340px;
+ border-top:1px solid #e5ddd5;
+ padding-top:12px;
 }
 
-.summary-row{
-  display:flex;
-  justify-content:space-between;
-  padding:7px 0;
-  font-size:14px;
+.sum-row{
+ display:flex;
+ justify-content:space-between;
+ padding:7px 0;
+ font-size:14px;
 }
 
-.summary-row.total{
-  margin-top:8px;
-  padding-top:14px;
-  border-top:1px solid #ddd5cc;
-  font-size:21px;
-  font-weight:bold;
+.total{
+ border-top:1px solid #d8d0c8;
+ margin-top:7px;
+ padding-top:15px;
+ font-size:22px;
+ font-weight:bold;
 }
 
-.discount{
-  width:100px;
-  text-align:right;
-  padding:7px;
+.save{
+ width:100%;
+ height:48px;
+ margin-top:27px;
+ border:0;
+ border-radius:9px;
+ background:#292522;
+ color:#fff;
+ font-size:15px;
+ font-weight:bold;
+ cursor:pointer;
 }
 
-.main-btn{
-  width:100%;
-  margin-top:25px;
-  padding:14px;
-  border:0;
-  border-radius:9px;
-  background:#292522;
-  color:white;
-  font-size:15px;
-  font-weight:bold;
-  cursor:pointer;
+.save:hover{
+ background:#403a35;
 }
 
-.main-btn:hover{
-  background:#403a35;
-}
-
-.payment-box{
-  display:none;
-  margin-top:25px;
-  padding:22px;
-  background:#faf8f5;
-  border:1px solid #e8ded3;
-  border-radius:12px;
-  text-align:center;
-}
-
-.payment-box h3{
-  margin-top:0;
-  font-family:Georgia,serif;
-}
-
-.qr{
-  width:190px;
-  max-width:100%;
-  border-radius:10px;
-  border:1px solid #ddd;
-  margin:12px auto;
-}
-
-.upi{
-  font-weight:bold;
-  margin:5px 0;
-}
-
-.bank{
-  color:#777;
-  font-size:13px;
-}
-
-.payment-done{
-  margin-top:15px;
-  padding:12px 25px;
-  border:0;
-  border-radius:8px;
-  background:#292522;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.print-btn{
-  display:none;
-  margin-top:12px;
-  padding:12px 25px;
-  border:1px solid #292522;
-  border-radius:8px;
-  background:white;
-  color:#292522;
-  font-weight:bold;
-  cursor:pointer;
+.save:disabled{
+ opacity:.6;
+ cursor:not-allowed;
 }
 
 .status{
-  text-align:center;
-  margin-top:15px;
-  font-size:13px;
-  color:#777;
+ text-align:center;
+ margin-top:13px;
+ font-size:13px;
+ color:#766d65;
 }
 
-/* PRINT BILL */
+/* PAYMENT */
+
+.payment{
+ display:none;
+ margin-top:25px;
+ padding:25px;
+ text-align:center;
+ background:#faf7f3;
+ border:1px solid #e5dbd0;
+ border-radius:13px;
+}
+
+.payment h3{
+ margin:0 0 8px;
+ font:700 20px Georgia,serif;
+}
+
+.payment p{
+ font-size:13px;
+ color:#777;
+}
+
+.qr{
+ width:190px;
+ height:190px;
+ object-fit:contain;
+ background:white;
+ padding:6px;
+ border:1px solid #ddd;
+ border-radius:10px;
+ margin:10px auto;
+ display:block;
+}
+
+.upi{
+ font-weight:bold;
+ margin-top:7px;
+}
+
+.bank{
+ font-size:12px;
+ color:#777;
+ margin-top:5px;
+}
+
+.pay-btn{
+ margin-top:17px;
+ padding:12px 24px;
+ border:0;
+ border-radius:8px;
+ background:#292522;
+ color:#fff;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+.pay-btn:disabled{
+ opacity:.6;
+}
+
+.print-btn{
+ display:none;
+ margin-top:12px;
+ padding:12px 24px;
+ border:1px solid #292522;
+ border-radius:8px;
+ background:#fff;
+ color:#292522;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+/* PRINT */
+
 .print-bill{
-  display:none;
-}
-
-@media print{
-
-  body{
-    background:white;
-  }
-
-  .header,
-  .container{
-    display:none !important;
-  }
-
-  .print-bill{
-    display:block !important;
-    width:100%;
-    max-width:700px;
-    margin:0 auto;
-    padding:20px;
-    font-family:Arial,sans-serif;
-  }
-
-  .invoice-head{
-    text-align:center;
-    border-bottom:2px solid #292522;
-    padding-bottom:15px;
-    margin-bottom:20px;
-  }
-
-  .invoice-head h1{
-    margin:0;
-    font-family:Georgia,serif;
-    font-size:25px;
-  }
-
-  .invoice-head p{
-    margin:5px 0;
-    font-size:12px;
-  }
-
-  .invoice-info{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:20px;
-    font-size:13px;
-  }
-
-  .invoice-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:15px;
-  }
-
-  .invoice-table th,
-  .invoice-table td{
-    padding:10px 6px;
-    border-bottom:1px solid #ddd;
-    text-align:left;
-  }
-
-  .invoice-table th:last-child,
-  .invoice-table td:last-child{
-    text-align:right;
-  }
-
-  .invoice-total{
-    margin-left:auto;
-    width:280px;
-    margin-top:20px;
-  }
-
-  .invoice-total div{
-    display:flex;
-    justify-content:space-between;
-    padding:5px 0;
-  }
-
-  .grand{
-    font-size:18px;
-    font-weight:bold;
-    border-top:2px solid #292522;
-    margin-top:5px;
-    padding-top:10px !important;
-  }
-
-  .thankyou{
-    text-align:center;
-    margin-top:40px;
-    font-size:13px;
-  }
+ display:none;
 }
 
 @media(max-width:650px){
 
-  .grid{
-    grid-template-columns:1fr;
-  }
+ .grid{
+  grid-template-columns:1fr;
+ }
 
-  .service-row{
-    grid-template-columns:1fr 90px;
-  }
+ .items-head{
+  display:none;
+ }
 
-  .service-row .amount{
-    grid-column:1;
-  }
+ .bill-row{
+  grid-template-columns:1fr 90px 42px;
+ }
 
-  .service-row .remove{
-    grid-column:2;
-    grid-row:2;
-  }
+ .bill-row .rate{
+  grid-column:1;
+ }
 
-  .card{
-    padding:20px;
-  }
+ .bill-row .qty{
+  grid-column:2;
+  grid-row:1;
+ }
+
+ .bill-row .remove{
+  grid-column:3;
+  grid-row:1;
+ }
+
+ .discount-box,
+ .summary{
+  width:100%;
+ }
+
+ .card{
+  padding:20px;
+ }
+}
+
+/* PRINT ONLY INVOICE */
+
+@media print{
+
+ body{
+  background:#fff;
+ }
+
+ .header,
+ .wrap{
+  display:none!important;
+ }
+
+ .print-bill{
+  display:block!important;
+  width:100%;
+  max-width:720px;
+  margin:auto;
+  padding:20px;
+  color:#222;
+  font-family:Arial,Helvetica,sans-serif;
+ }
+
+ .invoice-header{
+  text-align:center;
+  border-bottom:2px solid #292522;
+  padding-bottom:15px;
+  margin-bottom:20px;
+ }
+
+ .invoice-header h1{
+  margin:0;
+  font:700 26px Georgia,serif;
+ }
+
+ .invoice-header p{
+  margin:5px 0;
+  font-size:11px;
+ }
+
+ .customer-info{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
+  font-size:13px;
+  line-height:1.7;
+ }
+
+ .invoice-table{
+  width:100%;
+  border-collapse:collapse;
+ }
+
+ .invoice-table th,
+ .invoice-table td{
+  border-bottom:1px solid #ddd;
+  padding:9px 5px;
+  text-align:left;
+  font-size:13px;
+ }
+
+ .invoice-table th:last-child,
+ .invoice-table td:last-child{
+  text-align:right;
+ }
+
+ .invoice-summary{
+  width:280px;
+  margin-left:auto;
+  margin-top:18px;
+ }
+
+ .invoice-summary div{
+  display:flex;
+  justify-content:space-between;
+  padding:5px 0;
+  font-size:13px;
+ }
+
+ .invoice-summary .grand{
+  border-top:2px solid #292522;
+  margin-top:5px;
+  padding-top:10px;
+  font-size:18px;
+  font-weight:bold;
+ }
+
+ .thanks{
+  text-align:center;
+  margin-top:40px;
+  font-size:12px;
+ }
+
 }
 </style>
 </head>
@@ -371,528 +428,916 @@ select:focus{
 <body>
 
 <header class="header">
-  <h1>The Tipssy Toes Makeover Studio</h1>
-  <p>BEAUTY • MAKEOVER • SALON</p>
+ <h1>The Tipssy Toes Makeover Studio</h1>
+ <p>BEAUTY • MAKEOVER • SALON</p>
 </header>
 
-<div class="container">
+<div class="wrap">
 
-  <div class="card">
+<div class="card">
 
-    <h2 class="section-title">Customer Billing</h2>
+<h2 class="title">Customer Billing</h2>
 
-    <div class="grid">
+<div class="grid">
 
-      <div class="field">
-        <label>Customer Name</label>
-        <input id="customerName" type="text" placeholder="Enter customer name">
-      </div>
+ <div class="field">
+  <label>Customer Name</label>
+  <input id="customerName" type="text" placeholder="Enter customer name">
+ </div>
 
-      <div class="field">
-        <label>Mobile Number</label>
-        <input id="mobile" type="text" placeholder="Enter mobile number">
-      </div>
-
-    </div>
-
-    <div class="field">
-      <label>Bill Date</label>
-      <input id="billDate" type="date">
-    </div>
-
-    <h2 class="section-title" style="margin-top:28px;">Services</h2>
-
-    <div id="items"></div>
-
-    <button class="add-btn" onclick="addItem()">+ Add Service</button>
-
-    <div class="summary">
-
-      <div class="summary-row">
-        <span>Subtotal</span>
-        <strong id="subtotal">₹0</strong>
-      </div>
-
-      <div class="summary-row">
-        <span>Discount</span>
-        <input
-          id="discount"
-          class="discount"
-          type="number"
-          min="0"
-          value="0"
-          oninput="calculate()"
-        >
-      </div>
-
-      <div class="summary-row total">
-        <span>Total</span>
-        <span id="total">₹0</span>
-      </div>
-
-    </div>
-
-    <button class="main-btn" id="saveBtn" onclick="saveBill()">
-      Save Bill
-    </button>
-
-    <div class="status" id="status"></div>
-
-    <!-- PAYMENT -->
-    <div class="payment-box" id="paymentBox">
-
-      <h3>Complete Payment</h3>
-
-      <p>Please scan the QR code to make payment.</p>
-
-      <img src="payment-qr.jpg" class="qr">
-
-      <div class="upi">UPI: raman10835-5@okicici</div>
-      <div class="bank">Punjab National Bank • 7638</div>
-
-      <button class="payment-done" id="paymentDoneBtn" onclick="paymentDone()">
-        ✓ Payment Done
-      </button>
-
-      <br>
-
-      <button class="print-btn" id="printBtn" onclick="printBill()">
-        🖨 Print Bill
-      </button>
-
-    </div>
-
-  </div>
+ <div class="field">
+  <label>Mobile Number</label>
+  <input id="mobile" type="tel" placeholder="Enter mobile number">
+ </div>
 
 </div>
 
+<div class="field">
+ <label>Bill Date</label>
+ <input id="billDate" type="date">
+</div>
 
-<!-- PRINTABLE INVOICE -->
+<h2 class="title" style="margin-top:28px">Services & Combos</h2>
+
+<div class="items-head">
+ <div>Service / Combo</div>
+ <div>Rate</div>
+ <div>Qty</div>
+ <div></div>
+</div>
+
+<div id="items"></div>
+
+<button class="add" onclick="addRow()">+ Add Service / Combo</button>
+
+<div class="discount-area">
+
+ <div class="discount-box">
+
+  <label>Discount</label>
+
+  <div class="discount-line">
+
+   <select id="discountType" onchange="calculate()">
+    <option value="fixed">₹ Fixed</option>
+    <option value="percent">% Percentage</option>
+   </select>
+
+   <input
+    id="discountValue"
+    type="number"
+    min="0"
+    value="0"
+    oninput="calculate()"
+    placeholder="0"
+   >
+
+  </div>
+
+ </div>
+
+</div>
+
+<div class="summary">
+
+ <div class="sum-row">
+  <span>Subtotal</span>
+  <strong id="subtotal">₹0</strong>
+ </div>
+
+ <div class="sum-row">
+  <span>Discount</span>
+  <strong id="discount">₹0</strong>
+ </div>
+
+ <div class="sum-row total">
+  <span>Total</span>
+  <span id="total">₹0</span>
+ </div>
+
+</div>
+
+<button class="save" id="saveBtn" onclick="saveBill()">
+ Save Bill
+</button>
+
+<div class="status" id="status"></div>
+
+
+<!-- PAYMENT -->
+
+<div class="payment" id="paymentBox">
+
+ <h3>Complete Payment</h3>
+
+ <p>
+ Scan the QR code and complete the customer's payment.
+ </p>
+
+ <div id="paymentAmount"
+      style="font-weight:bold;font-size:18px">
+  ₹0
+ </div>
+
+ <img
+  src="payment-qr.jpg"
+  class="qr"
+  alt="Payment QR"
+ >
+
+ <div class="upi">
+  UPI: raman10835-5@okicici
+ </div>
+
+ <div class="bank">
+  Punjab National Bank • 7638
+ </div>
+
+ <button
+  class="pay-btn"
+  id="paymentDoneBtn"
+  onclick="paymentDone()"
+ >
+  ✓ Payment Done
+ </button>
+
+ <br>
+
+ <button
+  class="print-btn"
+  id="printBtn"
+  onclick="printBill()"
+ >
+  🖨 Print Bill
+ </button>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- PRINT INVOICE -->
 
 <div class="print-bill" id="printBill">
 
-  <div class="invoice-head">
-    <h1>The Tipssy Toes Makeover Studio</h1>
-    <p>Beauty • Makeover • Salon</p>
-    <p>Shop Number 14, Near Civil Dispensary, Model Town, Patiala 147001</p>
-    <p>9056105015 • thetipsyytoes@gmail.com</p>
+ <div class="invoice-header">
+
+  <h1>The Tipssy Toes Makeover Studio</h1>
+
+  <p>Beauty • Makeover • Salon</p>
+
+  <p>
+   Shop Number 14, Near Civil Dispensary,
+   Model Town, Patiala 147001
+  </p>
+
+  <p>
+   9056105015 • thetipsyytoes@gmail.com
+  </p>
+
+ </div>
+
+
+ <div class="customer-info">
+
+  <div>
+   <strong>Customer:</strong>
+   <span id="pName"></span><br>
+
+   <strong>Mobile:</strong>
+   <span id="pMobile"></span>
   </div>
 
-  <div class="invoice-info">
-    <div>
-      <strong>Customer:</strong>
-      <span id="pCustomer"></span><br>
-      <strong>Mobile:</strong>
-      <span id="pMobile"></span>
-    </div>
-
-    <div>
-      <strong>Bill Date:</strong>
-      <span id="pDate"></span>
-    </div>
+  <div>
+   <strong>Bill Date:</strong>
+   <span id="pDate"></span>
   </div>
 
-  <table class="invoice-table">
+ </div>
 
-    <thead>
-      <tr>
-        <th>Service</th>
-        <th>Qty</th>
-        <th>Rate</th>
-        <th>Amount</th>
-      </tr>
-    </thead>
 
-    <tbody id="pItems"></tbody>
+ <table class="invoice-table">
 
-  </table>
+  <thead>
 
-  <div class="invoice-total">
+   <tr>
+    <th>Service / Combo</th>
+    <th>Qty</th>
+    <th>Rate</th>
+    <th>Amount</th>
+   </tr>
 
-    <div>
-      <span>Subtotal</span>
-      <strong id="pSubtotal">₹0</strong>
-    </div>
+  </thead>
 
-    <div>
-      <span>Discount</span>
-      <strong id="pDiscount">₹0</strong>
-    </div>
+  <tbody id="pItems"></tbody>
 
-    <div class="grand">
-      <span>Total</span>
-      <strong id="pTotal">₹0</strong>
-    </div>
+ </table>
 
+
+ <div class="invoice-summary">
+
+  <div>
+   <span>Subtotal</span>
+   <strong id="pSubtotal">₹0</strong>
   </div>
 
-  <div class="thankyou">
-    Payment: UPI<br><br>
-    Thank you for visiting<br>
-    <strong>The Tipssy Toes Makeover Studio</strong>
+  <div>
+   <span>Discount</span>
+   <strong id="pDiscount">₹0</strong>
   </div>
+
+  <div class="grand">
+   <span>Total</span>
+   <strong id="pTotal">₹0</strong>
+  </div>
+
+ </div>
+
+
+ <div class="thanks">
+
+  Payment: UPI<br><br>
+
+  Thank you for visiting<br>
+
+  <strong>The Tipssy Toes Makeover Studio</strong>
+
+ </div>
 
 </div>
 
 
 <script>
 
-let itemCount = 0;
-let billSaved = false;
-let paymentCompleted = false;
+let services=[];
+let combos=[];
+
+let billSaved=false;
+let paymentCompleted=false;
+
+
+/* DATE */
 
 document.getElementById("billDate").value =
-  new Date().toISOString().split("T")[0];
+ new Date().toISOString().split("T")[0];
 
 
-function money(value){
-  return "₹" + Number(value || 0).toFixed(0);
+/* LOAD SERVICES + COMBOS */
+
+async function loadServices(){
+
+ const db=window.tipssySupabase;
+
+ if(!db){
+  alert("Supabase connection not found.");
+  return;
+ }
+
+ const [s,c]=await Promise.all([
+
+  db
+   .from("services")
+   .select("*")
+   .order("name"),
+
+  db
+   .from("combos")
+   .select("*")
+   .order("name")
+
+ ]);
+
+
+ if(s.error){
+  console.error(s.error);
+  alert("Services load error: "+s.error.message);
+  return;
+ }
+
+ if(c.error){
+  console.error(c.error);
+  alert("Combos load error: "+c.error.message);
+  return;
+ }
+
+
+ services=s.data || [];
+
+ combos=c.data || [];
+
+ addRow();
+
 }
 
 
-function addItem(){
+/* ESCAPE */
 
-  const box = document.getElementById("items");
+function esc(text){
 
-  const row = document.createElement("div");
-  row.className = "service-row";
-  row.id = "item-" + itemCount;
+ return String(text ?? "")
+ .replace(/[&<>"']/g,function(m){
 
-  row.innerHTML = `
+  return {
+   "&":"&amp;",
+   "<":"&lt;",
+   ">":"&gt;",
+   '"':"&quot;",
+   "'":"&#039;"
+  }[m];
 
-    <div>
-      <label>Service / Combo</label>
-      <input
-        class="service"
-        type="text"
-        placeholder="Service name"
-        oninput="calculate()"
-      >
-    </div>
+ });
 
-    <div>
-      <label>Qty</label>
-      <input
-        class="qty"
-        type="number"
-        min="1"
-        value="1"
-        oninput="calculate()"
-      >
-    </div>
-
-    <div>
-      <label>Rate</label>
-      <input
-        class="rate"
-        type="number"
-        min="0"
-        value="0"
-        oninput="calculate()"
-      >
-    </div>
-
-    <button class="remove" onclick="removeItem(${itemCount})">
-      ×
-    </button>
-
-  `;
-
-  box.appendChild(row);
-
-  itemCount++;
-
-  calculate();
 }
 
 
-function removeItem(id){
+/* ADD BILL ROW */
 
-  const row = document.getElementById("item-" + id);
+function addRow(){
 
-  if(row){
-    row.remove();
+ const row=document.createElement("div");
+
+ row.className="bill-row";
+
+
+ let serviceOptions=services
+  .filter(x=>String(x.status).toLowerCase()!=="inactive")
+  .map(x=>`
+
+   <option value="service:${x.id}">
+    ${esc(x.name)} — ₹${Number(x.price||0)}
+   </option>
+
+  `)
+  .join("");
+
+
+ let comboOptions=combos
+  .map(x=>`
+
+   <option value="combo:${x.id}">
+    ${esc(x.name)} — ₹${Number(x.price||0)}
+   </option>
+
+  `)
+  .join("");
+
+
+ row.innerHTML=`
+
+  <div>
+
+   <label>Service / Combo</label>
+
+   <select
+    class="item"
+    onchange="setRate(this)"
+   >
+
+    <option value="">
+     Select Service / Combo
+    </option>
+
+    <optgroup label="Services">
+     ${serviceOptions}
+    </optgroup>
+
+    <optgroup label="Combo Offers">
+     ${comboOptions}
+    </optgroup>
+
+   </select>
+
+  </div>
+
+
+  <div>
+
+   <label>Rate</label>
+
+   <input
+    class="rate"
+    type="number"
+    readonly
+    value="0"
+   >
+
+  </div>
+
+
+  <div>
+
+   <label>Qty</label>
+
+   <input
+    class="qty"
+    type="number"
+    min="1"
+    value="1"
+    oninput="calculate()"
+   >
+
+  </div>
+
+
+  <button
+   class="remove"
+   onclick="this.parentElement.remove();calculate()"
+  >
+   ×
+  </button>
+
+ `;
+
+
+ document.getElementById("items").appendChild(row);
+
+ calculate();
+
+}
+
+
+/* AUTOMATIC RATE */
+
+function setRate(select){
+
+ const value=select.value;
+
+ let rate=0;
+
+
+ if(value.startsWith("service:")){
+
+  const id=value.replace("service:","");
+
+  const item=services.find(
+   x=>String(x.id)===id
+  );
+
+  if(item){
+   rate=Number(item.price||0);
   }
 
-  calculate();
+ }
+
+
+ if(value.startsWith("combo:")){
+
+  const id=value.replace("combo:","");
+
+  const item=combos.find(
+   x=>String(x.id)===id
+  );
+
+  if(item){
+   rate=Number(item.price||0);
+  }
+
+ }
+
+
+ select
+  .closest(".bill-row")
+  .querySelector(".rate")
+  .value=rate;
+
+
+ calculate();
+
 }
 
 
-function getItems(){
-
-  const rows = document.querySelectorAll(".service-row");
-
-  const items = [];
-
-  rows.forEach(row => {
-
-    const service =
-      row.querySelector(".service").value.trim();
-
-    const qty =
-      Number(row.querySelector(".qty").value || 1);
-
-    const rate =
-      Number(row.querySelector(".rate").value || 0);
-
-    if(service){
-
-      items.push({
-        name:service,
-        qty:qty,
-        rate:rate,
-        amount:qty * rate
-      });
-
-    }
-
-  });
-
-  return items;
-}
-
+/* CALCULATE */
 
 function calculate(){
 
-  const items = getItems();
+ let subtotal=0;
 
-  let subtotal = 0;
+ document
+  .querySelectorAll(".bill-row")
+  .forEach(row=>{
 
-  items.forEach(item => {
-    subtotal += item.amount;
+   const rate=Number(
+    row.querySelector(".rate").value||0
+   );
+
+   const qty=Number(
+    row.querySelector(".qty").value||1
+   );
+
+   subtotal += rate*qty;
+
   });
 
-  const discount =
-    Number(document.getElementById("discount").value || 0);
 
-  const total =
-    Math.max(0, subtotal - discount);
+ let discountValue=Number(
+  document.getElementById("discountValue").value||0
+ );
 
-  document.getElementById("subtotal").innerText =
-    money(subtotal);
+ let discount=0;
 
-  document.getElementById("total").innerText =
-    money(total);
+ const type=
+  document.getElementById("discountType").value;
 
-  return {
-    items,
-    subtotal,
-    discount,
-    total
-  };
+
+ if(type==="percent"){
+
+  discount=
+   subtotal*
+   Math.min(Math.max(discountValue,0),100)/
+   100;
+
+ }else{
+
+  discount=
+   Math.min(Math.max(discountValue,0),subtotal);
+
+ }
+
+
+ const total=
+  Math.max(0,subtotal-discount);
+
+
+ document.getElementById("subtotal").innerText=
+  money(subtotal);
+
+ document.getElementById("discount").innerText=
+  money(discount);
+
+ document.getElementById("total").innerText=
+  money(total);
+
+ document.getElementById("paymentAmount").innerText=
+  money(total);
+
+
+ return{
+  subtotal,
+  discount,
+  total
+ };
+
 }
 
+
+/* GET ITEMS */
+
+function getItems(){
+
+ const result=[];
+
+ document
+  .querySelectorAll(".bill-row")
+  .forEach(row=>{
+
+   const select=
+    row.querySelector(".item");
+
+   if(!select.value)return;
+
+
+   let name="";
+   let rate=0;
+
+
+   if(select.value.startsWith("service:")){
+
+    const id=
+     select.value.replace("service:","");
+
+    const item=
+     services.find(
+      x=>String(x.id)===id
+     );
+
+    if(item){
+     name=item.name;
+     rate=Number(item.price||0);
+    }
+
+   }
+
+
+   if(select.value.startsWith("combo:")){
+
+    const id=
+     select.value.replace("combo:","");
+
+    const item=
+     combos.find(
+      x=>String(x.id)===id
+     );
+
+    if(item){
+     name=item.name;
+     rate=Number(item.price||0);
+    }
+
+   }
+
+
+   const qty=
+    Number(
+     row.querySelector(".qty").value||1
+    );
+
+
+   result.push({
+
+    name:name,
+    qty:qty,
+    rate:rate,
+    amount:rate*qty
+
+   });
+
+  });
+
+
+ return result;
+
+}
+
+
+/* MONEY */
+
+function money(value){
+
+ return "₹"+
+  Number(value||0).toLocaleString("en-IN",{
+   maximumFractionDigits:0
+  });
+
+}
+
+
+/* SAVE BILL */
 
 async function saveBill(){
 
-  const name =
-    document.getElementById("customerName").value.trim();
+ const name=
+  document.getElementById("customerName")
+  .value.trim();
 
-  const mobile =
-    document.getElementById("mobile").value.trim();
+ const mobile=
+  document.getElementById("mobile")
+  .value.trim();
 
-  if(!name){
 
-    alert("Please enter customer name.");
-    return;
+ if(!name){
 
+  alert("Please enter customer name.");
+  return;
+
+ }
+
+
+ const items=getItems();
+
+
+ if(items.length===0){
+
+  alert("Please select at least one service or combo.");
+  return;
+
+ }
+
+
+ const totals=calculate();
+
+
+ const btn=
+  document.getElementById("saveBtn");
+
+ btn.disabled=true;
+ btn.innerText="Saving Bill...";
+
+
+ try{
+
+  const db=window.tipssySupabase;
+
+  if(!db){
+   throw new Error("Supabase connection not found.");
   }
 
-  const data = calculate();
 
-  if(data.items.length === 0){
+  const payload={
 
-    alert("Please add at least one service.");
-    return;
+   bill_date:
+    document.getElementById("billDate").value,
 
-  }
+   name:name,
 
-  const saveBtn =
-    document.getElementById("saveBtn");
+   mobile:mobile,
 
-  saveBtn.disabled = true;
-  saveBtn.innerText = "Saving...";
+   items:items,
 
-  try{
+   subtotal:totals.subtotal,
 
-    const client = window.tipssySupabase;
+   discount:totals.discount,
 
-    if(!client){
-      throw new Error("Supabase connection not found.");
-    }
+   payment:"Pending",
 
-    const payload = {
+   total:totals.total
 
-      bill_date:
-        document.getElementById("billDate").value,
+  };
 
-      name:name,
 
-      mobile:mobile,
+  const {error}=await db
+   .from("customer_bills")
+   .insert([payload]);
 
-      items:data.items,
 
-      subtotal:data.subtotal,
+  if(error)throw error;
 
-      discount:data.discount,
 
-      payment:"Pending",
+  billSaved=true;
+  paymentCompleted=false;
 
-      total:data.total
 
-    };
+  preparePrint(
+   name,
+   mobile,
+   items,
+   totals
+  );
 
-    const { error } =
-      await client
-      .from("customer_bills")
-      .insert([payload]);
 
-    if(error){
-      throw error;
-    }
+  document.getElementById("paymentBox")
+   .style.display="block";
 
-    billSaved = true;
-    paymentCompleted = false;
 
-    preparePrintBill(
-      name,
-      mobile,
-      data
-    );
+  document.getElementById("status")
+   .innerText=
+   "Bill saved successfully. Complete payment to print the bill.";
 
-    document.getElementById("paymentBox").style.display =
-      "block";
 
-    document.getElementById("status").innerText =
-      "Bill saved successfully. Please complete payment.";
+  document.getElementById("paymentDoneBtn")
+   .disabled=false;
 
-    document.getElementById("paymentDoneBtn").disabled =
-      false;
 
-    document.getElementById("paymentDoneBtn").style.display =
-      "inline-block";
+  document.getElementById("paymentDoneBtn")
+   .innerText="✓ Payment Done";
 
-    document.getElementById("printBtn").style.display =
-      "none";
 
-    saveBtn.innerText = "Bill Saved ✓";
+  document.getElementById("printBtn")
+   .style.display="none";
 
-  }
-  catch(error){
 
-    console.error(error);
+  btn.innerText="Bill Saved ✓";
 
-    alert(
-      "Bill save nahi ho paya.\n\n" +
-      (error.message || "Unknown error")
-    );
 
-    saveBtn.disabled = false;
-    saveBtn.innerText = "Save Bill";
+ }catch(error){
 
-  }
+  console.error(error);
+
+  alert(
+   "Bill save nahi ho paya.\n\n"+
+   (error.message||"Unknown error")
+  );
+
+  btn.disabled=false;
+  btn.innerText="Save Bill";
+
+ }
 
 }
 
 
-function paymentDone(){
+/* PREPARE PRINT */
 
-  if(!billSaved){
+function preparePrint(name,mobile,items,totals){
 
-    alert("Please save the bill first.");
-    return;
+ document.getElementById("pName").innerText=
+  name;
 
-  }
+ document.getElementById("pMobile").innerText=
+  mobile||"-";
 
-  paymentCompleted = true;
-
-  document.getElementById("paymentDoneBtn").disabled =
-    true;
-
-  document.getElementById("paymentDoneBtn").innerText =
-    "✓ Payment Completed";
-
-  document.getElementById("printBtn").style.display =
-    "inline-block";
-
-  document.getElementById("status").innerText =
-    "Payment completed. Bill is ready to print.";
-
-}
+ document.getElementById("pDate").innerText=
+  document.getElementById("billDate").value;
 
 
-function preparePrintBill(name,mobile,data){
+ const tbody=
+  document.getElementById("pItems");
 
-  document.getElementById("pCustomer").innerText =
-    name;
+ tbody.innerHTML="";
 
-  document.getElementById("pMobile").innerText =
-    mobile || "-";
 
-  document.getElementById("pDate").innerText =
-    document.getElementById("billDate").value;
+ items.forEach(item=>{
 
-  const tbody =
-    document.getElementById("pItems");
+  const tr=document.createElement("tr");
 
-  tbody.innerHTML = "";
+  tr.innerHTML=`
 
-  data.items.forEach(item => {
+   <td>${esc(item.name)}</td>
 
-    const tr =
-      document.createElement("tr");
+   <td>${item.qty}</td>
 
-    tr.innerHTML = `
-      <td>${escapeHtml(item.name)}</td>
-      <td>${item.qty}</td>
-      <td>${money(item.rate)}</td>
-      <td>${money(item.amount)}</td>
-    `;
+   <td>${money(item.rate)}</td>
 
-    tbody.appendChild(tr);
+   <td>${money(item.amount)}</td>
 
-  });
+  `;
 
-  document.getElementById("pSubtotal").innerText =
-    money(data.subtotal);
+  tbody.appendChild(tr);
 
-  document.getElementById("pDiscount").innerText =
-    money(data.discount);
+ });
 
-  document.getElementById("pTotal").innerText =
-    money(data.total);
+
+ document.getElementById("pSubtotal")
+  .innerText=money(totals.subtotal);
+
+ document.getElementById("pDiscount")
+  .innerText=money(totals.discount);
+
+ document.getElementById("pTotal")
+  .innerText=money(totals.total);
 
 }
 
 
-function escapeHtml(text){
+/* PAYMENT DONE */
 
-  const div =
-    document.createElement("div");
+async function paymentDone(){
 
-  div.textContent = text;
+ if(!billSaved){
 
-  return div.innerHTML;
+  alert("Please save the bill first.");
+  return;
+
+ }
+
+
+ paymentCompleted=true;
+
+
+ document.getElementById("paymentDoneBtn")
+  .disabled=true;
+
+ document.getElementById("paymentDoneBtn")
+  .innerText="✓ Payment Completed";
+
+
+ document.getElementById("printBtn")
+  .style.display="inline-block";
+
+
+ document.getElementById("status")
+  .innerText=
+  "Payment completed. Bill is ready to print.";
+
+
+ /* Update latest pending bill to UPI */
+
+ try{
+
+  const db=window.tipssySupabase;
+
+  const name=
+   document.getElementById("customerName")
+   .value.trim();
+
+  await db
+   .from("customer_bills")
+   .update({
+    payment:"UPI"
+   })
+   .eq("name",name)
+   .eq("payment","Pending")
+   .order("created_at",{ascending:false})
+   .limit(1);
+
+ }catch(error){
+
+  console.log("Payment status update:",error);
+
+ }
 
 }
 
+
+/* PRINT */
 
 function printBill(){
 
-  if(!paymentCompleted){
+ if(!paymentCompleted){
 
-    alert("Please complete payment first.");
-    return;
+  alert("Please complete payment first.");
+  return;
 
-  }
+ }
 
-  window.print();
+ window.print();
 
 }
 
 
-// First service row
-addItem();
+/* LOAD */
+
+loadServices();
 
 </script>
 
