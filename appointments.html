@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Appointments | The Tipssy Toe Makeover Studio</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f1e9;color:#171512;font-family:Arial,Helvetica,sans-serif}
+.side{position:fixed;left:0;top:0;width:255px;height:100vh;background:#0d0c0b;color:#fff;padding:28px 18px;border-right:1px solid #332a1e}.brand{padding:5px 12px 28px;border-bottom:1px solid #332a1e;margin-bottom:22px}.brand small{color:#c7a56a;letter-spacing:3px;font-size:10px}.brand h2{font:normal 23px Georgia,serif;margin:9px 0 3px}.brand span{color:#aaa;font-size:11px}.nav button{width:100%;border:0;background:transparent;color:#b9b3aa;text-align:left;padding:12px 13px;border-radius:8px;cursor:pointer;font-size:13px;margin:2px 0}.nav button:hover,.nav .active{background:#211c16;color:#fff}.nav .active{border-left:2px solid #c7a56a}.logout{position:absolute;bottom:25px;left:18px;right:18px;border:1px solid #4a3b27!important;color:#c7a56a!important}
+main{margin-left:255px;padding:34px;min-height:100vh}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}.eyebrow{color:#a68b5a;font-size:10px;letter-spacing:3px;text-transform:uppercase}h1{font:normal 34px Georgia,serif;margin:7px 0}.top p{margin:0;color:#777;font-size:13px}.btn{border:1px solid #c7a56a;background:#c7a56a;color:#15120d;padding:11px 17px;border-radius:7px;cursor:pointer}
+.card{background:#fff;border:1px solid #e6dfd3;border-radius:13px;padding:22px;margin-bottom:22px;box-shadow:0 8px 25px #1e19120d}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.stat small{display:block;color:#8b847a;text-transform:uppercase;letter-spacing:1.5px;font-size:9px}.stat strong{display:block;font:29px Georgia,serif;margin-top:7px}
+.toolbar{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-bottom:18px}.search{flex:1;max-width:520px;border:1px solid #ddd5c9;border-radius:8px;padding:12px 14px;font-size:13px;outline:none}.filter{border:1px solid #ddd5c9;border-radius:8px;padding:11px;background:#fff}
+table{width:100%;border-collapse:collapse}th{text-align:left;font-size:9px;text-transform:uppercase;letter-spacing:1.2px;color:#8d857a;padding:12px;border-bottom:1px solid #e8e0d5}td{padding:14px 12px;border-bottom:1px solid #eee8df;font-size:13px}.name{font-weight:bold}.muted{font-size:11px;color:#888}.badge{padding:5px 8px;border-radius:20px;background:#eee8df;font-size:10px}.actions button{border:0;background:#f0ebe3;padding:7px 10px;border-radius:6px;cursor:pointer;font-size:11px;margin-right:4px}.actions .del{color:#a44;background:#f8eaea}.empty{text-align:center;padding:45px;color:#999}
+@media(max-width:850px){.side{width:210px}main{margin-left:210px;padding:20px}.stats{grid-template-columns:1fr 1fr}.top{gap:15px}}@media(max-width:650px){.side{position:relative;width:100%;height:auto}.logout{position:static;margin-top:15px}main{margin-left:0}.stats{grid-template-columns:1fr}.top{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<aside class="side"><div class="brand"><small>ADMIN PORTAL</small><h2>The Tipssy Toe</h2><span>Makeover Studio</span></div>
+<div class="nav">
+<button onclick="go('dashboard')">Dashboard</button><button onclick="go('clients')">👤 Client Records</button><button class="active">📅 Appointments</button><button>💳 Billing</button><button>✦ Services</button><button>👥 Staff</button><button>📦 Inventory</button><button>📊 Reports</button><button>⚙ Settings</button>
+</div><button class="nav button logout" onclick="logout()">Logout</button></aside>
+<main>
+<div class="top"><div><div class="eyebrow">Booking Management</div><h1>Appointments</h1><p>Customer bookings appear here automatically after they book.</p></div></div>
+<section class="stats">
+<div class="card stat"><small>Total Bookings</small><strong id="total">0</strong></div><div class="card stat"><small>Today</small><strong id="today">0</strong></div><div class="card stat"><small>Pending</small><strong id="pending">0</strong></div><div class="card stat"><small>Confirmed</small><strong id="confirmed">0</strong></div>
+</section>
+<section class="card"><div class="toolbar"><input id="search" class="search" placeholder="Search customer, mobile or service..." oninput="render()"><select id="filter" class="filter" onchange="render()"><option value="all">All Appointments</option><option value="today">Today</option><option value="pending">Pending</option><option value="confirmed">Confirmed</option></select></div>
+<div style="overflow-x:auto"><table><thead><tr><th>Customer</th><th>Service</th><th>Date</th><th>Time</th><th>Mobile</th><th>Status</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table></div></section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script>
+if(sessionStorage.getItem("tipssyToeAdminLoggedIn")!=="true")window.location.href="admin-login.html";
+const db=window.tipssySupabase; let appointments=[];
+const val=(o,...keys)=>{for(const k of keys)if(o&&o[k]!=null&&o[k]!=="")return o[k];return ""};
+const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+const sameToday=d=>{if(!d)return false;let x=new Date(d+"T00:00:00"),n=new Date();return x.getFullYear()===n.getFullYear()&&x.getMonth()===n.getMonth()&&x.getDate()===n.getDate()};
+async function load(){let {data,error}=await db.from("appointments").select("*").order("date",{ascending:false}).order("time",{ascending:false}); if(!error){appointments=data||[]; render()} else {appointments=JSON.parse(localStorage.getItem("tipssy_appointments")||"[]");render(); console.error(error)}}
+function render(){
+ let q=document.getElementById("search").value.toLowerCase().trim(),f=document.getElementById("filter").value;
+ let rows=appointments.filter(a=>{let name=val(a,"name"),phone=val(a,"phone"),service=val(a,"service"),date=val(a,"date"),status=(val(a,"status")||"Pending").toLowerCase();return [name,phone,service,date].join(" ").toLowerCase().includes(q)&&(f==="all"||(f==="today"&&sameToday(date))||f===status)});
+ let pending=appointments.filter(a=>(a.status||"Pending").toLowerCase()==="pending").length,confirmed=appointments.filter(a=>(a.status||"Pending").toLowerCase()==="confirmed").length;
+ total.textContent=appointments.length;today.textContent=appointments.filter(a=>sameToday(a.date)).length;document.getElementById("pending").textContent=pending;document.getElementById("confirmed").textContent=confirmed;
+ rowsEl=document.getElementById("rows"); rowsEl.innerHTML=rows.length?rows.map(a=>`<tr><td><div class="name">${esc(a.name)}</div><div class="muted">${esc(a.email||"")}</div></td><td>${esc(a.service)}</td><td>${esc(a.date)}</td><td><b>${esc(a.time)}</b></td><td>${esc(a.phone)}</td><td><span class="badge">${esc(a.status||"Pending")}</span></td><td class="actions"><button onclick="setStatus('${a.id}','Confirmed')">Confirm</button><button class="del" onclick="removeAppt('${a.id}')">Delete</button></td></tr>`).join(""):'<tr><td colspan="7" class="empty">No appointments found.</td></tr>';
+}
+async function setStatus(id,status){let {error}=await db.from("appointments").update({status}).eq("id",id);if(error)return alert(error.message);await load()}
+async function removeAppt(id){if(!confirm("Delete this appointment?"))return;let {error}=await db.from("appointments").delete().eq("id",id);if(error)return alert(error.message);await load()}
+function go(p){let m={dashboard:"admin-dashboard.html",clients:"customer-billing.html",appointments:"appointments.html"};if(m[p])location.href=m[p]}
+function logout(){sessionStorage.removeItem("tipssyToeAdminLoggedIn");location.href="admin-login.html"}
+load();setInterval(load,10000);
+</script>
+</body></html>
