@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Services & Combos | The Tipssy Toe</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f7f3ee;color:#292522}.wrap{max-width:1100px;margin:auto;padding:28px 18px}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.btn{border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer}.back{background:#292522;color:#fff;text-decoration:none}.save{background:#b58b5b;color:#fff}.card{background:#fff;padding:22px;border-radius:18px;margin-bottom:20px;box-shadow:0 8px 28px #0001}.grid{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:12px;align-items:end}label{display:block;font-size:12px;font-weight:bold;color:#666;margin-bottom:6px}input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;font-size:15px}.service-pick{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:12px 0}.pick{border:1px solid #e1d8cc;border-radius:10px;padding:11px;background:#faf8f4;display:flex;gap:9px;align-items:center}.pick input{width:auto}.hint{font-size:12px;color:#888;margin:6px 0 14px}.total{font-weight:700;font-size:18px;margin:12px 0;color:#8b693d}table{width:100%;border-collapse:collapse}th,td{padding:12px 8px;border-bottom:1px solid #eee;text-align:left}th{font-size:12px;color:#777}.del{background:#f2dddd;color:#a33}.empty{text-align:center;color:#888;padding:25px}.pill{display:inline-block;padding:5px 9px;border-radius:20px;background:#eee8df;font-size:11px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.head{align-items:flex-start;flex-direction:column;gap:12px}.service-pick{grid-template-columns:1fr}}
+</style></head>
+<body><div class="wrap">
+<div class="head"><div><h1>Services & Combos</h1><p>Add service name + price, then make combos directly from saved services.</p></div><a class="btn back" href="admin-dashboard.html">← Dashboard</a></div>
+
+<div class="card"><h2>Add Service</h2><div class="grid">
+<div><label>Service Name</label><input id="sn" placeholder="e.g. Pedicure"></div>
+<div><label>Price ₹</label><input id="sp" type="number" min="0" placeholder="800"></div>
+<div><label>Status</label><select id="ss"><option>Active</option><option>Inactive</option></select></div>
+<button class="btn save" onclick="addService()">Add Service</button></div></div>
+
+<div class="card"><h2>Create Combo</h2><div><label>Combo Name</label><input id="on" placeholder="e.g. Bridal Glow Combo"></div>
+<div class="hint">Neeche saved services select karo. Selected services automatically combo vich include ho jaan ge.</div>
+<div id="picker" class="service-pick"></div>
+<div class="grid" style="grid-template-columns:2fr 1fr auto;margin-top:14px">
+<div><label>Combo Price ₹</label><input id="op" type="number" min="0" placeholder="1999"></div>
+<div><div class="total">Selected Value: ₹<span id="selectedValue">0</span></div></div>
+<button class="btn save" onclick="addOffer()">Create Combo</button></div></div>
+
+<div class="card"><h2>Services</h2><div style="overflow:auto"><table><thead><tr><th>Name</th><th>Price</th><th>Status</th><th></th></tr></thead><tbody id="sr"></tbody></table></div></div>
+<div class="card"><h2>Combos</h2><div style="overflow:auto"><table><thead><tr><th>Combo</th><th>Services Included</th><th>Combo Price</th><th></th></tr></thead><tbody id="or"></tbody></table></div></div>
+</div>
+<script>
+if(sessionStorage.getItem("tipssyToeAdminLoggedIn")!=="true") location.href="admin-login.html";
+const S="tipssy_services", O="tipssy_combos";
+const get=k=>{try{return JSON.parse(localStorage.getItem(k)||"[]")}catch(e){return[]}};
+const esc=x=>String(x).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;",'\'':"&#039;"}[m]));
+function addService(){let n=sn.value.trim(),p=Number(sp.value);if(!n||p<=0)return alert("Service name te price bharo.");let a=get(S);a.push({id:Date.now(),name:n,price:p,status:ss.value});localStorage.setItem(S,JSON.stringify(a));sn.value="";sp.value="";render()}
+function renderPicker(){let a=get(S).filter(x=>x.status!=="Inactive");picker.innerHTML=a.length?a.map(x=>`<label class="pick"><input type="checkbox" class="svc" value="${x.id}" data-price="${x.price}" data-name="${esc(x.name)}" onchange="calcSelected()"><span>${esc(x.name)} — ₹${x.price}</span></label>`).join(""):"<div class='empty'>Pehla service add karo, fer combo banao.</div>";calcSelected()}
+function calcSelected(){let total=0;document.querySelectorAll('.svc:checked').forEach(x=>total+=Number(x.dataset.price||0));selectedValue.textContent=total}
+function addOffer(){let n=on.value.trim(),p=Number(op.value),items=[...document.querySelectorAll('.svc:checked')].map(x=>({id:Number(x.value),name:x.dataset.name,price:Number(x.dataset.price)}));if(!n||p<=0||!items.length)return alert("Combo name, services te combo price bharo.");let a=get(O);a.push({id:Date.now(),name:n,price:p,services:items,includes:items.map(x=>x.name).join(", ")});localStorage.setItem(O,JSON.stringify(a));on.value="";op.value="";document.querySelectorAll('.svc').forEach(x=>x.checked=false);render()}
+function ds(id){localStorage.setItem(S,JSON.stringify(get(S).filter(x=>String(x.id)!==String(id))));render()}
+function dO(id){localStorage.setItem(O,JSON.stringify(get(O).filter(x=>String(x.id)!==String(id))));render()}
+function render(){sr.innerHTML=get(S).length?get(S).map(x=>`<tr><td>${esc(x.name)}</td><td>₹${x.price}</td><td><span class="pill">${esc(x.status)}</span></td><td><button class="btn del" onclick="ds('${x.id}')">Delete</button></td></tr>`).join(""):`<tr><td colspan="4" class="empty">No services yet.</td></tr>`;or.innerHTML=get(O).length?get(O).map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.includes||((x.services||[]).map(s=>s.name).join(', ')))}</td><td>₹${x.price}</td><td><button class="btn del" onclick="dO('${x.id}')">Delete</button></td></tr>`).join(""):`<tr><td colspan="4" class="empty">No combos yet.</td></tr>`;renderPicker()}
+render();
+</script></body></html>
