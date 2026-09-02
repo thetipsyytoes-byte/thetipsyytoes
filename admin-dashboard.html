@@ -722,7 +722,7 @@ td{
             <div class="card">
 
                 <div class="stat-top">
-                    <span class="stat-label">Total Clients</span>
+                    <span class="stat-label">Customers</span>
                     <span class="stat-icon">♡</span>
                 </div>
 
@@ -857,8 +857,8 @@ td{
                         </button>
 
                         <button onclick="go('clients')">
-                            <strong>＋ Add Client</strong>
-                            <span>Create client record</span>
+                            <strong>＋ New Customer</strong>
+                            <span>Create customer bill</span>
                         </button>
 
                         <button onclick="go('billing')">
@@ -880,52 +880,7 @@ td{
         </div>
 
 
-        <!-- SALON INFO -->
-
-        <div class="info">
-
-            <div class="info-card">
-
-                <small>Studio Information</small>
-
-                <h4>The Tipssy Toe Makeover Studio</h4>
-
-                <p>
-                    Near Civil Dispensary, Model Town,
-                    Patiala, Punjab — 147001
-                </p>
-
-                <p>
-                    Mobile: 9056105015
-                </p>
-
-                <p>
-                    Email: thethipsyytoes@gmail.com
-                </p>
-
-            </div>
-
-
-            <div class="info-card">
-
-                <small>System Status</small>
-
-                <h4>Salon Portal Active</h4>
-
-                <p>
-                    Client records, appointments and salon
-                    management modules are ready.
-                </p>
-
-                <p>
-                    Data currently stored in this browser.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
+        </section>
 
 </main>
 
@@ -952,7 +907,7 @@ JSON.parse(
 
 let clients =
 JSON.parse(
-    localStorage.getItem("tipssy_clients") || "[]"
+    localStorage.getItem("tipssy_customer_bills") || "[]"
 );
 
 
@@ -1132,9 +1087,10 @@ function go(page){
         dashboard:"admin-dashboard.html",
 
         clients:"customer-billing.html",
+
         appointments:"appointments.html",
 
-        billing:"billing.html",
+        billing:"customer-billing.html",
 
         services:"services.html",
 
