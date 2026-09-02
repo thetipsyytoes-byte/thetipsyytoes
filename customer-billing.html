@@ -1,189 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Customer Billing - The Tipssy Toes Makeover Studio</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f7f3ee;color:#2d2926}
-.wrap{max-width:1100px;margin:0 auto;padding:28px 18px 50px}
-.header{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:22px}
-.brand h1{margin:0;font-size:28px}.brand p{margin:5px 0 0;color:#777}
-.btn{border:0;border-radius:10px;padding:11px 16px;cursor:pointer;font-weight:700}
-.back{background:#2d2926;color:#fff;text-decoration:none;display:inline-block}
-.card{background:#fff;border-radius:18px;padding:22px;box-shadow:0 8px 28px #0000000d;margin-bottom:20px}
-h2{margin:0 0 18px;font-size:21px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-label{font-size:13px;font-weight:700;color:#666;display:block;margin-bottom:6px}
-input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;font-size:15px;background:#fff}
-.full{grid-column:1/-1}
-.service-row{display:grid;grid-template-columns:1fr 150px 45px;gap:10px;margin-bottom:10px;align-items:end}
-.add{background:#eee;color:#333}.remove{background:#f1dddd;color:#a33;padding:11px;border-radius:9px}
-.total{font-size:24px;font-weight:800;text-align:right;margin-top:14px}
-.save{background:#b58b5b;color:#fff;font-size:16px;padding:13px 22px}
-.actions{display:flex;justify-content:flex-end;gap:10px;margin-top:16px}
-table{width:100%;border-collapse:collapse}
-th,td{padding:12px 8px;border-bottom:1px solid #eee;text-align:left;font-size:14px}
-th{color:#777;font-size:12px;text-transform:uppercase}
-.empty{text-align:center;color:#888;padding:30px}
-.delete{border:0;background:#f1dddd;color:#9b3030;padding:7px 10px;border-radius:8px;cursor:pointer}
-@media(max-width:750px){.grid{grid-template-columns:1fr}.service-row{grid-template-columns:1fr 110px 42px}.header{align-items:flex-start;flex-direction:column}}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <div class="header">
-    <div class="brand">
-      <h1>The Tipssy Toes Makeover Studio</h1>
-      <p>Customer Billing &amp; Daily Records</p>
-    </div>
-    <a class="btn back" href="admin-dashboard.html">← Dashboard</a>
-  </div>
-
-  <div class="card">
-    <h2>New Customer / Bill</h2>
-    <div class="grid">
-      <div>
-        <label>Customer Name *</label>
-        <input id="name" placeholder="Enter customer name">
-      </div>
-      <div>
-        <label>Mobile Number *</label>
-        <input id="mobile" type="tel" placeholder="Enter mobile number">
-      </div>
-      <div>
-        <label>Payment Method</label>
-        <select id="paymentMethod">
-          <option>Cash</option>
-          <option>UPI</option>
-          <option>Card</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="full">
-        <label>Services</label>
-        <div id="services"></div>
-        <button class="btn add" type="button" onclick="addService()">+ Add Service</button>
-      </div>
-    </div>
-    <div class="total">Total: ₹<span id="total">0</span></div>
-    <div class="actions">
-      <button class="btn save" onclick="saveBill()">Save Customer &amp; Payment</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Saved Records</h2>
-    <div style="overflow:auto">
-      <table>
-        <thead><tr><th>Date &amp; Time</th><th>Customer</th><th>Mobile</th><th>Services</th><th>Payment</th><th>Total</th><th></th></tr></thead>
-        <tbody id="records"></tbody>
-      </table>
-    </div>
-  </div>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Customer Billing</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f7f3ee;color:#292522}.wrap{max-width:1100px;margin:auto;padding:28px 18px}
+.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.btn{border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer}.back{background:#292522;color:#fff;text-decoration:none}.save{background:#b58b5b;color:#fff}.add{background:#eee}
+.card{background:#fff;padding:20px;border-radius:18px;margin-bottom:20px;box-shadow:0 8px 28px #0001}.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.full{grid-column:1/-1}
+label{display:block;font-size:12px;font-weight:bold;color:#666;margin-bottom:6px}input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;font-size:15px;background:#fff}
+.row{display:grid;grid-template-columns:2fr 130px 90px 42px;gap:10px;align-items:end;margin-bottom:10px}.remove{background:#f2dddd;color:#a33}
+.totals{max-width:430px;margin:18px 0 0 auto;border-top:1px solid #eee;padding-top:14px}.line{display:flex;justify-content:space-between;padding:4px 0}.grand{font-size:23px;font-weight:bold}
+table{width:100%;border-collapse:collapse}th,td{padding:11px 8px;border-bottom:1px solid #eee;text-align:left}th{font-size:12px;color:#777}.empty{text-align:center;color:#888;padding:25px}.delete{border:0;background:#f2dddd;color:#a33;padding:7px 10px;border-radius:8px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr 1fr 80px 40px}.full{grid-column:auto}.head{align-items:flex-start;flex-direction:column;gap:12px}}
+</style></head><body><div class="wrap">
+<div class="head"><div><h1>Customer Billing</h1><p>Service select karo — rate automatic aayega.</p></div><a class="btn back" href="admin-dashboard.html">← Dashboard</a></div>
+<div class="card"><div class="grid">
+<div><label>Customer Name *</label><input id="cn" placeholder="Customer name"></div><div><label>Mobile *</label><input id="cm" placeholder="Mobile number"></div><div><label>Payment</label><select id="pm"><option>Cash</option><option>UPI</option><option>Card</option><option>Other</option></select></div>
+<div class="full"><label>Services / Combo</label><div id="items"></div><button class="btn add" onclick="row()">+ Add Service / Combo</button></div>
 </div>
-
-<script>
-if(sessionStorage.getItem("tipssyToeAdminLoggedIn") !== "true"){
-  window.location.href="admin-login.html";
-}
-
-const KEY="tipssy_customer_bills";
-const serviceOptions=[
-  "Hair Cut","Hair Wash","Hair Spa","Hair Color","Facial","Cleanup",
-  "Manicure","Pedicure","Nail Art","Waxing","Threading","Makeup","Other"
-];
-
-function addService(name="",price=""){
-  const row=document.createElement("div");
-  row.className="service-row";
-  row.innerHTML=`
-    <div>
-      <label>Service</label>
-      <select class="service">${serviceOptions.map(x=>`<option ${x===name?"selected":""}>${x}</option>`).join("")}</select>
-    </div>
-    <div>
-      <label>Price (₹)</label>
-      <input class="price" type="number" min="0" value="${price}" oninput="calcTotal()">
-    </div>
-    <button type="button" class="remove" onclick="this.parentElement.remove();calcTotal()">×</button>`;
-  document.getElementById("services").appendChild(row);
-  calcTotal();
-}
-
-function calcTotal(){
-  let total=0;
-  document.querySelectorAll(".price").forEach(x=>total+=Number(x.value)||0);
-  document.getElementById("total").textContent=total.toLocaleString("en-IN");
-}
-
-function getRecords(){
-  try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return []}
-}
-
-function saveBill(){
-  const name=document.getElementById("name").value.trim();
-  const mobile=document.getElementById("mobile").value.trim();
-  const rows=[...document.querySelectorAll(".service-row")];
-  if(!name || !mobile){alert("Customer name te mobile number zaroor bharo.");return}
-  if(!rows.length){alert("At least 1 service add karo.");return}
-
-  const services=rows.map(r=>({
-    name:r.querySelector(".service").value,
-    price:Number(r.querySelector(".price").value)||0
-  }));
-  const total=services.reduce((a,b)=>a+b.price,0);
-  if(total<=0){alert("Service price enter karo.");return}
-
-  const records=getRecords();
-  records.unshift({
-    id:Date.now(),
-    date:new Date().toLocaleString("en-IN"),
-    name,mobile,
-    services,
-    paymentMethod:document.getElementById("paymentMethod").value,
-    total
-  });
-  localStorage.setItem(KEY,JSON.stringify(records));
-  document.getElementById("name").value="";
-  document.getElementById("mobile").value="";
-  document.getElementById("services").innerHTML="";
-  addService();
-  render();
-  alert("Customer bill save ho gaya.");
-}
-
-function deleteRecord(id){
-  if(!confirm("Eh record delete karna hai?")) return;
-  const records=getRecords().filter(x=>x.id!==id);
-  localStorage.setItem(KEY,JSON.stringify(records));
-  render();
-}
-
-function render(){
-  const body=document.getElementById("records");
-  const records=getRecords();
-  if(!records.length){
-    body.innerHTML='<tr><td colspan="7" class="empty">Haje koi customer record nahi hai.</td></tr>';
-    return;
-  }
-  body.innerHTML=records.map(r=>`
-    <tr>
-      <td>${r.date}</td>
-      <td><b>${escapeHtml(r.name)}</b></td>
-      <td>${escapeHtml(r.mobile)}</td>
-      <td>${r.services.map(s=>escapeHtml(s.name)+" (₹"+s.price.toLocaleString("en-IN")+")").join("<br>")}</td>
-      <td>${escapeHtml(r.paymentMethod)}</td>
-      <td><b>₹${r.total.toLocaleString("en-IN")}</b></td>
-      <td><button class="delete" onclick="deleteRecord(${r.id})">Delete</button></td>
-    </tr>`).join("");
-}
-function escapeHtml(s){
-  return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
-}
-addService();
-render();
-</script>
-</body>
-</html>
+<div class="grid" style="margin-top:15px"><div><label>Discount Type</label><select id="dt" onchange="calc()"><option value="none">No Discount</option><option value="percent">Percentage (%)</option><option value="fixed">Fixed ₹</option></select></div><div><label>Discount</label><input id="dv" type="number" min="0" value="0" oninput="calc()"></div></div>
+<div class="totals"><div class="line"><span>Subtotal</span><b>₹<span id="sub">0</span></b></div><div class="line"><span>Discount</span><b>− ₹<span id="dis">0</span></b></div><div class="line grand"><span>Total</span><span>₹<span id="tot">0</span></span></div></div>
+<div style="text-align:right;margin-top:16px"><button class="btn save" onclick="save()">Save Customer & Payment</button></div></div>
+<div class="card"><h2>Saved Customer Bills</h2><div style="overflow:auto"><table><thead><tr><th>Date</th><th>Customer</th><th>Mobile</th><th>Services</th><th>Discount</th><th>Payment</th><th>Total</th><th></th></tr></thead><tbody id="rec"></tbody></table></div></div>
+</div><script>
+if(sessionStorage.getItem("tipssyToeAdminLoggedIn")!=="true")location.href="admin-login.html";
+const S="tipssy_services",O="tipssy_combos",B="tipssy_customer_bills";const get=k=>{try{return JSON.parse(localStorage.getItem(k)||"[]")}catch(e){return[]}};
+function esc(x){return String(x).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function row(){let r=document.createElement("div");r.className="row";let s=get(S).filter(x=>x.status!=="Inactive"),o=get(O);r.innerHTML=`<div><label>Service / Combo</label><select class=item onchange="price(this)"><option value="">Select...</option><optgroup label="Services">${s.map(x=>`<option value="s:${x.id}">${esc(x.name)} — ₹${x.price}</option>`).join("")}</optgroup><optgroup label="Combo Offers">${o.map(x=>`<option value="o:${x.id}">${esc(x.name)} — ₹${x.price}</option>`).join("")}</optgroup></select></div><div><label>Rate ₹</label><input class=pr type=number readonly></div><div><label>Qty</label><input class=qt type=number min=1 value=1 oninput="calc()"></div><button class="btn remove" onclick="this.parentElement.remove();calc()">×</button>`;items.appendChild(r)}
+function price(x){let v=x.value,p=0;if(v.startsWith("s:"))p=get(S).find(a=>String(a.id)===v.slice(2))?.price||0;if(v.startsWith("o:"))p=get(O).find(a=>String(a.id)===v.slice(2))?.price||0;x.closest(".row").querySelector(".pr").value=p;calc()}
+function calc(){let st=0;document.querySelectorAll(".row").forEach(r=>st+=(+r.querySelector(".pr").value||0)*(+r.querySelector(".qt").value||1));let d=+dv.value||0;let dis=dt.value==="percent"?st*Math.min(d,100)/100:dt.value==="fixed"?Math.min(d,st):0;sub.textContent=st.toLocaleString("en-IN");document.getElementById("dis").textContent=dis.toLocaleString("en-IN");tot.textContent=(st-dis).toLocaleString("en-IN");return{st,dis,total:st-dis}}
+function save(){let n=cn.value.trim(),m=cm.value.trim(),rs=[...document.querySelectorAll(".row")];if(!n||!m)return alert("Customer name te mobile bharo.");if(!rs.length)return alert("Service ya combo add karo.");let c=calc();if(c.st<=0)return alert("Service select karo.");let its=rs.map(r=>({name:r.querySelector(".item").selectedOptions[0].textContent,rate:+r.querySelector(".pr").value||0,qty:+r.querySelector(".qt").value||1}));let a=get(B);a.unshift({id:Date.now(),date:new Date().toLocaleString("en-IN"),name:n,mobile:m,items:its,subtotal:c.st,discount:c.dis,payment:pm.value,total:c.total});localStorage.setItem(B,JSON.stringify(a));cn.value=cm.value="";items.innerHTML="";dt.value="none";dv.value=0;row();render();alert("Bill save ho gaya.")}
+function del(id){if(confirm("Record delete karna hai?")){localStorage.setItem(B,JSON.stringify(get(B).filter(x=>x.id!==id)));render()}}
+function render(){let a=get(B);rec.innerHTML=a.length?a.map(r=>`<tr><td>${esc(r.date)}</td><td><b>${esc(r.name)}</b></td><td>${esc(r.mobile)}</td><td>${r.items.map(x=>`${esc(x.name)} × ${x.qty}`).join("<br>")}</td><td>₹${r.discount}</td><td>${esc(r.payment)}</td><td><b>₹${r.total}</b></td><td><button class=delete onclick="del(${r.id})">Delete</button></td></tr>`).join(""):`<tr><td colspan=8 class=empty>No customer bills yet.</td></tr>`}row();render();
+</script></body></html>
