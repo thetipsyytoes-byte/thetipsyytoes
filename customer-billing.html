@@ -1,33 +1,1049 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Customer Billing</title><style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f7f3ee;color:#292522}.wrap{max-width:1100px;margin:auto;padding:28px 18px}
-.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.btn{border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer}.back{background:#292522;color:#fff;text-decoration:none}.save{background:#b58b5b;color:#fff}.add{background:#eee}
-.card{background:#fff;padding:20px;border-radius:18px;margin-bottom:20px;box-shadow:0 8px 28px #0001}.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.full{grid-column:1/-1}
-label{display:block;font-size:12px;font-weight:bold;color:#666;margin-bottom:6px}input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;font-size:15px;background:#fff}
-.row{display:grid;grid-template-columns:2fr 130px 90px 42px;gap:10px;align-items:end;margin-bottom:10px}.remove{background:#f2dddd;color:#a33}
-.totals{max-width:430px;margin:18px 0 0 auto;border-top:1px solid #eee;padding-top:14px}.line{display:flex;justify-content:space-between;padding:4px 0}.grand{font-size:23px;font-weight:bold}
-table{width:100%;border-collapse:collapse}th,td{padding:11px 8px;border-bottom:1px solid #eee;text-align:left}th{font-size:12px;color:#777}.empty{text-align:center;color:#888;padding:25px}.delete{border:0;background:#f2dddd;color:#a33;padding:7px 10px;border-radius:8px}
-@media(max-width:700px){.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr 1fr 80px 40px}.full{grid-column:auto}.head{align-items:flex-start;flex-direction:column;gap:12px}}
-</style></head><body><div class="wrap">
-<div class="head"><div><h1>Customer Billing</h1><p>Service select karo — rate automatic aayega.</p></div><a class="btn back" href="admin-dashboard.html">← Dashboard</a></div>
-<div class="card"><div class="grid">
-<div><label>Customer Name *</label><input id="cn" placeholder="Customer name"></div><div><label>Mobile *</label><input id="cm" placeholder="Mobile number"></div><div><label>Payment</label><select id="pm"><option>Cash</option><option>UPI</option><option>Card</option><option>Other</option></select></div>
-<div class="full"><label>Services / Combo</label><div id="items"></div><button class="btn add" onclick="row()">+ Add Service / Combo</button></div>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Customer Billing</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f7f3ee;
+  color:#292522
+}
+
+.wrap{
+  max-width:1100px;
+  margin:auto;
+  padding:28px 18px
+}
+
+.head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px
+}
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:11px 16px;
+  font-weight:700;
+  cursor:pointer
+}
+
+.back{
+  background:#292522;
+  color:#fff;
+  text-decoration:none
+}
+
+.save{
+  background:#b58b5b;
+  color:#fff
+}
+
+.add{
+  background:#eee
+}
+
+.card{
+  background:#fff;
+  padding:20px;
+  border-radius:18px;
+  margin-bottom:20px;
+  box-shadow:0 8px 28px #0001
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:14px
+}
+
+.full{
+  grid-column:1/-1
+}
+
+label{
+  display:block;
+  font-size:12px;
+  font-weight:bold;
+  color:#666;
+  margin-bottom:6px
+}
+
+input,select{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:15px;
+  background:#fff
+}
+
+.row{
+  display:grid;
+  grid-template-columns:2fr 130px 90px 42px;
+  gap:10px;
+  align-items:end;
+  margin-bottom:10px
+}
+
+.remove{
+  background:#f2dddd;
+  color:#a33
+}
+
+.totals{
+  max-width:430px;
+  margin:18px 0 0 auto;
+  border-top:1px solid #eee;
+  padding-top:14px
+}
+
+.line{
+  display:flex;
+  justify-content:space-between;
+  padding:4px 0
+}
+
+.grand{
+  font-size:23px;
+  font-weight:bold
+}
+
+/* PAYMENT QR */
+.paybox{
+  margin:25px auto 0;
+  max-width:450px;
+  text-align:center;
+  border:1px solid #eadfce;
+  border-radius:16px;
+  padding:22px;
+  background:#fffaf5
+}
+
+.paybox h2{
+  margin-top:0
+}
+
+.qr{
+  width:300px;
+  max-width:100%;
+  display:block;
+  margin:15px auto;
+  border-radius:12px;
+  border:1px solid #ddd
+}
+
+.upi{
+  font-weight:700;
+  margin:10px 0
+}
+
+.payment-done{
+  background:#3b8d55;
+  color:white;
+  margin-top:15px
+}
+
+.print{
+  background:#292522;
+  color:#fff
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  margin-top:16px
+}
+
+table{
+  width:100%;
+  border-collapse:collapse
+}
+
+th,td{
+  padding:11px 8px;
+  border-bottom:1px solid #eee;
+  text-align:left
+}
+
+th{
+  font-size:12px;
+  color:#777
+}
+
+.empty{
+  text-align:center;
+  color:#888;
+  padding:25px
+}
+
+.delete{
+  border:0;
+  background:#f2dddd;
+  color:#a33;
+  padding:7px 10px;
+  border-radius:8px
+}
+
+/* PRINT */
+@media print{
+
+  body{
+    background:#fff
+  }
+
+  .head,
+  .add,
+  .save,
+  .delete,
+  .actions,
+  .back{
+    display:none!important
+  }
+
+  .card{
+    box-shadow:none;
+    border:1px solid #ddd
+  }
+
+  .paybox{
+    break-inside:avoid
+  }
+
+  .wrap{
+    max-width:none;
+    padding:10px
+  }
+}
+
+@media(max-width:700px){
+
+  .grid{
+    grid-template-columns:1fr
+  }
+
+  .row{
+    grid-template-columns:1fr 1fr 80px 40px
+  }
+
+  .full{
+    grid-column:auto
+  }
+
+  .head{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:12px
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<!-- HEADER -->
+
+<div class="head">
+
+  <div>
+    <h1>Customer Billing</h1>
+    <p>Service select karo — rate automatic aayega.</p>
+  </div>
+
+  <a class="btn back" href="admin-dashboard.html">
+    ← Dashboard
+  </a>
+
 </div>
-<div class="grid" style="margin-top:15px"><div><label>Discount Type</label><select id="dt" onchange="calc()"><option value="none">No Discount</option><option value="percent">Percentage (%)</option><option value="fixed">Fixed ₹</option></select></div><div><label>Discount</label><input id="dv" type="number" min="0" value="0" oninput="calc()"></div></div>
-<div class="totals"><div class="line"><span>Subtotal</span><b>₹<span id="sub">0</span></b></div><div class="line"><span>Discount</span><b>− ₹<span id="dis">0</span></b></div><div class="line grand"><span>Total</span><span>₹<span id="tot">0</span></span></div></div>
-<div style="text-align:right;margin-top:16px"><button class="btn save" onclick="save()">Save Customer & Payment</button></div></div>
-<div class="card"><h2>Saved Customer Bills</h2><div style="overflow:auto"><table><thead><tr><th>Date</th><th>Customer</th><th>Mobile</th><th>Services</th><th>Discount</th><th>Payment</th><th>Total</th><th></th></tr></thead><tbody id="rec"></tbody></table></div></div>
-</div><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script>
-if(sessionStorage.getItem("tipssyToeAdminLoggedIn")!=="true")location.href="admin-login.html";
-const db=window.tipssySupabase; let services=[],combos=[],bills=[];
-const esc=x=>String(x??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
-async function load(){let [s,o,b]=await Promise.all([db.from("services").select("*").order("name"),db.from("combos").select("*").order("name"),db.from("customer_bills").select("*").order("created_at",{ascending:false})]);if(s.error||o.error||b.error)return alert((s.error||o.error||b.error).message);services=s.data||[];combos=o.data||[];bills=b.data||[];items.innerHTML="";row();render()}
-function row(){let r=document.createElement("div");r.className="row";r.innerHTML=`<div><label>Service / Combo</label><select class=item onchange="price(this)"><option value="">Select...</option><optgroup label="Services">${services.filter(x=>x.status!=="Inactive").map(x=>`<option value="s:${x.id}">${esc(x.name)} — ₹${x.price}</option>`).join("")}</optgroup><optgroup label="Combo Offers">${combos.map(x=>`<option value="o:${x.id}">${esc(x.name)} — ₹${x.price}</option>`).join("")}</optgroup></select></div><div><label>Rate ₹</label><input class=pr type=number readonly></div><div><label>Qty</label><input class=qt type=number min=1 value=1 oninput="calc()"></div><button class="btn remove" onclick="this.parentElement.remove();calc()">×</button>`;items.appendChild(r)}
-function price(x){let p=0,v=x.value;if(v.startsWith("s:"))p=services.find(a=>String(a.id)===v.slice(2))?.price||0;if(v.startsWith("o:"))p=combos.find(a=>String(a.id)===v.slice(2))?.price||0;x.closest(".row").querySelector(".pr").value=p;calc()}
-function calc(){let st=0;document.querySelectorAll(".row").forEach(r=>st+=(+r.querySelector(".pr").value||0)*(+r.querySelector(".qt").value||1));let d=+dv.value||0;let dis=dt.value==="percent"?st*Math.min(d,100)/100:dt.value==="fixed"?Math.min(d,st):0;sub.textContent=st.toLocaleString("en-IN");document.getElementById("dis").textContent=dis.toLocaleString("en-IN");tot.textContent=(st-dis).toLocaleString("en-IN");return{st,dis,total:st-dis}}
-async function save(){let n=cn.value.trim(),m=cm.value.trim(),rs=[...document.querySelectorAll(".row")];if(!n||!m)return alert("Customer name te mobile bharo.");if(!rs.length)return alert("Service ya combo add karo.");let c=calc();if(c.st<=0)return alert("Service select karo.");let its=rs.map(r=>({name:r.querySelector(".item").selectedOptions[0].textContent,rate:+r.querySelector(".pr").value||0,qty:+r.querySelector(".qt").value||1}));let {error}=await db.from("customer_bills").insert({source_id:String(Date.now()),bill_date:new Date().toLocaleString("en-IN"),name:n,mobile:m,items:its,subtotal:c.st,discount:c.dis,payment:pm.value,total:c.total});if(error)return alert(error.message);cn.value=cm.value="";dt.value="none";dv.value=0;await load();alert("Bill save ho gaya.")}
-async function del(id){if(!confirm("Record delete karna hai?"))return;let {error}=await db.from("customer_bills").delete().eq("id",id);if(error)return alert(error.message);load()}
-function render(){rec.innerHTML=bills.length?bills.map(r=>`<tr><td>${esc(r.bill_date)}</td><td><b>${esc(r.name)}</b></td><td>${esc(r.mobile)}</td><td>${(r.items||[]).map(x=>`${esc(x.name)} × ${x.qty}`).join("<br>")}</td><td>₹${r.discount}</td><td>${esc(r.payment||"")}</td><td><b>₹${r.total}</b></td><td><button class=delete onclick="del('${r.id}')">Delete</button></td></tr>`).join(""):`<tr><td colspan=8 class=empty>No customer bills yet.</td></tr>`}
+
+
+<!-- BILLING CARD -->
+
+<div class="card">
+
+<div class="grid">
+
+<!-- CUSTOMER -->
+
+<div>
+<label>Customer Name *</label>
+<input id="cn" placeholder="Customer name">
+</div>
+
+<div>
+<label>Mobile *</label>
+<input id="cm" placeholder="Mobile number">
+</div>
+
+<div>
+<label>Payment</label>
+
+<select id="pm">
+<option>Cash</option>
+<option>UPI</option>
+<option>Card</option>
+<option>Other</option>
+</select>
+
+</div>
+
+
+<!-- SERVICES -->
+
+<div class="full">
+
+<label>Services / Combo</label>
+
+<div id="items"></div>
+
+<button class="btn add" onclick="row()">
++ Add Service / Combo
+</button>
+
+</div>
+
+</div>
+
+
+<!-- DISCOUNT -->
+
+<div class="grid" style="margin-top:15px">
+
+<div>
+
+<label>Discount Type</label>
+
+<select id="dt" onchange="calc()">
+
+<option value="none">
+No Discount
+</option>
+
+<option value="percent">
+Percentage (%)
+</option>
+
+<option value="fixed">
+Fixed ₹
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Discount</label>
+
+<input
+id="dv"
+type="number"
+min="0"
+value="0"
+oninput="calc()"
+>
+
+</div>
+
+</div>
+
+
+<!-- TOTAL -->
+
+<div class="totals">
+
+<div class="line">
+
+<span>Subtotal</span>
+
+<b>
+₹<span id="sub">0</span>
+</b>
+
+</div>
+
+
+<div class="line">
+
+<span>Discount</span>
+
+<b>
+− ₹<span id="dis">0</span>
+</b>
+
+</div>
+
+
+<div class="line grand">
+
+<span>Total</span>
+
+<span>
+₹<span id="tot">0</span>
+</span>
+
+</div>
+
+</div>
+
+
+<!-- PAYMENT QR -->
+
+<div class="paybox">
+
+<h2>Scan to Pay</h2>
+
+<div>Total Amount</div>
+
+<div class="grand">
+
+₹<span id="payTotal">0</span>
+
+</div>
+
+
+<img
+class="qr"
+src="payment-qr.jpg"
+alt="UPI Payment QR Code"
+>
+
+
+<div>
+Scan to pay with any UPI app
+</div>
+
+
+<div class="upi">
+UPI ID: raman10835-5@okicici
+</div>
+
+
+<div>
+Punjab National Bank • 7638
+</div>
+
+
+<button
+class="btn payment-done"
+type="button"
+onclick="paymentDone()"
+>
+✓ Payment Done
+</button>
+
+</div>
+
+
+<!-- BUTTONS -->
+
+<div class="actions">
+
+<button
+class="btn print"
+type="button"
+onclick="window.print()"
+>
+🖨 Print Bill
+</button>
+
+
+<button
+class="btn save"
+type="button"
+onclick="save()"
+>
+Save Customer & Payment
+</button>
+
+</div>
+
+</div>
+
+
+<!-- SAVED BILLS -->
+
+<div class="card">
+
+<h2>Saved Customer Bills</h2>
+
+<div style="overflow:auto">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+<th>Customer</th>
+<th>Mobile</th>
+<th>Services</th>
+<th>Discount</th>
+<th>Payment</th>
+<th>Total</th>
+<th></th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="rec"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+
+<script>
+
+if(
+sessionStorage.getItem("tipssyToeAdminLoggedIn")!=="true"
+){
+location.href="admin-login.html";
+}
+
+
+const db=window.tipssySupabase;
+
+let services=[];
+let combos=[];
+let bills=[];
+
+
+const esc=x=>
+String(x??"").replace(
+/[&<>"']/g,
+m=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[m])
+);
+
+
+/* LOAD DATA */
+
+async function load(){
+
+let [s,o,b]=await Promise.all([
+
+db
+.from("services")
+.select("*")
+.order("name"),
+
+db
+.from("combos")
+.select("*")
+.order("name"),
+
+db
+.from("customer_bills")
+.select("*")
+.order("created_at",{ascending:false})
+
+]);
+
+
+if(s.error||o.error||b.error){
+
+return alert(
+(s.error||o.error||b.error).message
+);
+
+}
+
+
+services=s.data||[];
+combos=o.data||[];
+bills=b.data||[];
+
+
+items.innerHTML="";
+
+row();
+
+render();
+
+}
+
+
+/* ADD SERVICE ROW */
+
+function row(){
+
+let r=document.createElement("div");
+
+r.className="row";
+
+
+r.innerHTML=`
+
+<div>
+
+<label>Service / Combo</label>
+
+<select
+class="item"
+onchange="price(this)"
+>
+
+<option value="">
+Select...
+</option>
+
+
+<optgroup label="Services">
+
+${services
+.filter(x=>x.status!=="Inactive")
+.map(x=>`
+
+<option value="s:${x.id}">
+${esc(x.name)} — ₹${x.price}
+</option>
+
+`).join("")}
+
+</optgroup>
+
+
+<optgroup label="Combo Offers">
+
+${combos.map(x=>`
+
+<option value="o:${x.id}">
+${esc(x.name)} — ₹${x.price}
+</option>
+
+`).join("")}
+
+</optgroup>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Rate ₹</label>
+
+<input
+class="pr"
+type="number"
+readonly
+>
+
+</div>
+
+
+<div>
+
+<label>Qty</label>
+
+<input
+class="qt"
+type="number"
+min="1"
+value="1"
+oninput="calc()"
+>
+
+</div>
+
+
+<button
+class="btn remove"
+onclick="this.parentElement.remove();calc()"
+>
+×
+</button>
+
+`;
+
+
+items.appendChild(r);
+
+}
+
+
+/* PRICE */
+
+function price(x){
+
+let p=0;
+
+let v=x.value;
+
+
+if(v.startsWith("s:"))
+
+p=
+services.find(
+a=>String(a.id)===v.slice(2)
+)?.price||0;
+
+
+if(v.startsWith("o:"))
+
+p=
+combos.find(
+a=>String(a.id)===v.slice(2)
+)?.price||0;
+
+
+x
+.closest(".row")
+.querySelector(".pr")
+.value=p;
+
+
+calc();
+
+}
+
+
+/* CALCULATE */
+
+function calc(){
+
+let st=0;
+
+
+document
+.querySelectorAll(".row")
+.forEach(r=>{
+
+st +=
+(+r.querySelector(".pr").value||0)
+*
+(+r.querySelector(".qt").value||1);
+
+});
+
+
+let d=+dv.value||0;
+
+
+let dis=
+
+dt.value==="percent"
+
+?
+st*Math.min(d,100)/100
+
+:
+
+dt.value==="fixed"
+
+?
+Math.min(d,st)
+
+:
+0;
+
+
+let total=st-dis;
+
+
+sub.textContent=
+st.toLocaleString("en-IN");
+
+
+document.getElementById("dis").textContent=
+dis.toLocaleString("en-IN");
+
+
+tot.textContent=
+total.toLocaleString("en-IN");
+
+
+document.getElementById("payTotal").textContent=
+total.toLocaleString("en-IN");
+
+
+return{
+st,
+dis,
+total
+};
+
+}
+
+
+/* PAYMENT DONE */
+
+function paymentDone(){
+
+pm.value="UPI";
+
+alert(
+"Payment marked as UPI / Payment Done."
+);
+
+}
+
+
+/* SAVE BILL */
+
+async function save(){
+
+let n=cn.value.trim();
+
+let m=cm.value.trim();
+
+let rs=[
+...document.querySelectorAll(".row")
+];
+
+
+if(!n||!m){
+
+return alert(
+"Customer name te mobile bharo."
+);
+
+}
+
+
+if(!rs.length){
+
+return alert(
+"Service ya combo add karo."
+);
+
+}
+
+
+let c=calc();
+
+
+if(c.st<=0){
+
+return alert(
+"Service select karo."
+);
+
+}
+
+
+let its=rs.map(r=>({
+
+name:
+r.querySelector(".item")
+.selectedOptions[0]
+.textContent,
+
+rate:
++r.querySelector(".pr").value||0,
+
+qty:
++r.querySelector(".qt").value||1
+
+}));
+
+
+let {error}=await
+
+db
+.from("customer_bills")
+.insert({
+
+source_id:String(Date.now()),
+
+bill_date:
+new Date().toLocaleString("en-IN"),
+
+name:n,
+
+mobile:m,
+
+items:its,
+
+subtotal:c.st,
+
+discount:c.dis,
+
+payment:pm.value,
+
+total:c.total
+
+});
+
+
+if(error){
+
+return alert(error.message);
+
+}
+
+
+cn.value="";
+
+cm.value="";
+
+dt.value="none";
+
+dv.value=0;
+
+
+await load();
+
+
+alert(
+"Bill save ho gaya."
+);
+
+}
+
+
+/* DELETE */
+
+async function del(id){
+
+if(
+!confirm(
+"Record delete karna hai?"
+)
+)return;
+
+
+let {error}=await
+
+db
+.from("customer_bills")
+.delete()
+.eq("id",id);
+
+
+if(error){
+
+return alert(error.message);
+
+}
+
+
 load();
-</script></body></html>
+
+}
+
+
+/* SHOW SAVED BILLS */
+
+function render(){
+
+rec.innerHTML=
+
+bills.length
+
+?
+
+bills.map(r=>`
+
+<tr>
+
+<td>
+${esc(r.bill_date)}
+</td>
+
+<td>
+<b>${esc(r.name)}</b>
+</td>
+
+<td>
+${esc(r.mobile)}
+</td>
+
+<td>
+
+${(r.items||[])
+.map(x=>`
+${esc(x.name)} × ${x.qty}
+`)
+.join("<br>")}
+
+</td>
+
+<td>
+₹${r.discount}
+</td>
+
+<td>
+${esc(r.payment||"")}
+</td>
+
+<td>
+<b>₹${r.total}</b>
+</td>
+
+<td>
+
+<button
+class="delete"
+onclick="del('${r.id}')"
+>
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`).join("")
+
+:
+
+`
+
+<tr>
+
+<td
+colspan="8"
+class="empty"
+>
+No customer bills yet.
+</td>
+
+</tr>
+
+`;
+
+}
+
+
+load();
+
+</script>
+
+</body>
+</html>
