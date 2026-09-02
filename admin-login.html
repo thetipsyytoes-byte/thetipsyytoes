@@ -2,285 +2,45 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>The Tipssy Toe | Admin Login</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login | The Tipssy Toe</title>
 <style>
-
-*{
-    box-sizing:border-box;
-}
-
-body{
-    margin:0;
-    min-height:100vh;
-    background:
-    radial-gradient(circle at 20% 20%,#302419,#0a0907 45%),
-    #090807;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-family:Arial,Helvetica,sans-serif;
-    color:#fff;
-}
-
-.login-box{
-    width:430px;
-    max-width:92%;
-
-    padding:48px 40px;
-
-    background:
-    linear-gradient(
-        145deg,
-        rgba(34,28,21,.98),
-        rgba(10,9,7,.98)
-    );
-
-    border:1px solid #624924;
-
-    box-shadow:
-    0 35px 90px rgba(0,0,0,.65);
-}
-
-.logo{
-    text-align:center;
-
-    font-family:Georgia,serif;
-
-    font-size:29px;
-
-    letter-spacing:3px;
-
-    color:#e5c083;
-}
-
-.sub{
-    text-align:center;
-
-    margin-top:8px;
-
-    font-size:9px;
-
-    letter-spacing:4px;
-
-    color:#8f8578;
-}
-
-.line{
-    width:60px;
-    height:1px;
-
-    background:#c99a55;
-
-    margin:27px auto 35px;
-}
-
-label{
-    display:block;
-
-    margin:20px 0 8px;
-
-    color:#bdb3a6;
-
-    font-size:10px;
-
-    letter-spacing:1.5px;
-
-    text-transform:uppercase;
-}
-
-input{
-    width:100%;
-
-    padding:16px;
-
-    border:1px solid #463724;
-
-    background:#100f0d;
-
-    color:#fff;
-
-    outline:none;
-
-    font-size:14px;
-}
-
-input:focus{
-    border-color:#c99a55;
-}
-
-.login-btn{
-    width:100%;
-
-    margin-top:27px;
-
-    padding:17px;
-
-    border:0;
-
-    cursor:pointer;
-
-    background:
-    linear-gradient(
-        135deg,
-        #e8c487,
-        #b87e37
-    );
-
-    color:#15110b;
-
-    font-size:10px;
-
-    font-weight:bold;
-
-    letter-spacing:1.5px;
-}
-
-.error{
-    display:none;
-
-    margin-top:18px;
-
-    text-align:center;
-
-    color:#e18e80;
-
-    font-size:11px;
-}
-
-.demo{
-    text-align:center;
-
-    margin-top:25px;
-
-    color:#6e665e;
-
-    font-size:10px;
-
-    line-height:1.8;
-}
-
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;font-family:Arial,sans-serif;background:#f7f1e8;color:#211b16}
+.card{width:min(420px,92%);padding:42px 34px;border-radius:20px;background:#fff;border:1px solid #d6b47b;box-shadow:0 18px 50px rgba(0,0,0,.12)}
+.brand{text-align:center;letter-spacing:2px;font-weight:700;font-size:20px}.sub{text-align:center;color:#8d6a3e;margin:7px 0 28px;letter-spacing:1px}
+label{display:block;font-size:13px;margin:16px 0 7px}input{width:100%;padding:13px 14px;border:1px solid #d8c8b5;border-radius:10px;font-size:15px;outline:none}
+button{width:100%;margin-top:22px;padding:13px;border-radius:10px;border:1px solid #a8793c;background:#a8793c;color:#fff;font-weight:700;cursor:pointer}
+#error{color:#b3261e;text-align:center;font-size:13px;margin-top:14px;min-height:18px}.back{text-align:center;margin-top:20px;font-size:13px}.back a{color:#8d6a3e;text-decoration:none}
 </style>
 </head>
-
 <body>
-
-<div class="login-box">
-
-    <div class="logo">
-        THE TIPSSY TOE
-    </div>
-
-    <div class="sub">
-        MAKEOVER STUDIO · ADMIN
-    </div>
-
-    <div class="line"></div>
-
-
-    <form id="loginForm">
-
-        <label>
-            Admin Email
-        </label>
-
-        <input
-            id="email"
-            type="email"
-            placeholder="admin@tipssytoe.com"
-            required
-        >
-
-
-        <label>
-            Password
-        </label>
-
-        <input
-            id="password"
-            type="password"
-            placeholder="Enter password"
-            required
-        >
-
-
-        <button
-            class="login-btn"
-            type="submit"
-        >
-            SIGN IN TO ADMIN →
-        </button>
-
-        <div
-            class="error"
-            id="error"
-        >
-            Invalid email or password.
-        </div>
-
-    </form>
-
-
-    <div class="demo">
-
-        Demo Login<br>
-
-        admin@tipssytoe.com · admin123
-
-    </div>
-
+<div class="card">
+<div class="brand">THE TIPSSY TOE</div>
+<div class="sub">ADMIN LOGIN · MAKEOVER STUDIO</div>
+<form id="loginForm">
+<label for="loginId">Login ID</label>
+<input id="loginId" type="text" autocomplete="username" required>
+<label for="password">Password</label>
+<input id="password" type="password" autocomplete="current-password" required>
+<button type="submit">Login to Admin Dashboard</button>
+<div id="error"></div>
+</form>
+<div class="back"><a href="index.html">← Back to Website</a></div>
 </div>
-
-
 <script>
-
-document
-.getElementById("loginForm")
-.addEventListener("submit",function(e){
-
-    e.preventDefault();
-
-    const email =
-        document
-        .getElementById("email")
-        .value
-        .trim()
-        .toLowerCase();
-
-    const password =
-        document
-        .getElementById("password")
-        .value;
-
-
-    if(
-        email === "admin@tipssytoe.com" &&
-        password === "admin123"
-    ){
-
-        localStorage.setItem(
-            "tipssy_admin",
-            "true"
-        );
-
-        window.location.href =
-            "admin-dashboard.html";
-
-    }else{
-
-        document
-        .getElementById("error")
-        .style.display="block";
-
-    }
-
+const ADMIN_ID="thetipsyytoes";
+const ADMIN_PASSWORD="Maninder@123";
+document.getElementById("loginForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ const id=document.getElementById("loginId").value.trim();
+ const password=document.getElementById("password").value;
+ if(id===ADMIN_ID && password===ADMIN_PASSWORD){
+   sessionStorage.setItem("tipssyToeAdminLoggedIn","true");
+   window.location.href="admin-dashboard.html";
+ }else{
+   document.getElementById("error").textContent="Wrong Login ID or Password.";
+ }
 });
-
 </script>
-
 </body>
 </html>
