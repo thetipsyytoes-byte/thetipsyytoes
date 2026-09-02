@@ -936,7 +936,7 @@ td{
    LOGIN PROTECTION
 ========================= */
 
-if(localStorage.getItem("tipssy_admin") !== "true"){
+if(sessionStorage.getItem("tipssyToeAdminLoggedIn") !== "true"){
     window.location.href="admin-login.html";
 }
 
