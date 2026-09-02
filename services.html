@@ -25,17 +25,18 @@
 <div class="card"><h2>Services</h2><div style="overflow:auto"><table><thead><tr><th>Name</th><th>Price</th><th>Status</th><th></th></tr></thead><tbody id="sr"></tbody></table></div></div>
 <div class="card"><h2>Combos</h2><div style="overflow:auto"><table><thead><tr><th>Combo</th><th>Services Included</th><th>Combo Price</th><th></th></tr></thead><tbody id="or"></tbody></table></div></div>
 </div>
-<script>
-if(sessionStorage.getItem("tipssyToeAdminLoggedIn")!=="true") location.href="admin-login.html";
-const S="tipssy_services", O="tipssy_combos";
-const get=k=>{try{return JSON.parse(localStorage.getItem(k)||"[]")}catch(e){return[]}};
-const esc=x=>String(x).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;",'\'':"&#039;"}[m]));
-function addService(){let n=sn.value.trim(),p=Number(sp.value);if(!n||p<=0)return alert("Service name te price bharo.");let a=get(S);a.push({id:Date.now(),name:n,price:p,status:ss.value});localStorage.setItem(S,JSON.stringify(a));sn.value="";sp.value="";render()}
-function renderPicker(){let a=get(S).filter(x=>x.status!=="Inactive");picker.innerHTML=a.length?a.map(x=>`<label class="pick"><input type="checkbox" class="svc" value="${x.id}" data-price="${x.price}" data-name="${esc(x.name)}" onchange="calcSelected()"><span>${esc(x.name)} — ₹${x.price}</span></label>`).join(""):"<div class='empty'>Pehla service add karo, fer combo banao.</div>";calcSelected()}
-function calcSelected(){let total=0;document.querySelectorAll('.svc:checked').forEach(x=>total+=Number(x.dataset.price||0));selectedValue.textContent=total}
-function addOffer(){let n=on.value.trim(),p=Number(op.value),items=[...document.querySelectorAll('.svc:checked')].map(x=>({id:Number(x.value),name:x.dataset.name,price:Number(x.dataset.price)}));if(!n||p<=0||!items.length)return alert("Combo name, services te combo price bharo.");let a=get(O);a.push({id:Date.now(),name:n,price:p,services:items,includes:items.map(x=>x.name).join(", ")});localStorage.setItem(O,JSON.stringify(a));on.value="";op.value="";document.querySelectorAll('.svc').forEach(x=>x.checked=false);render()}
-function ds(id){localStorage.setItem(S,JSON.stringify(get(S).filter(x=>String(x.id)!==String(id))));render()}
-function dO(id){localStorage.setItem(O,JSON.stringify(get(O).filter(x=>String(x.id)!==String(id))));render()}
-function render(){sr.innerHTML=get(S).length?get(S).map(x=>`<tr><td>${esc(x.name)}</td><td>₹${x.price}</td><td><span class="pill">${esc(x.status)}</span></td><td><button class="btn del" onclick="ds('${x.id}')">Delete</button></td></tr>`).join(""):`<tr><td colspan="4" class="empty">No services yet.</td></tr>`;or.innerHTML=get(O).length?get(O).map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.includes||((x.services||[]).map(s=>s.name).join(', ')))}</td><td>₹${x.price}</td><td><button class="btn del" onclick="dO('${x.id}')">Delete</button></td></tr>`).join(""):`<tr><td colspan="4" class="empty">No combos yet.</td></tr>`;renderPicker()}
-render();
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script>
+if(sessionStorage.getItem("tipssyToeAdminLoggedIn")!=="true")location.href="admin-login.html";
+const db=window.tipssySupabase;
+const esc=x=>String(x??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+let services=[],combos=[];
+async function load(){let [s,o]=await Promise.all([db.from("services").select("*").order("created_at",{ascending:false}),db.from("combos").select("*").order("created_at",{ascending:false})]);if(s.error||o.error){alert((s.error||o.error).message);return}services=s.data||[];combos=o.data||[];render()}
+function renderPicker(){let a=services.filter(x=>x.status!=="Inactive");picker.innerHTML=a.length?a.map(x=>`<label class="pick"><input type="checkbox" class="svc" value="${x.id}" data-price="${x.price}" data-name="${esc(x.name)}" onchange="calcSelected()"><span>${esc(x.name)} — ₹${x.price}</span></label>`).join(""):"<div class='empty'>Pehla service add karo, fer combo banao.</div>";calcSelected()}
+function calcSelected(){let total=0;document.querySelectorAll(".svc:checked").forEach(x=>total+=Number(x.dataset.price||0));selectedValue.textContent=total}
+async function addService(){let n=sn.value.trim(),p=Number(sp.value);if(!n||p<=0)return alert("Service name te price bharo.");let source_id=String(Date.now());let {error}=await db.from("services").insert({source_id,name:n,price:p,status:ss.value});if(error)return alert(error.message);sn.value="";sp.value="";await load()}
+async function addOffer(){let n=on.value.trim(),p=Number(op.value),items=[...document.querySelectorAll(".svc:checked")].map(x=>({id:Number(x.value),name:x.dataset.name,price:Number(x.dataset.price)}));if(!n||p<=0||!items.length)return alert("Combo name, services te combo price bharo.");let {error}=await db.from("combos").insert({source_id:String(Date.now()),name:n,price:p,services:items,includes:items.map(x=>x.name).join(", ")});if(error)return alert(error.message);on.value="";op.value="";await load()}
+async function ds(id){if(!confirm("Delete service?"))return;let {error}=await db.from("services").delete().eq("id",id);if(error)return alert(error.message);load()}
+async function dO(id){if(!confirm("Delete combo?"))return;let {error}=await db.from("combos").delete().eq("id",id);if(error)return alert(error.message);load()}
+function render(){sr.innerHTML=services.length?services.map(x=>`<tr><td>${esc(x.name)}</td><td>₹${x.price}</td><td><span class="pill">${esc(x.status)}</span></td><td><button class="btn del" onclick="ds('${x.id}')">Delete</button></td></tr>`).join(""):`<tr><td colspan="4" class="empty">No services yet.</td></tr>`;or.innerHTML=combos.length?combos.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.includes||((x.services||[]).map(s=>s.name).join(", ")))}</td><td>₹${x.price}</td><td><button class="btn del" onclick="dO('${x.id}')">Delete</button></td></tr>`).join(""):`<tr><td colspan="4" class="empty">No combos yet.</td></tr>`;renderPicker()}
+load();
 </script></body></html>
