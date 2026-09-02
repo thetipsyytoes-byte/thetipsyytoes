@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>The Tipssy Toe | Admin Login</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:
+    radial-gradient(circle at 20% 20%,#302419,#0a0907 45%),
+    #090807;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-family:Arial,Helvetica,sans-serif;
+    color:#fff;
+}
+
+.login-box{
+    width:430px;
+    max-width:92%;
+
+    padding:48px 40px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(34,28,21,.98),
+        rgba(10,9,7,.98)
+    );
+
+    border:1px solid #624924;
+
+    box-shadow:
+    0 35px 90px rgba(0,0,0,.65);
+}
+
+.logo{
+    text-align:center;
+
+    font-family:Georgia,serif;
+
+    font-size:29px;
+
+    letter-spacing:3px;
+
+    color:#e5c083;
+}
+
+.sub{
+    text-align:center;
+
+    margin-top:8px;
+
+    font-size:9px;
+
+    letter-spacing:4px;
+
+    color:#8f8578;
+}
+
+.line{
+    width:60px;
+    height:1px;
+
+    background:#c99a55;
+
+    margin:27px auto 35px;
+}
+
+label{
+    display:block;
+
+    margin:20px 0 8px;
+
+    color:#bdb3a6;
+
+    font-size:10px;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+}
+
+input{
+    width:100%;
+
+    padding:16px;
+
+    border:1px solid #463724;
+
+    background:#100f0d;
+
+    color:#fff;
+
+    outline:none;
+
+    font-size:14px;
+}
+
+input:focus{
+    border-color:#c99a55;
+}
+
+.login-btn{
+    width:100%;
+
+    margin-top:27px;
+
+    padding:17px;
+
+    border:0;
+
+    cursor:pointer;
+
+    background:
+    linear-gradient(
+        135deg,
+        #e8c487,
+        #b87e37
+    );
+
+    color:#15110b;
+
+    font-size:10px;
+
+    font-weight:bold;
+
+    letter-spacing:1.5px;
+}
+
+.error{
+    display:none;
+
+    margin-top:18px;
+
+    text-align:center;
+
+    color:#e18e80;
+
+    font-size:11px;
+}
+
+.demo{
+    text-align:center;
+
+    margin-top:25px;
+
+    color:#6e665e;
+
+    font-size:10px;
+
+    line-height:1.8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <div class="logo">
+        THE TIPSSY TOE
+    </div>
+
+    <div class="sub">
+        MAKEOVER STUDIO · ADMIN
+    </div>
+
+    <div class="line"></div>
+
+
+    <form id="loginForm">
+
+        <label>
+            Admin Email
+        </label>
+
+        <input
+            id="email"
+            type="email"
+            placeholder="admin@tipssytoe.com"
+            required
+        >
+
+
+        <label>
+            Password
+        </label>
+
+        <input
+            id="password"
+            type="password"
+            placeholder="Enter password"
+            required
+        >
+
+
+        <button
+            class="login-btn"
+            type="submit"
+        >
+            SIGN IN TO ADMIN →
+        </button>
+
+        <div
+            class="error"
+            id="error"
+        >
+            Invalid email or password.
+        </div>
+
+    </form>
+
+
+    <div class="demo">
+
+        Demo Login<br>
+
+        admin@tipssytoe.com · admin123
+
+    </div>
+
+</div>
+
+
+<script>
+
+document
+.getElementById("loginForm")
+.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const email =
+        document
+        .getElementById("email")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const password =
+        document
+        .getElementById("password")
+        .value;
+
+
+    if(
+        email === "admin@tipssytoe.com" &&
+        password === "admin123"
+    ){
+
+        localStorage.setItem(
+            "tipssy_admin",
+            "true"
+        );
+
+        window.location.href =
+            "admin-dashboard.html";
+
+    }else{
+
+        document
+        .getElementById("error")
+        .style.display="block";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

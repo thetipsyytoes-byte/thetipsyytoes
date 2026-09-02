@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1.0"
+>
+
+<title>
+The Tipssy Toe | Book Appointment
+</title>
+
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+
+    background:#f6f0e8;
+
+    color:#191613;
+
+    font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+
+header{
+    background:#0b0a08;
+
+    color:#fff;
+
+    padding:
+    22px 6%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    border-bottom:
+    1px solid #49371f;
+}
+
+
+.logo{
+    font-family:Georgia,serif;
+
+    font-size:25px;
+
+    color:#e2bd7b;
+
+    letter-spacing:2px;
+}
+
+.sub{
+    margin-top:5px;
+
+    font-size:8px;
+
+    letter-spacing:4px;
+
+    color:#978876;
+}
+
+.back{
+    color:#d5b77f;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+}
+
+
+main{
+    max-width:1100px;
+
+    margin:auto;
+
+    padding:
+    75px 6%;
+}
+
+
+.heading{
+    text-align:center;
+
+    margin-bottom:45px;
+}
+
+.eyebrow{
+    color:#a87538;
+
+    font-size:10px;
+
+    font-weight:bold;
+
+    letter-spacing:3px;
+}
+
+.heading h1{
+    font-family:Georgia,serif;
+
+    font-size:52px;
+
+    font-weight:400;
+
+    margin:
+    10px 0 15px;
+}
+
+.heading p{
+    color:#776f66;
+
+    font-size:13px;
+}
+
+
+.form-box{
+    background:#fff;
+
+    border:
+    1px solid #dfd1bf;
+
+    padding:40px;
+
+    box-shadow:
+    0 25px 60px rgba(50,35,20,.08);
+}
+
+
+.form-grid{
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:22px;
+}
+
+
+.field label{
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#665e56;
+
+    font-size:10px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+}
+
+
+.field input,
+.field select,
+.field textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    border:
+    1px solid #d7c8b5;
+
+    background:#fcfaf6;
+
+    color:#222;
+
+    outline:none;
+
+    font-size:13px;
+}
+
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    border-color:#b78648;
+}
+
+
+.field textarea{
+    min-height:110px;
+
+    resize:vertical;
+}
+
+
+.full{
+    grid-column:
+    1 / -1;
+}
+
+
+.submit{
+    width:100%;
+
+    margin-top:28px;
+
+    padding:18px;
+
+    border:0;
+
+    cursor:pointer;
+
+    background:
+    linear-gradient(
+        135deg,
+        #e5c083,
+        #b77c35
+    );
+
+    color:#17120d;
+
+    font-size:10px;
+
+    font-weight:bold;
+
+    letter-spacing:1.5px;
+}
+
+
+.success{
+    display:none;
+
+    margin-top:20px;
+
+    padding:18px;
+
+    background:#edf4e9;
+
+    border:1px solid #cfddc7;
+
+    color:#385530;
+
+    text-align:center;
+
+    font-size:13px;
+}
+
+
+@media(max-width:650px){
+
+    header{
+        padding:18px 5%;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    .heading h1{
+        font-size:39px;
+    }
+
+    main{
+        padding:
+        55px 5%;
+    }
+
+    .form-box{
+        padding:23px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div>
+
+        <div class="logo">
+            THE TIPSSY TOE
+        </div>
+
+        <div class="sub">
+            MAKEOVER STUDIO
+        </div>
+
+    </div>
+
+
+    <a
+    href="index.html"
+    class="back">
+
+        ← BACK TO WEBSITE
+
+    </a>
+
+</header>
+
+
+
+<main>
+
+
+<div class="heading">
+
+    <div class="eyebrow">
+        YOUR BEAUTY MOMENT
+    </div>
+
+    <h1>
+        Book Your Appointment
+    </h1>
+
+    <p>
+        Tell us what you need and our team
+        will confirm your preferred slot.
+    </p>
+
+</div>
+
+
+
+<div class="form-box">
+
+
+<form id="bookingForm">
+
+
+<div class="form-grid">
+
+
+<div class="field">
+
+<label>
+Full Name
+</label>
+
+<input
+id="clientName"
+type="text"
+placeholder="Your name"
+required
+>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Phone Number
+</label>
+
+<input
+id="phone"
+type="tel"
+placeholder="+91"
+required
+>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Service
+</label>
+
+<select
+id="service"
+required
+>
+
+<option value="">
+Select service
+</option>
+
+<option>
+Hair Services
+</option>
+
+<option>
+Makeup
+</option>
+
+<option>
+Skin & Facials
+</option>
+
+<option>
+Nail Services
+</option>
+
+<option>
+Spa & Relaxation
+</option>
+
+<option>
+Bridal Makeover
+</option>
+
+</select>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Preferred Staff
+</label>
+
+<select id="staff">
+
+<option>
+Any Available Expert
+</option>
+
+<option>
+Senior Beautician
+</option>
+
+<option>
+Makeup Artist
+</option>
+
+<option>
+Hair Specialist
+</option>
+
+<option>
+Nail Artist
+</option>
+
+</select>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Preferred Date
+</label>
+
+<input
+id="date"
+type="date"
+required
+>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+Preferred Time
+</label>
+
+<select
+id="time"
+required
+>
+
+<option value="">
+Select time
+</option>
+
+<option>10:00 AM</option>
+<option>11:00 AM</option>
+<option>12:00 PM</option>
+<option>01:00 PM</option>
+<option>02:00 PM</option>
+<option>03:00 PM</option>
+<option>04:00 PM</option>
+<option>05:00 PM</option>
+<option>06:00 PM</option>
+<option>07:00 PM</option>
+
+</select>
+
+</div>
+
+
+
+<div class="field full">
+
+<label>
+Special Request
+</label>
+
+<textarea
+id="note"
+placeholder="Tell us anything we should know..."
+></textarea>
+
+</div>
+
+
+</div>
+
+
+<button
+class="submit"
+type="submit"
+>
+
+REQUEST APPOINTMENT →
+
+</button>
+
+
+<div
+class="success"
+id="success"
+>
+
+✓ Appointment request received successfully.
+<br>
+Our team will contact you for confirmation.
+
+</div>
+
+
+</form>
+
+</div>
+
+</main>
+
+
+
+<script>
+
+
+/* Minimum date = today */
+
+const dateInput =
+document.getElementById("date");
+
+dateInput.min =
+new Date()
+.toISOString()
+.split("T")[0];
+
+
+
+/* Booking */
+
+document
+.getElementById("bookingForm")
+.addEventListener(
+"submit",
+function(e){
+
+    e.preventDefault();
+
+
+    const booking = {
+
+        id:
+        "TT-" +
+        Date.now(),
+
+        name:
+        document
+        .getElementById("clientName")
+        .value,
+
+        phone:
+        document
+        .getElementById("phone")
+        .value,
+
+        service:
+        document
+        .getElementById("service")
+        .value,
+
+        staff:
+        document
+        .getElementById("staff")
+        .value,
+
+        date:
+        document
+        .getElementById("date")
+        .value,
+
+        time:
+        document
+        .getElementById("time")
+        .value,
+
+        note:
+        document
+        .getElementById("note")
+        .value,
+
+        status:
+        "Pending",
+
+        createdAt:
+        new Date().toISOString()
+
+    };
+
+
+    let appointments =
+    JSON.parse(
+        localStorage.getItem(
+            "tipssy_appointments"
+        ) || "[]"
+    );
+
+
+    appointments.push(booking);
+
+
+    localStorage.setItem(
+        "tipssy_appointments",
+        JSON.stringify(appointments)
+    );
+
+
+    document
+    .getElementById("success")
+    .style.display="block";
+
+
+    this.reset();
+
+
+    dateInput.min =
+    new Date()
+    .toISOString()
+    .split("T")[0];
+
+});
+
+</script>
+
+
+</body>
+</html>

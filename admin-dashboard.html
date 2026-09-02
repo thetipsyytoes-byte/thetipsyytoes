@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Tipssy Toe Makeover Studio | Admin Portal</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+:root{
+    --black:#0d0c0b;
+    --black2:#151311;
+    --gold:#c7a56a;
+    --gold2:#e0c28b;
+    --cream:#f7f3eb;
+    --white:#ffffff;
+    --muted:#918b81;
+    --line:rgba(199,165,106,.18);
+    --green:#5dbb8a;
+    --red:#d96c6c;
+}
+
+body{
+    margin:0;
+    background:#f5f1e9;
+    color:#171512;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:255px;
+    height:100vh;
+    background:linear-gradient(180deg,#0b0a09,#171411);
+    color:white;
+    padding:28px 18px;
+    z-index:20;
+    border-right:1px solid rgba(199,165,106,.18);
+}
+
+.brand{
+    padding:5px 12px 28px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:22px;
+}
+
+.brand small{
+    color:var(--gold);
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+.brand h2{
+    margin:9px 0 3px;
+    font-family:Georgia,serif;
+    font-weight:normal;
+    font-size:23px;
+    line-height:1.15;
+}
+
+.brand span{
+    color:#aaa39a;
+    font-size:11px;
+    letter-spacing:1px;
+}
+
+.menu-title{
+    color:#706b63;
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    padding:0 13px 9px;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.nav button{
+    border:0;
+    width:100%;
+    background:transparent;
+    color:#bdb6ad;
+    padding:12px 13px;
+    border-radius:9px;
+    text-align:left;
+    cursor:pointer;
+    font-size:13px;
+    transition:.2s;
+}
+
+.nav button:hover,
+.nav button.active{
+    background:rgba(199,165,106,.12);
+    color:white;
+}
+
+.nav button.active{
+    border-left:2px solid var(--gold);
+}
+
+.sidebar-bottom{
+    position:absolute;
+    bottom:22px;
+    left:18px;
+    right:18px;
+}
+
+.salon-mini{
+    padding:15px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:rgba(255,255,255,.025);
+}
+
+.salon-mini b{
+    display:block;
+    font-size:11px;
+    color:var(--gold2);
+    margin-bottom:7px;
+}
+
+.salon-mini p{
+    margin:3px 0;
+    color:#aaa39a;
+    font-size:10px;
+    line-height:1.5;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+    margin-left:255px;
+    min-height:100vh;
+}
+
+/* TOPBAR */
+
+.topbar{
+    height:82px;
+    background:#fff;
+    border-bottom:1px solid #e8e1d6;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 35px;
+}
+
+.page-title h1{
+    margin:0;
+    font-family:Georgia,serif;
+    font-size:25px;
+    font-weight:normal;
+}
+
+.page-title p{
+    margin:5px 0 0;
+    color:#928b81;
+    font-size:11px;
+}
+
+.admin-box{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.admin-avatar{
+    width:39px;
+    height:39px;
+    border-radius:50%;
+    background:#171411;
+    color:var(--gold2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:Georgia,serif;
+}
+
+.admin-info strong{
+    display:block;
+    font-size:12px;
+}
+
+.admin-info span{
+    font-size:10px;
+    color:#999187;
+}
+
+/* CONTENT */
+
+.content{
+    padding:30px 35px 50px;
+}
+
+/* WELCOME */
+
+.welcome{
+    background:
+    linear-gradient(105deg,rgba(12,11,10,.98),rgba(31,25,19,.95));
+    border-radius:17px;
+    color:white;
+    padding:30px;
+    position:relative;
+    overflow:hidden;
+    margin-bottom:24px;
+}
+
+.welcome:after{
+    content:"TT";
+    position:absolute;
+    right:25px;
+    top:-35px;
+    font-family:Georgia,serif;
+    font-size:170px;
+    color:rgba(199,165,106,.06);
+}
+
+.welcome small{
+    color:var(--gold2);
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size:9px;
+}
+
+.welcome h2{
+    font-family:Georgia,serif;
+    font-size:28px;
+    font-weight:normal;
+    margin:10px 0 7px;
+}
+
+.welcome p{
+    margin:0;
+    color:#aaa39a;
+    font-size:12px;
+}
+
+/* CARDS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:24px;
+}
+
+.card{
+    background:white;
+    border:1px solid #e7e0d5;
+    border-radius:14px;
+    padding:20px;
+}
+
+.stat-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.stat-label{
+    color:#8d877d;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1.3px;
+}
+
+.stat-icon{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:#f5efe4;
+    color:#a9844e;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.stat-number{
+    font-family:Georgia,serif;
+    font-size:29px;
+    margin-top:15px;
+}
+
+.stat-bottom{
+    color:#9a9389;
+    font-size:10px;
+    margin-top:5px;
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:1.55fr 1fr;
+    gap:20px;
+}
+
+.section{
+    background:white;
+    border:1px solid #e7e0d5;
+    border-radius:14px;
+    overflow:hidden;
+}
+
+.section-head{
+    padding:20px 22px;
+    border-bottom:1px solid #eee8df;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.section-head h3{
+    margin:0;
+    font-family:Georgia,serif;
+    font-size:18px;
+    font-weight:normal;
+}
+
+.section-head span{
+    color:#9b9388;
+    font-size:10px;
+}
+
+.section-body{
+    padding:20px;
+}
+
+/* APPOINTMENT TABLE */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:620px;
+}
+
+th{
+    text-align:left;
+    color:#968e83;
+    font-size:9px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    padding:12px;
+    background:#faf8f4;
+}
+
+td{
+    padding:14px 12px;
+    border-top:1px solid #eee9e1;
+    font-size:11px;
+}
+
+.client{
+    font-weight:bold;
+}
+
+.sub{
+    color:#999187;
+    font-size:9px;
+    margin-top:3px;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:9px;
+}
+
+.pending{
+    background:#fff3dc;
+    color:#9b6b20;
+}
+
+.completed{
+    background:#e7f7ee;
+    color:#36805b;
+}
+
+.cancelled{
+    background:#fbe9e9;
+    color:#a84949;
+}
+
+.action{
+    border:1px solid #ddd3c5;
+    background:white;
+    border-radius:6px;
+    padding:6px 9px;
+    font-size:9px;
+    cursor:pointer;
+}
+
+.action:hover{
+    border-color:var(--gold);
+    color:#96713c;
+}
+
+/* QUICK ACTIONS */
+
+.quick{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.quick button{
+    background:#faf8f4;
+    border:1px solid #e6ded2;
+    border-radius:10px;
+    padding:16px 10px;
+    cursor:pointer;
+    text-align:left;
+    transition:.2s;
+}
+
+.quick button:hover{
+    border-color:var(--gold);
+    transform:translateY(-1px);
+}
+
+.quick strong{
+    display:block;
+    font-size:11px;
+    margin-bottom:5px;
+}
+
+.quick span{
+    color:#989086;
+    font-size:9px;
+}
+
+/* INFO */
+
+.info{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.info-card{
+    background:#171411;
+    color:white;
+    border-radius:13px;
+    padding:20px;
+}
+
+.info-card small{
+    color:var(--gold2);
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.info-card h4{
+    font-family:Georgia,serif;
+    font-weight:normal;
+    margin:10px 0;
+    font-size:17px;
+}
+
+.info-card p{
+    color:#aaa39a;
+    font-size:10px;
+    line-height:1.6;
+    margin:3px 0;
+}
+
+/* MOBILE */
+
+.mobile-menu{
+    display:none;
+    border:0;
+    background:#171411;
+    color:var(--gold2);
+    width:40px;
+    height:40px;
+    border-radius:8px;
+    font-size:18px;
+}
+
+@media(max-width:1000px){
+
+    .sidebar{
+        transform:translateX(-100%);
+        transition:.25s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .topbar{
+        padding:0 18px;
+    }
+
+    .content{
+        padding:20px 18px 40px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .topbar{
+        height:70px;
+    }
+
+    .page-title h1{
+        font-size:19px;
+    }
+
+    .page-title p{
+        font-size:9px;
+    }
+
+    .admin-info{
+        display:none;
+    }
+
+    .welcome{
+        padding:23px;
+    }
+
+    .welcome h2{
+        font-size:23px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .card{
+        padding:15px;
+    }
+
+    .stat-number{
+        font-size:24px;
+    }
+
+    .info{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+        <small>Luxury Salon Management</small>
+        <h2>The Tipssy Toe</h2>
+        <span>Makeover Studio</span>
+    </div>
+
+    <div class="menu-title">Management</div>
+
+    <nav class="nav">
+
+        <button class="active" onclick="go('dashboard')">
+            ◈ &nbsp; Dashboard
+        </button>
+
+        <button onclick="go('clients')">
+            ♡ &nbsp; Client Records
+        </button>
+
+        <button onclick="go('appointments')">
+            ◷ &nbsp; Appointments
+        </button>
+
+        <button onclick="go('billing')">
+            ₹ &nbsp; Billing & POS
+        </button>
+
+        <button onclick="go('services')">
+            ✦ &nbsp; Services
+        </button>
+
+        <button onclick="go('staff')">
+            ◉ &nbsp; Staff
+        </button>
+
+        <button onclick="go('inventory')">
+            ▣ &nbsp; Inventory
+        </button>
+
+        <button onclick="go('reports')">
+            ◫ &nbsp; Reports
+        </button>
+
+        <div class="menu-title" style="margin-top:15px">
+            System
+        </div>
+
+        <button onclick="go('settings')">
+            ⚙ &nbsp; Settings
+        </button>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <div class="salon-mini">
+            <b>THE TIPSSY TOE</b>
+
+            <p>
+                Near Civil Dispensary,<br>
+                Model Town, Patiala<br>
+                Punjab — 147001
+            </p>
+
+            <p>☎ 9056105015</p>
+            <p>✉ thethipsyytoes@gmail.com</p>
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+    <header class="topbar">
+
+        <div style="display:flex;align-items:center;gap:12px">
+
+            <button class="mobile-menu" onclick="toggleMenu()">☰</button>
+
+            <div class="page-title">
+                <h1>Executive Dashboard</h1>
+                <p>Salon operations & business overview</p>
+            </div>
+
+        </div>
+
+        <div class="admin-box">
+
+            <div class="admin-info">
+                <strong>Administrator</strong>
+                <span>Studio Management</span>
+            </div>
+
+            <div class="admin-avatar">
+                TT
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <section class="content">
+
+        <!-- WELCOME -->
+
+        <div class="welcome">
+
+            <small>Welcome Back</small>
+
+            <h2>The Tipssy Toe Makeover Studio</h2>
+
+            <p>
+                Your premium salon command centre — manage clients,
+                appointments, billing and daily operations from one place.
+            </p>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="stats">
+
+            <div class="card">
+
+                <div class="stat-top">
+                    <span class="stat-label">Total Clients</span>
+                    <span class="stat-icon">♡</span>
+                </div>
+
+                <div class="stat-number" id="totalClients">0</div>
+
+                <div class="stat-bottom">
+                    Registered client records
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="stat-top">
+                    <span class="stat-label">Appointments</span>
+                    <span class="stat-icon">◷</span>
+                </div>
+
+                <div class="stat-number" id="totalAppointments">0</div>
+
+                <div class="stat-bottom">
+                    Total booking requests
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="stat-top">
+                    <span class="stat-label">Pending</span>
+                    <span class="stat-icon">!</span>
+                </div>
+
+                <div class="stat-number" id="pendingAppointments">0</div>
+
+                <div class="stat-bottom">
+                    Appointments awaiting action
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="stat-top">
+                    <span class="stat-label">Today</span>
+                    <span class="stat-icon">✓</span>
+                </div>
+
+                <div class="stat-number" id="todayAppointments">0</div>
+
+                <div class="stat-bottom">
+                    Today's scheduled visits
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MAIN GRID -->
+
+        <div class="grid">
+
+            <!-- APPOINTMENTS -->
+
+            <div class="section">
+
+                <div class="section-head">
+
+                    <h3>Recent Appointments</h3>
+
+                    <span id="appointmentCount">
+                        0 records
+                    </span>
+
+                </div>
+
+                <div class="section-body">
+
+                    <div class="table-wrap">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>Client</th>
+                                    <th>Service</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="appointmentTable">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="section">
+
+                <div class="section-head">
+
+                    <h3>Quick Actions</h3>
+
+                    <span>Studio control</span>
+
+                </div>
+
+                <div class="section-body">
+
+                    <div class="quick">
+
+                        <button onclick="go('appointments')">
+                            <strong>＋ New Appointment</strong>
+                            <span>Create a new booking</span>
+                        </button>
+
+                        <button onclick="go('clients')">
+                            <strong>＋ Add Client</strong>
+                            <span>Create client record</span>
+                        </button>
+
+                        <button onclick="go('billing')">
+                            <strong>₹ New Invoice</strong>
+                            <span>Create salon bill</span>
+                        </button>
+
+                        <button onclick="go('reports')">
+                            <strong>▣ View Reports</strong>
+                            <span>Business performance</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SALON INFO -->
+
+        <div class="info">
+
+            <div class="info-card">
+
+                <small>Studio Information</small>
+
+                <h4>The Tipssy Toe Makeover Studio</h4>
+
+                <p>
+                    Near Civil Dispensary, Model Town,
+                    Patiala, Punjab — 147001
+                </p>
+
+                <p>
+                    Mobile: 9056105015
+                </p>
+
+                <p>
+                    Email: thethipsyytoes@gmail.com
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <small>System Status</small>
+
+                <h4>Salon Portal Active</h4>
+
+                <p>
+                    Client records, appointments and salon
+                    management modules are ready.
+                </p>
+
+                <p>
+                    Data currently stored in this browser.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+/* =========================
+   LOGIN PROTECTION
+========================= */
+
+if(localStorage.getItem("tipssy_admin") !== "true"){
+    window.location.href="admin-login.html";
+}
+
+
+/* =========================
+   LOAD DATA
+========================= */
+
+let appointments =
+JSON.parse(
+    localStorage.getItem("tipssy_appointments") || "[]"
+);
+
+let clients =
+JSON.parse(
+    localStorage.getItem("tipssy_clients") || "[]"
+);
+
+
+/* =========================
+   STATS
+========================= */
+
+function loadStats(){
+
+    document.getElementById("totalClients").textContent =
+        clients.length;
+
+    document.getElementById("totalAppointments").textContent =
+        appointments.length;
+
+    let pending =
+        appointments.filter(a =>
+            a.status === "Pending"
+        ).length;
+
+    document.getElementById("pendingAppointments").textContent =
+        pending;
+
+
+    let today =
+        new Date().toISOString().split("T")[0];
+
+    let todayCount =
+        appointments.filter(a =>
+            a.date === today
+        ).length;
+
+    document.getElementById("todayAppointments").textContent =
+        todayCount;
+
+    document.getElementById("appointmentCount").textContent =
+        appointments.length + " records";
+}
+
+
+/* =========================
+   APPOINTMENT TABLE
+========================= */
+
+function loadAppointments(){
+
+    let table =
+        document.getElementById("appointmentTable");
+
+    table.innerHTML = "";
+
+    if(appointments.length === 0){
+
+        table.innerHTML = `
+        <tr>
+            <td colspan="6"
+                style="text-align:center;padding:35px;color:#999">
+                No appointments recorded yet.
+            </td>
+        </tr>
+        `;
+
+        return;
+    }
+
+
+    let list =
+        [...appointments]
+        .sort((a,b) =>
+            new Date((b.date || "") + " " + (b.time || ""))
+            -
+            new Date((a.date || "") + " " + (a.time || ""))
+        )
+        .slice(0,8);
+
+
+    list.forEach((a,index)=>{
+
+        let status =
+            a.status || "Pending";
+
+        let statusClass =
+            status.toLowerCase();
+
+        let row = document.createElement("tr");
+
+        row.innerHTML = `
+
+            <td>
+
+                <div class="client">
+                    ${escapeHTML(a.name || "Unknown")}
+                </div>
+
+                <div class="sub">
+                    ${escapeHTML(a.phone || "")}
+                </div>
+
+            </td>
+
+            <td>
+                ${escapeHTML(a.service || "-")}
+            </td>
+
+            <td>
+                ${escapeHTML(a.date || "-")}
+            </td>
+
+            <td>
+                ${escapeHTML(a.time || "-")}
+            </td>
+
+            <td>
+
+                <span class="badge ${statusClass}">
+                    ${escapeHTML(status)}
+                </span>
+
+            </td>
+
+            <td>
+
+                ${
+                    status !== "Completed"
+                    ?
+                    `<button
+                        class="action"
+                        onclick="markDone('${a.id}')">
+                        Mark Done
+                    </button>`
+                    :
+                    `<span style="color:#999;font-size:9px">
+                        Completed
+                    </span>`
+                }
+
+            </td>
+        `;
+
+        table.appendChild(row);
+
+    });
+}
+
+
+/* =========================
+   MARK COMPLETED
+========================= */
+
+function markDone(id){
+
+    let found =
+        appointments.find(a => String(a.id) === String(id));
+
+    if(!found) return;
+
+    found.status = "Completed";
+
+    localStorage.setItem(
+        "tipssy_appointments",
+        JSON.stringify(appointments)
+    );
+
+    loadStats();
+    loadAppointments();
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function go(page){
+
+    const pages = {
+
+        dashboard:"admin-dashboard.html",
+
+        clients:"clients.html",
+
+        appointments:"appointments.html",
+
+        billing:"billing.html",
+
+        services:"services.html",
+
+        staff:"staff.html",
+
+        inventory:"inventory.html",
+
+        reports:"reports.html",
+
+        settings:"settings.html"
+
+    };
+
+    if(pages[page]){
+        window.location.href = pages[page];
+    }
+
+}
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+function toggleMenu(){
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
+
+}
+
+
+/* =========================
+   SAFE HTML
+========================= */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+
+/* =========================
+   INITIAL LOAD
+========================= */
+
+loadStats();
+loadAppointments();
+
+</script>
+
+</body>
+</html>

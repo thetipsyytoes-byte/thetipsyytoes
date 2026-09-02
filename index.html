@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Tipssy Toe | Makeover Studio</title>
+
+<meta name="description"
+content="The Tipssy Toe Makeover Studio — Premium beauty, makeup, hair, skin and nail artistry.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Great+Vibes&display=swap"
+rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root{
+    --black:#090807;
+    --black2:#11100e;
+    --gold:#c99a55;
+    --gold2:#e6c184;
+    --cream:#f7f1e8;
+    --cream2:#eee3d4;
+    --text:#191613;
+    --muted:#756d64;
+    --white:#fff;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:var(--cream);
+    color:var(--text);
+    font-family:"DM Sans",Arial,sans-serif;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font-family:inherit;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar{
+    height:38px;
+    background:#050504;
+    color:#bdb5aa;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 5%;
+    font-size:10px;
+    letter-spacing:.7px;
+    border-bottom:1px solid rgba(201,154,85,.25);
+}
+
+.top-left{
+    display:flex;
+    gap:28px;
+}
+
+.topbar strong{
+    color:#e4bd7b;
+    font-weight:500;
+}
+
+.socials{
+    color:#d9c29b;
+    letter-spacing:8px;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar{
+    position:absolute;
+    z-index:100;
+    left:0;
+    right:0;
+    top:38px;
+    height:92px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 5%;
+
+    color:#fff;
+
+    border-bottom:1px solid rgba(255,255,255,.13);
+
+    backdrop-filter:blur(4px);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.logo-symbol{
+    width:54px;
+    height:54px;
+
+    border:1px solid var(--gold2);
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:var(--gold2);
+
+    font-family:"Cormorant Garamond",serif;
+    font-size:22px;
+
+    position:relative;
+}
+
+.logo-symbol:after{
+    content:"";
+    position:absolute;
+    inset:5px;
+    border:1px solid rgba(230,193,132,.35);
+    border-radius:50%;
+}
+
+.logo-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:25px;
+    letter-spacing:2px;
+    line-height:1;
+}
+
+.logo-sub{
+    display:block;
+    margin-top:5px;
+
+    font-size:8px;
+    letter-spacing:4px;
+    color:#d5c09c;
+}
+
+.menu{
+    display:flex;
+    align-items:center;
+    gap:27px;
+
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+}
+
+.menu a{
+    transition:.3s;
+}
+
+.menu a:hover{
+    color:var(--gold2);
+}
+
+.book-btn{
+    background:linear-gradient(
+        135deg,
+        #e7c58c,
+        #b87e38
+    );
+
+    color:#120f0b;
+
+    padding:15px 23px;
+
+    font-size:10px;
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    border:0;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:860px;
+
+    position:relative;
+    overflow:hidden;
+
+    color:#fff;
+
+    background:
+    radial-gradient(
+        circle at 76% 38%,
+        #846648 0%,
+        #493526 22%,
+        #211913 48%,
+        #090807 75%
+    );
+}
+
+.hero:before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(5,4,3,.98) 0%,
+        rgba(8,6,5,.92) 28%,
+        rgba(9,7,6,.52) 57%,
+        rgba(7,6,5,.38) 100%
+    );
+}
+
+.hero:after{
+    content:"";
+
+    position:absolute;
+
+    width:650px;
+    height:650px;
+
+    right:-150px;
+    top:170px;
+
+    border:1px solid rgba(226,189,123,.25);
+
+    border-radius:50%;
+}
+
+.hero-inner{
+    position:relative;
+    z-index:3;
+
+    max-width:1400px;
+    margin:auto;
+
+    min-height:860px;
+
+    display:flex;
+    align-items:center;
+
+    padding:170px 7% 180px;
+}
+
+.hero-copy{
+    max-width:690px;
+}
+
+.script{
+    font-family:"Great Vibes",cursive;
+    font-size:38px;
+    color:var(--gold2);
+    margin-bottom:4px;
+}
+
+.hero h1{
+    margin:0;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:clamp(54px,7vw,94px);
+
+    line-height:.88;
+
+    font-weight:500;
+
+    letter-spacing:-2px;
+}
+
+.hero h1 span{
+    color:#d8aa68;
+}
+
+.hero-line{
+    margin-top:25px;
+
+    display:flex;
+    align-items:center;
+    gap:13px;
+
+    color:#d6cec4;
+
+    font-size:13px;
+}
+
+.hero-line i{
+    width:45px;
+    height:1px;
+
+    background:var(--gold);
+
+    display:block;
+}
+
+.hero-description{
+    max-width:555px;
+
+    color:#d0c8bf;
+
+    font-size:14px;
+
+    line-height:1.9;
+
+    margin:25px 0 31px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+}
+
+.primary-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    background:linear-gradient(
+        135deg,
+        #e7c58c,
+        #b87e38
+    );
+
+    color:#120f0b;
+
+    padding:16px 26px;
+
+    font-size:10px;
+    font-weight:700;
+
+    letter-spacing:1.2px;
+
+    text-transform:uppercase;
+}
+
+.secondary-btn{
+    display:inline-flex;
+    align-items:center;
+
+    border:1px solid rgba(226,189,123,.55);
+
+    color:#fff;
+
+    padding:15px 24px;
+
+    font-size:10px;
+
+    letter-spacing:1.2px;
+
+    text-transform:uppercase;
+}
+
+.hero-orb{
+    position:absolute;
+
+    right:10%;
+    top:25%;
+
+    width:390px;
+    height:500px;
+
+    border-radius:50% 50% 8px 8px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(220,185,130,.7),
+        rgba(90,62,40,.5),
+        rgba(20,15,11,.1)
+    );
+
+    filter:blur(.2px);
+
+    opacity:.65;
+
+    box-shadow:
+    0 0 120px rgba(191,143,80,.15);
+}
+
+.hero-orb:before{
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:360px;
+
+    right:75px;
+    top:55px;
+
+    border-radius:48% 48% 35% 35%;
+
+    background:
+    radial-gradient(
+        ellipse at 50% 25%,
+        #c69b70,
+        #634837 45%,
+        #17110d 80%
+    );
+
+    opacity:.7;
+}
+
+.scroll{
+    position:absolute;
+
+    bottom:135px;
+    left:7%;
+
+    color:#9f958b;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    z-index:4;
+}
+
+
+/* =========================================================
+   PROMISE BAR
+========================================================= */
+
+.promise{
+    position:absolute;
+
+    z-index:5;
+
+    left:5%;
+    right:5%;
+    bottom:27px;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    background:rgba(10,9,8,.92);
+
+    border:1px solid #76572e;
+
+    border-radius:14px;
+
+    padding:21px;
+}
+
+.promise-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    padding:5px 24px;
+
+    border-right:1px solid #453622;
+}
+
+.promise-item:last-child{
+    border-right:0;
+}
+
+.promise-icon{
+    color:var(--gold2);
+    font-size:28px;
+}
+
+.promise-title{
+    display:block;
+
+    color:#fff;
+
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.6px;
+
+    margin-bottom:5px;
+}
+
+.promise-text{
+    color:#9f968d;
+
+    font-size:10px;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.section{
+    padding:105px 6%;
+}
+
+.section-heading{
+    text-align:center;
+
+    max-width:700px;
+
+    margin:0 auto 50px;
+}
+
+.eyebrow{
+    color:#b17c38;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+}
+
+.section-heading h2{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:52px;
+
+    line-height:1;
+
+    font-weight:500;
+
+    margin:10px 0 15px;
+}
+
+.section-heading p{
+    color:var(--muted);
+
+    font-size:13px;
+
+    line-height:1.8;
+
+    margin:0;
+}
+
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.services{
+    background:var(--cream);
+}
+
+.service-grid{
+    max-width:1320px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:14px;
+}
+
+.service-card{
+    height:405px;
+
+    border-radius:13px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:#111;
+
+    color:#fff;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-end;
+
+    padding:25px;
+
+    isolation:isolate;
+
+    transition:.4s;
+}
+
+.service-card:hover{
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 25px 50px rgba(25,18,10,.2);
+}
+
+.service-card:before{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:-2;
+
+    transition:.5s;
+}
+
+.service-card:hover:before{
+    transform:scale(1.06);
+}
+
+.service-card:after{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:-1;
+
+    background:
+    linear-gradient(
+        to bottom,
+        transparent 30%,
+        rgba(5,4,3,.3) 50%,
+        #090807 82%
+    );
+}
+
+.hair:before{
+    background:
+    radial-gradient(
+        circle at 50% 28%,
+        #b58a5d,
+        #624832 45%,
+        #15100c
+    );
+}
+
+.makeup:before{
+    background:
+    radial-gradient(
+        circle at 55% 28%,
+        #d1a895,
+        #744f47 43%,
+        #15100c
+    );
+}
+
+.skin:before{
+    background:
+    radial-gradient(
+        circle at 50% 25%,
+        #dfd0bc,
+        #84715f 43%,
+        #17120e
+    );
+}
+
+.nails:before{
+    background:
+    radial-gradient(
+        circle at 50% 28%,
+        #d69b98,
+        #744746 45%,
+        #15100c
+    );
+}
+
+.spa:before{
+    background:
+    radial-gradient(
+        circle at 50% 28%,
+        #aa9773,
+        #584832 45%,
+        #15100c
+    );
+}
+
+.service-icon{
+    width:48px;
+    height:48px;
+
+    border:1px solid var(--gold2);
+
+    border-radius:50%;
+
+    display:grid;
+    place-items:center;
+
+    color:var(--gold2);
+
+    margin-bottom:15px;
+
+    background:rgba(8,7,6,.75);
+}
+
+.service-card h3{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:25px;
+
+    font-weight:500;
+
+    margin:0 0 8px;
+}
+
+.service-card p{
+    color:#c7beb4;
+
+    font-size:10px;
+
+    line-height:1.65;
+
+    margin:0 0 15px;
+}
+
+.service-link{
+    color:var(--gold2);
+
+    font-size:9px;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about{
+    background:#e9ded0;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:80px;
+
+    align-items:center;
+}
+
+.about-visual{
+    min-height:570px;
+
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:14px;
+}
+
+.about-photo{
+    border-radius:170px 170px 10px 10px;
+
+    background:
+    radial-gradient(
+        circle at 50% 25%,
+        #b9936d,
+        #594334 47%,
+        #1a1410
+    );
+}
+
+.about-photo.second{
+    margin-top:90px;
+
+    border-radius:10px 10px 170px 170px;
+
+    background:
+    radial-gradient(
+        circle at 50% 30%,
+        #b7a07f,
+        #554434 45%,
+        #18130f
+    );
+}
+
+.about-badge{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:115px;
+    height:115px;
+
+    border-radius:50%;
+
+    background:#11100e;
+
+    border:1px solid var(--gold2);
+
+    color:#fff;
+
+    display:grid;
+    place-items:center;
+
+    text-align:center;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:16px;
+
+    line-height:1.1;
+}
+
+.about-content .eyebrow{
+    margin-bottom:8px;
+}
+
+.about-content h2{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:52px;
+
+    line-height:.98;
+
+    font-weight:500;
+
+    margin:0 0 23px;
+}
+
+.about-content p{
+    color:#70675f;
+
+    font-size:13px;
+
+    line-height:1.95;
+}
+
+.signature{
+    font-family:"Great Vibes",cursive;
+
+    color:#956b36;
+
+    font-size:29px;
+
+    margin:23px 0;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats{
+    background:#0e0d0b;
+
+    color:#fff;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    padding:55px 7%;
+}
+
+.stat{
+    text-align:center;
+
+    border-right:1px solid #443522;
+}
+
+.stat:last-child{
+    border:0;
+}
+
+.stat strong{
+    display:block;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:51px;
+
+    font-weight:500;
+
+    color:var(--gold2);
+}
+
+.stat span{
+    color:#aaa198;
+
+    font-size:9px;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+}
+
+
+/* =========================================================
+   WHY US
+========================================================= */
+
+.why{
+    background:#f7f1e8;
+}
+
+.why-grid{
+    max-width:1050px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:45px;
+}
+
+.why-card{
+    text-align:center;
+}
+
+.why-icon{
+    width:55px;
+    height:55px;
+
+    margin:auto;
+
+    border:1px solid #c9a16b;
+
+    border-radius:50%;
+
+    display:grid;
+
+    place-items:center;
+
+    color:#a8793c;
+
+    font-size:21px;
+}
+
+.why-card h3{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:25px;
+
+    font-weight:500;
+
+    margin:15px 0 8px;
+}
+
+.why-card p{
+    color:#777068;
+
+    font-size:12px;
+
+    line-height:1.8;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.cta{
+    margin:0 5% 80px;
+
+    padding:75px 7%;
+
+    border-radius:18px;
+
+    background:
+    radial-gradient(
+        circle at 85% 20%,
+        #654a2d,
+        transparent 38%
+    ),
+    linear-gradient(
+        105deg,
+        #100e0c,
+        #282016
+    );
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:40px;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+.cta:before{
+    content:"";
+
+    position:absolute;
+
+    width:420px;
+    height:420px;
+
+    right:-120px;
+    top:-170px;
+
+    border:1px solid rgba(215,176,111,.25);
+
+    border-radius:50%;
+}
+
+.cta h2{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:51px;
+
+    font-weight:500;
+
+    margin:8px 0;
+}
+
+.cta p{
+    color:#b8afa5;
+
+    font-size:13px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    background:#070605;
+
+    color:#aaa;
+
+    padding:65px 6% 25px;
+}
+
+.footer-grid{
+    max-width:1300px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:1.5fr 1fr 1fr 1fr;
+
+    gap:55px;
+}
+
+.footer-brand{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:25px;
+
+    color:#fff;
+
+    letter-spacing:2px;
+}
+
+.footer-sub{
+    color:#cba66b;
+
+    font-size:8px;
+
+    letter-spacing:4px;
+
+    margin-top:4px;
+}
+
+.footer h4{
+    color:#e1c18c;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    margin:0 0 15px;
+}
+
+.footer p,
+.footer a{
+    font-size:11px;
+
+    line-height:2;
+
+    color:#aaa29a;
+}
+
+.footer a:hover{
+    color:var(--gold2);
+}
+
+.copyright{
+    max-width:1300px;
+
+    margin:45px auto 0;
+
+    padding-top:20px;
+
+    border-top:1px solid #29231c;
+
+    text-align:center;
+
+    color:#6e665e;
+
+    font-size:9px;
+
+    letter-spacing:1.5px;
+}
+
+
+/* =========================================================
+   WHATSAPP
+========================================================= */
+
+.whatsapp{
+    position:fixed;
+
+    z-index:200;
+
+    right:25px;
+    bottom:25px;
+
+    width:57px;
+    height:57px;
+
+    border-radius:50%;
+
+    background:#25D366;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:27px;
+
+    box-shadow:0 8px 30px rgba(0,0,0,.25);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:1100px){
+
+    .menu{
+        gap:14px;
+    }
+
+    .service-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .promise{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .promise-item:nth-child(2){
+        border-right:0;
+    }
+
+}
+
+@media(max-width:800px){
+
+    .topbar{
+        display:none;
+    }
+
+    .navbar{
+        top:0;
+
+        height:76px;
+
+        padding:0 5%;
+    }
+
+    .logo-symbol{
+        width:42px;
+        height:42px;
+
+        font-size:17px;
+    }
+
+    .logo-title{
+        font-size:18px;
+    }
+
+    .logo-sub{
+        font-size:6px;
+        letter-spacing:3px;
+    }
+
+    .menu{
+        display:none;
+    }
+
+    .hero{
+        min-height:850px;
+    }
+
+    .hero-inner{
+        min-height:850px;
+
+        padding:
+        150px
+        7%
+        270px;
+    }
+
+    .hero h1{
+        font-size:55px;
+    }
+
+    .hero-orb{
+        right:-120px;
+        top:300px;
+
+        opacity:.35;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .promise{
+        left:5%;
+        right:5%;
+
+        grid-template-columns:1fr 1fr;
+
+        padding:8px;
+    }
+
+    .promise-item{
+        padding:12px 9px;
+
+        border-bottom:1px solid #453622;
+    }
+
+    .promise-item:nth-child(2),
+    .promise-item:nth-child(4){
+        border-right:0;
+    }
+
+    .promise-text{
+        display:none;
+    }
+
+    .promise-title{
+        font-size:9px;
+    }
+
+    .scroll{
+        display:none;
+    }
+
+    .section{
+        padding:75px 7%;
+    }
+
+    .section-heading h2{
+        font-size:42px;
+    }
+
+    .service-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .service-card{
+        height:350px;
+    }
+
+    .about{
+        grid-template-columns:1fr;
+
+        gap:45px;
+
+        padding:75px 7%;
+    }
+
+    .about-visual{
+        min-height:400px;
+    }
+
+    .about-content h2{
+        font-size:43px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+
+        gap:35px;
+
+        padding:45px 6%;
+    }
+
+    .stat:nth-child(2){
+        border:0;
+    }
+
+    .stat strong{
+        font-size:39px;
+    }
+
+    .why-grid{
+        grid-template-columns:1fr;
+    }
+
+    .cta{
+        margin:0 4% 55px;
+
+        display:block;
+
+        padding:55px 8%;
+    }
+
+    .cta h2{
+        font-size:43px;
+    }
+
+    .cta .primary-btn{
+        margin-top:20px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+
+        gap:35px;
+    }
+
+}
+
+@media(max-width:500px){
+
+    .service-grid{
+        grid-template-columns:1fr;
+    }
+
+    .service-card{
+        height:370px;
+    }
+
+    .about-visual{
+        min-height:330px;
+    }
+
+    .about-photo{
+        border-radius:110px 110px 8px 8px;
+    }
+
+    .about-photo.second{
+        margin-top:60px;
+
+        border-radius:8px 8px 110px 110px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:49px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     TOP BAR
+======================================================= -->
+
+<div class="topbar">
+
+    <div class="top-left">
+
+        <span>
+            ⌖ <strong>123 Beauty Street</strong>, Your City
+        </span>
+
+        <span>
+            ☎ <strong>+91 98765 43210</strong>
+        </span>
+
+        <span>
+            ◷ <strong>Mon – Sun</strong> 10 AM – 8 PM
+        </span>
+
+    </div>
+
+    <div class="socials">
+        f　◎　◉
+    </div>
+
+</div>
+
+
+
+<!-- ======================================================
+     NAVIGATION
+======================================================= -->
+
+<header class="navbar">
+
+    <a href="#" class="logo">
+
+        <div class="logo-symbol">
+            TT
+        </div>
+
+        <div>
+
+            <div class="logo-title">
+                THE TIPSSY TOE
+            </div>
+
+            <div class="logo-sub">
+                MAKEOVER STUDIO
+            </div>
+
+        </div>
+
+    </a>
+
+
+    <nav class="menu">
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#about">
+            About Us
+        </a>
+
+        <a href="#services">
+            Services
+        </a>
+
+        <a href="#why">
+            Why Us
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
+        <a href="appointments.html"
+           class="book-btn">
+            Book Appointment
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ======================================================
+     HERO
+======================================================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-orb"></div>
+
+
+    <div class="hero-inner">
+
+        <div class="hero-copy">
+
+            <div class="script">
+                Welcome to
+            </div>
+
+            <h1>
+
+                THE TIPSSY TOE
+
+                <br>
+
+                <span>
+                    MAKEOVER STUDIO
+                </span>
+
+            </h1>
+
+
+            <div class="hero-line">
+
+                <i></i>
+
+                Where Beauty Meets Perfection
+
+                <i></i>
+
+            </div>
+
+
+            <p class="hero-description">
+
+                Unleash your confidence with our premium beauty
+                and makeover experiences. From everyday elegance
+                to unforgettable occasion looks, every detail is
+                designed especially for you.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="appointments.html"
+                   class="primary-btn">
+
+                    Book Your Appointment →
+                    
+                </a>
+
+
+                <a href="#services"
+                   class="secondary-btn">
+
+                    Explore Services
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROMISE BAR -->
+
+    <div class="promise">
+
+        <div class="promise-item">
+
+            <div class="promise-icon">
+                ♙
+            </div>
+
+            <div>
+
+                <span class="promise-title">
+                    Expert Beauticians
+                </span>
+
+                <span class="promise-text">
+                    Experienced professionals
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="promise-item">
+
+            <div class="promise-icon">
+                ◇
+            </div>
+
+            <div>
+
+                <span class="promise-title">
+                    Premium Products
+                </span>
+
+                <span class="promise-text">
+                    Professional quality
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="promise-item">
+
+            <div class="promise-icon">
+                ♢
+            </div>
+
+            <div>
+
+                <span class="promise-title">
+                    Hygiene & Safety
+                </span>
+
+                <span class="promise-text">
+                    Care in every detail
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="promise-item">
+
+            <div class="promise-icon">
+                ◷
+            </div>
+
+            <div>
+
+                <span class="promise-title">
+                    On-Time Service
+                </span>
+
+                <span class="promise-text">
+                    We value your time
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================================
+     SERVICES
+======================================================= -->
+
+<section class="section services"
+         id="services">
+
+    <div class="section-heading">
+
+        <div class="eyebrow">
+            Our Signature Menu
+        </div>
+
+        <h2>
+            Beauty, curated beautifully.
+        </h2>
+
+        <p>
+            Discover our signature beauty experiences,
+            crafted with precision, care and a touch
+            of Tipssy Toe luxury.
+        </p>
+
+    </div>
+
+
+    <div class="service-grid">
+
+
+        <article class="service-card hair">
+
+            <div class="service-icon">
+                ✂
+            </div>
+
+            <h3>
+                Hair Services
+            </h3>
+
+            <p>
+                Haircut, colour, styling,
+                treatments and more.
+            </p>
+
+            <a href="appointments.html"
+               class="service-link">
+                Explore →
+            </a>
+
+        </article>
+
+
+
+        <article class="service-card makeup">
+
+            <div class="service-icon">
+                ♧
+            </div>
+
+            <h3>
+                Makeup
+            </h3>
+
+            <p>
+                Bridal, engagement, party
+                and HD makeup.
+            </p>
+
+            <a href="appointments.html"
+               class="service-link">
+                Explore →
+            </a>
+
+        </article>
+
+
+
+        <article class="service-card skin">
+
+            <div class="service-icon">
+                ✧
+            </div>
+
+            <h3>
+                Skin & Facials
+            </h3>
+
+            <p>
+                Glow treatments, facials,
+                cleanup and skincare.
+            </p>
+
+            <a href="appointments.html"
+               class="service-link">
+                Explore →
+            </a>
+
+        </article>
+
+
+
+        <article class="service-card nails">
+
+            <div class="service-icon">
+                ♢
+            </div>
+
+            <h3>
+                Nail Services
+            </h3>
+
+            <p>
+                Manicure, pedicure, gel,
+                nail art and more.
+            </p>
+
+            <a href="appointments.html"
+               class="service-link">
+                Explore →
+            </a>
+
+        </article>
+
+
+
+        <article class="service-card spa">
+
+            <div class="service-icon">
+                ❀
+            </div>
+
+            <h3>
+                Spa & Relaxation
+            </h3>
+
+            <p>
+                Body spa, massage, detan
+                and relaxation.
+            </p>
+
+            <a href="appointments.html"
+               class="service-link">
+                Explore →
+            </a>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================================
+     ABOUT
+======================================================= -->
+
+<section class="section about"
+         id="about">
+
+
+    <div class="about-visual">
+
+        <div class="about-photo"></div>
+
+        <div class="about-photo second"></div>
+
+        <div class="about-badge">
+
+            5+<br>
+
+            YEARS OF<br>
+
+            EXCELLENCE
+
+        </div>
+
+    </div>
+
+
+
+    <div class="about-content">
+
+        <div class="eyebrow">
+            About The Studio
+        </div>
+
+        <h2>
+            Welcome to a more beautiful
+            kind of experience.
+        </h2>
+
+        <p>
+
+            At The Tipssy Toe Makeover Studio,
+            we believe beauty is not only about
+            how you look — it is about how you feel.
+
+        </p>
+
+        <p>
+
+            Our mission is to bring out your natural
+            beauty with personalised care, refined
+            techniques and an atmosphere that makes
+            every visit special.
+
+        </p>
+
+        <p>
+
+            From your first consultation to your final
+            mirror moment, our team focuses on detail,
+            comfort and results you feel confident wearing.
+
+        </p>
+
+        <div class="signature">
+            The Tipssy Toe Team ♡
+        </div>
+
+        <a href="#contact"
+           class="book-btn">
+
+            Discover Our Studio
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================================
+     STATS
+======================================================= -->
+
+<section class="stats">
+
+    <div class="stat">
+
+        <strong>
+            5000+
+        </strong>
+
+        <span>
+            Happy Clients
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <strong>
+            50+
+        </strong>
+
+        <span>
+            Beauty Services
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <strong>
+            5+
+        </strong>
+
+        <span>
+            Years Experience
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <strong>
+            100%
+        </strong>
+
+        <span>
+            Client Care
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================================
+     WHY US
+======================================================= -->
+
+<section class="section why"
+         id="why">
+
+    <div class="section-heading">
+
+        <div class="eyebrow">
+            Why Tipssy Toe
+        </div>
+
+        <h2>
+            More than a salon.
+        </h2>
+
+        <p>
+
+            A complete beauty destination where
+            expertise, comfort and personal attention
+            come together.
+
+        </p>
+
+    </div>
+
+
+    <div class="why-grid">
+
+
+        <article class="why-card">
+
+            <div class="why-icon">
+                ✦
+            </div>
+
+            <h3>
+                Personalised
+            </h3>
+
+            <p>
+
+                Every look starts with understanding
+                your style, occasion and comfort.
+
+            </p>
+
+        </article>
+
+
+
+        <article class="why-card">
+
+            <div class="why-icon">
+                ◇
+            </div>
+
+            <h3>
+                Professional
+            </h3>
+
+            <p>
+
+                Detailed service, premium techniques
+                and a team that cares about the finish.
+
+            </p>
+
+        </article>
+
+
+
+        <article class="why-card">
+
+            <div class="why-icon">
+                ♡
+            </div>
+
+            <h3>
+                Beautifully Yours
+            </h3>
+
+            <p>
+
+                We don't follow one formula.
+                We create the version of beauty
+                that feels like you.
+
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================================
+     BOOKING CTA
+======================================================= -->
+
+<section class="cta"
+         id="contact">
+
+    <div>
+
+        <div class="eyebrow">
+            Your Next Look
+        </div>
+
+        <h2>
+            Ready to feel beautiful?
+        </h2>
+
+        <p>
+            Book your appointment today and
+            let our experts take care of the rest.
+        </p>
+
+    </div>
+
+
+    <a href="appointments.html"
+       class="primary-btn">
+
+        Book Appointment Now →
+
+    </a>
+
+</section>
+
+
+
+<!-- ======================================================
+     FOOTER
+======================================================= -->
+
+<footer>
+
+    <div class="footer-grid">
+
+
+        <div>
+
+            <div class="footer-brand">
+                THE TIPSSY TOE
+            </div>
+
+            <div class="footer-sub">
+                MAKEOVER STUDIO
+            </div>
+
+            <p>
+
+                Where beauty meets perfection —
+                premium beauty, makeup, hair,
+                skin and nail artistry.
+
+            </p>
+
+        </div>
+
+
+
+        <div>
+
+            <h4>
+                Explore
+            </h4>
+
+            <p>
+
+                <a href="#about">
+                    About Us
+                </a>
+
+                <br>
+
+                <a href="#services">
+                    Services
+                </a>
+
+                <br>
+
+                <a href="#why">
+                    Why Us
+                </a>
+
+                <br>
+
+                <a href="appointments.html">
+                    Appointments
+                </a>
+
+            </p>
+
+        </div>
+
+
+
+        <div>
+
+            <h4>
+                Visit
+            </h4>
+
+            <p>
+
+                123 Beauty Street
+                <br>
+
+                Your City, Punjab
+                <br>
+
+                India
+
+            </p>
+
+        </div>
+
+
+
+        <div>
+
+            <h4>
+                Contact
+            </h4>
+
+            <p>
+
+                +91 98765 43210
+
+                <br>
+
+                hello@tipssytoe.com
+
+                <br>
+
+                Mon – Sun · 10 AM – 8 PM
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 THE TIPSSY TOE MAKEOVER STUDIO
+        · ALL RIGHTS RESERVED
+
+    </div>
+
+</footer>
+
+
+
+<!-- ======================================================
+     WHATSAPP
+======================================================= -->
+
+<a href="https://wa.me/919876543210"
+   class="whatsapp"
+   target="_blank"
+   aria-label="WhatsApp">
+
+    ◉
+
+</a>
+
+
+</body>
+</html>
