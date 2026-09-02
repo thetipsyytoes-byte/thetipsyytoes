@@ -1,27 +1,20 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>The Tipssy Toe | Makeover Studio</title>
 
-<meta name="description"
-content="The Tipssy Toe Makeover Studio — Premium beauty, makeup, hair, skin and nail artistry.">
+<meta name="description" content="The Tipssy Toe Makeover Studio — Premium beauty, makeup, hair, skin and nail artistry.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Great+Vibes&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================================================
-   ROOT
-========================================================= */
-
 :root{
     --black:#090807;
     --black2:#11100e;
@@ -34,13 +27,9 @@ rel="stylesheet">
     --white:#fff;
 }
 
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
     margin:0;
@@ -54,14 +43,10 @@ a{
     text-decoration:none;
 }
 
-button{
-    font-family:inherit;
-}
+button{font-family:inherit}
 
 
-/* =========================================================
-   TOP BAR
-========================================================= */
+/* ================= TOP BAR ================= */
 
 .topbar{
     height:38px;
@@ -92,9 +77,7 @@ button{
 }
 
 
-/* =========================================================
-   NAVBAR
-========================================================= */
+/* ================= NAVBAR ================= */
 
 .navbar{
     position:absolute;
@@ -109,11 +92,9 @@ button{
     justify-content:space-between;
 
     padding:0 5%;
-
     color:#fff;
 
     border-bottom:1px solid rgba(255,255,255,.13);
-
     backdrop-filter:blur(4px);
 }
 
@@ -126,7 +107,6 @@ button{
 .logo-symbol{
     width:54px;
     height:54px;
-
     border:1px solid var(--gold2);
     border-radius:50%;
 
@@ -135,11 +115,10 @@ button{
     justify-content:center;
 
     color:var(--gold2);
-
     font-family:"Cormorant Garamond",serif;
     font-size:22px;
-
     position:relative;
+    flex-shrink:0;
 }
 
 .logo-symbol:after{
@@ -160,7 +139,6 @@ button{
 .logo-sub{
     display:block;
     margin-top:5px;
-
     font-size:8px;
     letter-spacing:4px;
     color:#d5c09c;
@@ -170,7 +148,6 @@ button{
     display:flex;
     align-items:center;
     gap:12px;
-
     font-size:10px;
     text-transform:uppercase;
     letter-spacing:1.5px;
@@ -187,31 +164,34 @@ button{
 .book-btn{
     background:transparent;
     color:#e6c184;
-    border:1px solid #c99a55;
-
     padding:15px 23px;
-
     font-size:10px;
     font-weight:700;
-
     letter-spacing:1px;
-
-    border:0;
-
+    border:1px solid transparent;
     cursor:pointer;
 }
 
+.menu .book-btn{
+    border-color:#c99a55;
+}
 
-/* =========================================================
-   HERO
-========================================================= */
+.admin-login-btn,
+.customer-login-btn{
+    border-color:transparent !important;
+}
+
+.mobile-menu-btn{
+    display:none;
+}
+
+
+/* ================= HERO ================= */
 
 .hero{
     min-height:860px;
-
     position:relative;
     overflow:hidden;
-
     color:#fff;
 
     background:
@@ -226,7 +206,6 @@ button{
 
 .hero:before{
     content:"";
-
     position:absolute;
     inset:0;
 
@@ -242,27 +221,20 @@ button{
 
 .hero:after{
     content:"";
-
     position:absolute;
-
     width:650px;
     height:650px;
-
     right:-150px;
     top:170px;
-
     border:1px solid rgba(226,189,123,.25);
-
     border-radius:50%;
 }
 
 .hero-inner{
     position:relative;
     z-index:3;
-
     max-width:1400px;
     margin:auto;
-
     min-height:860px;
 
     display:flex;
@@ -284,15 +256,10 @@ button{
 
 .hero h1{
     margin:0;
-
     font-family:"Cormorant Garamond",serif;
-
     font-size:clamp(54px,7vw,94px);
-
     line-height:.88;
-
     font-weight:500;
-
     letter-spacing:-2px;
 }
 
@@ -302,34 +269,25 @@ button{
 
 .hero-line{
     margin-top:25px;
-
     display:flex;
     align-items:center;
     gap:13px;
-
     color:#d6cec4;
-
     font-size:13px;
 }
 
 .hero-line i{
     width:45px;
     height:1px;
-
     background:var(--gold);
-
     display:block;
 }
 
 .hero-description{
     max-width:555px;
-
     color:#d0c8bf;
-
     font-size:14px;
-
     line-height:1.9;
-
     margin:25px 0 31px;
 }
 
@@ -348,12 +306,9 @@ button{
     border:1px solid #c99a55;
 
     padding:16px 26px;
-
     font-size:10px;
     font-weight:700;
-
     letter-spacing:1.2px;
-
     text-transform:uppercase;
 }
 
@@ -362,24 +317,18 @@ button{
     align-items:center;
 
     border:1px solid rgba(226,189,123,.55);
-
     color:#fff;
 
     padding:15px 24px;
-
     font-size:10px;
-
     letter-spacing:1.2px;
-
     text-transform:uppercase;
 }
 
 .hero-orb{
     position:absolute;
-
     right:10%;
     top:25%;
-
     width:390px;
     height:500px;
 
@@ -394,21 +343,16 @@ button{
     );
 
     filter:blur(.2px);
-
     opacity:.65;
 
-    box-shadow:
-    0 0 120px rgba(191,143,80,.15);
+    box-shadow:0 0 120px rgba(191,143,80,.15);
 }
 
 .hero-orb:before{
     content:"";
-
     position:absolute;
-
     width:220px;
     height:360px;
-
     right:75px;
     top:55px;
 
@@ -427,29 +371,20 @@ button{
 
 .scroll{
     position:absolute;
-
     bottom:135px;
     left:7%;
-
     color:#9f958b;
-
     font-size:9px;
-
     letter-spacing:3px;
-
     z-index:4;
 }
 
 
-/* =========================================================
-   PROMISE BAR
-========================================================= */
+/* ================= PROMISE ================= */
 
 .promise{
     position:absolute;
-
     z-index:5;
-
     left:5%;
     right:5%;
     bottom:27px;
@@ -458,11 +393,8 @@ button{
     grid-template-columns:repeat(4,1fr);
 
     background:rgba(10,9,8,.92);
-
     border:1px solid #76572e;
-
     border-radius:14px;
-
     padding:21px;
 }
 
@@ -470,9 +402,7 @@ button{
     display:flex;
     align-items:center;
     gap:15px;
-
     padding:5px 24px;
-
     border-right:1px solid #453622;
 }
 
@@ -487,28 +417,20 @@ button{
 
 .promise-title{
     display:block;
-
     color:#fff;
-
     font-size:11px;
-
     text-transform:uppercase;
-
     letter-spacing:.6px;
-
     margin-bottom:5px;
 }
 
 .promise-text{
     color:#9f968d;
-
     font-size:10px;
 }
 
 
-/* =========================================================
-   SECTION
-========================================================= */
+/* ================= SECTIONS ================= */
 
 .section{
     padding:105px 6%;
@@ -516,50 +438,35 @@ button{
 
 .section-heading{
     text-align:center;
-
     max-width:700px;
-
     margin:0 auto 50px;
 }
 
 .eyebrow{
     color:#b17c38;
-
     font-size:10px;
-
     font-weight:700;
-
     letter-spacing:3px;
-
     text-transform:uppercase;
 }
 
 .section-heading h2{
     font-family:"Cormorant Garamond",serif;
-
     font-size:52px;
-
     line-height:1;
-
     font-weight:500;
-
     margin:10px 0 15px;
 }
 
 .section-heading p{
     color:var(--muted);
-
     font-size:13px;
-
     line-height:1.8;
-
     margin:0;
 }
 
 
-/* =========================================================
-   SERVICES
-========================================================= */
+/* ================= SERVICES ================= */
 
 .services{
     background:var(--cream);
@@ -567,58 +474,39 @@ button{
 
 .service-grid{
     max-width:1320px;
-
     margin:auto;
-
     display:grid;
-
     grid-template-columns:repeat(5,1fr);
-
     gap:14px;
 }
 
 .service-card{
     height:405px;
-
     border-radius:13px;
-
     overflow:hidden;
-
     position:relative;
-
     background:#111;
-
     color:#fff;
 
     display:flex;
-
     flex-direction:column;
-
     justify-content:flex-end;
 
     padding:25px;
-
     isolation:isolate;
-
     transition:.4s;
 }
 
 .service-card:hover{
     transform:translateY(-8px);
-
-    box-shadow:
-    0 25px 50px rgba(25,18,10,.2);
+    box-shadow:0 25px 50px rgba(25,18,10,.2);
 }
 
 .service-card:before{
     content:"";
-
     position:absolute;
-
     inset:0;
-
     z-index:-2;
-
     transition:.5s;
 }
 
@@ -628,11 +516,8 @@ button{
 
 .service-card:after{
     content:"";
-
     position:absolute;
-
     inset:0;
-
     z-index:-1;
 
     background:
@@ -645,186 +530,107 @@ button{
 }
 
 .hair:before{
-    background:
-    radial-gradient(
-        circle at 50% 28%,
-        #b58a5d,
-        #624832 45%,
-        #15100c
-    );
+    background:radial-gradient(circle at 50% 28%,#b58a5d,#624832 45%,#15100c);
 }
 
 .makeup:before{
-    background:
-    radial-gradient(
-        circle at 55% 28%,
-        #d1a895,
-        #744f47 43%,
-        #15100c
-    );
+    background:radial-gradient(circle at 55% 28%,#d1a895,#744f47 43%,#15100c);
 }
 
 .skin:before{
-    background:
-    radial-gradient(
-        circle at 50% 25%,
-        #dfd0bc,
-        #84715f 43%,
-        #17120e
-    );
+    background:radial-gradient(circle at 50% 25%,#dfd0bc,#84715f 43%,#17120e);
 }
 
 .nails:before{
-    background:
-    radial-gradient(
-        circle at 50% 28%,
-        #d69b98,
-        #744746 45%,
-        #15100c
-    );
+    background:radial-gradient(circle at 50% 28%,#d69b98,#744746 45%,#15100c);
 }
 
 .spa:before{
-    background:
-    radial-gradient(
-        circle at 50% 28%,
-        #aa9773,
-        #584832 45%,
-        #15100c
-    );
+    background:radial-gradient(circle at 50% 28%,#aa9773,#584832 45%,#15100c);
 }
 
 .service-icon{
     width:48px;
     height:48px;
-
     border:1px solid var(--gold2);
-
     border-radius:50%;
-
     display:grid;
     place-items:center;
-
     color:var(--gold2);
-
     margin-bottom:15px;
-
     background:rgba(8,7,6,.75);
 }
 
 .service-card h3{
     font-family:"Cormorant Garamond",serif;
-
     font-size:25px;
-
     font-weight:500;
-
     margin:0 0 8px;
 }
 
 .service-card p{
     color:#c7beb4;
-
     font-size:10px;
-
     line-height:1.65;
-
     margin:0 0 15px;
 }
 
 .service-link{
     color:var(--gold2);
-
     font-size:9px;
-
     letter-spacing:1.5px;
-
     text-transform:uppercase;
 }
 
 
-/* =========================================================
-   ABOUT
-========================================================= */
+/* ================= ABOUT ================= */
 
 .about{
     background:#e9ded0;
-
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:80px;
-
     align-items:center;
 }
 
 .about-visual{
     min-height:570px;
-
     position:relative;
-
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:14px;
 }
 
 .about-photo{
     border-radius:170px 170px 10px 10px;
-
-    background:
-    radial-gradient(
-        circle at 50% 25%,
-        #b9936d,
-        #594334 47%,
-        #1a1410
-    );
+    background:radial-gradient(circle at 50% 25%,#b9936d,#594334 47%,#1a1410);
 }
 
 .about-photo.second{
     margin-top:90px;
-
     border-radius:10px 10px 170px 170px;
-
-    background:
-    radial-gradient(
-        circle at 50% 30%,
-        #b7a07f,
-        #554434 45%,
-        #18130f
-    );
+    background:radial-gradient(circle at 50% 30%,#b7a07f,#554434 45%,#18130f);
 }
 
 .about-badge{
     position:absolute;
-
     left:50%;
     top:50%;
-
     transform:translate(-50%,-50%);
 
     width:115px;
     height:115px;
-
     border-radius:50%;
-
     background:#11100e;
-
     border:1px solid var(--gold2);
-
     color:#fff;
 
     display:grid;
     place-items:center;
-
     text-align:center;
 
     font-family:"Cormorant Garamond",serif;
-
     font-size:16px;
-
     line-height:1.1;
 }
 
@@ -834,54 +640,38 @@ button{
 
 .about-content h2{
     font-family:"Cormorant Garamond",serif;
-
     font-size:52px;
-
     line-height:.98;
-
     font-weight:500;
-
     margin:0 0 23px;
 }
 
 .about-content p{
     color:#70675f;
-
     font-size:13px;
-
     line-height:1.95;
 }
 
 .signature{
     font-family:"Great Vibes",cursive;
-
     color:#956b36;
-
     font-size:29px;
-
     margin:23px 0;
 }
 
 
-/* =========================================================
-   STATS
-========================================================= */
+/* ================= STATS ================= */
 
 .stats{
     background:#0e0d0b;
-
     color:#fff;
-
     display:grid;
-
     grid-template-columns:repeat(4,1fr);
-
     padding:55px 7%;
 }
 
 .stat{
     text-align:center;
-
     border-right:1px solid #443522;
 }
 
@@ -891,30 +681,21 @@ button{
 
 .stat strong{
     display:block;
-
     font-family:"Cormorant Garamond",serif;
-
     font-size:51px;
-
     font-weight:500;
-
     color:var(--gold2);
 }
 
 .stat span{
     color:#aaa198;
-
     font-size:9px;
-
     text-transform:uppercase;
-
     letter-spacing:2px;
 }
 
 
-/* =========================================================
-   WHY US
-========================================================= */
+/* ================= WHY ================= */
 
 .why{
     background:#f7f1e8;
@@ -922,13 +703,9 @@ button{
 
 .why-grid{
     max-width:1050px;
-
     margin:auto;
-
     display:grid;
-
     grid-template-columns:repeat(3,1fr);
-
     gap:45px;
 }
 
@@ -939,174 +716,117 @@ button{
 .why-icon{
     width:55px;
     height:55px;
-
     margin:auto;
-
     border:1px solid #c9a16b;
-
     border-radius:50%;
-
     display:grid;
-
     place-items:center;
-
     color:#a8793c;
-
     font-size:21px;
 }
 
 .why-card h3{
     font-family:"Cormorant Garamond",serif;
-
     font-size:25px;
-
     font-weight:500;
-
     margin:15px 0 8px;
 }
 
 .why-card p{
     color:#777068;
-
     font-size:12px;
-
     line-height:1.8;
 }
 
 
-/* =========================================================
-   CTA
-========================================================= */
+/* ================= CTA ================= */
 
 .cta{
     margin:0 5% 80px;
-
     padding:75px 7%;
-
     border-radius:18px;
 
     background:
-    radial-gradient(
-        circle at 85% 20%,
-        #654a2d,
-        transparent 38%
-    ),
-    linear-gradient(
-        105deg,
-        #100e0c,
-        #282016
-    );
+    radial-gradient(circle at 85% 20%,#654a2d,transparent 38%),
+    linear-gradient(105deg,#100e0c,#282016);
 
     color:#fff;
 
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     gap:40px;
-
     overflow:hidden;
-
     position:relative;
 }
 
 .cta:before{
     content:"";
-
     position:absolute;
-
     width:420px;
     height:420px;
-
     right:-120px;
     top:-170px;
-
     border:1px solid rgba(215,176,111,.25);
-
     border-radius:50%;
 }
 
 .cta h2{
     font-family:"Cormorant Garamond",serif;
-
     font-size:51px;
-
     font-weight:500;
-
     margin:8px 0;
 }
 
 .cta p{
     color:#b8afa5;
-
     font-size:13px;
 }
 
 
-/* =========================================================
-   FOOTER
-========================================================= */
+/* ================= FOOTER ================= */
 
 footer{
     background:#070605;
-
     color:#aaa;
-
     padding:65px 6% 25px;
 }
 
 .footer-grid{
     max-width:1300px;
-
     margin:auto;
 
     display:grid;
-
     grid-template-columns:1.5fr 1fr 1fr 1fr;
-
     gap:55px;
 }
 
 .footer-brand{
     font-family:"Cormorant Garamond",serif;
-
     font-size:25px;
-
     color:#fff;
-
     letter-spacing:2px;
 }
 
 .footer-sub{
     color:#cba66b;
-
     font-size:8px;
-
     letter-spacing:4px;
-
     margin-top:4px;
 }
 
 .footer h4{
     color:#e1c18c;
-
     font-size:10px;
-
     letter-spacing:2px;
-
     text-transform:uppercase;
-
     margin:0 0 15px;
 }
 
 .footer p,
 .footer a{
     font-size:11px;
-
     line-height:2;
-
     color:#aaa29a;
 }
 
@@ -1116,64 +836,46 @@ footer{
 
 .copyright{
     max-width:1300px;
-
     margin:45px auto 0;
-
     padding-top:20px;
-
     border-top:1px solid #29231c;
-
     text-align:center;
-
     color:#6e665e;
-
     font-size:9px;
-
     letter-spacing:1.5px;
 }
 
 
-/* =========================================================
-   WHATSAPP
-========================================================= */
+/* ================= WHATSAPP ================= */
 
 .whatsapp{
     position:fixed;
-
     z-index:200;
-
     right:25px;
     bottom:25px;
 
     width:57px;
     height:57px;
-
     border-radius:50%;
 
     background:#25D366;
-
     color:#fff;
 
     display:flex;
-
     align-items:center;
-
     justify-content:center;
 
     font-size:27px;
-
     box-shadow:0 8px 30px rgba(0,0,0,.25);
 }
 
 
-/* =========================================================
-   MOBILE
-========================================================= */
+/* ================= TABLET ================= */
 
 @media(max-width:1100px){
 
     .menu{
-        gap:14px;
+        gap:8px;
     }
 
     .service-grid{
@@ -1187,8 +889,10 @@ footer{
     .promise-item:nth-child(2){
         border-right:0;
     }
-
 }
+
+
+/* ================= MOBILE ================= */
 
 @media(max-width:800px){
 
@@ -1197,75 +901,214 @@ footer{
     }
 
     .navbar{
+        position:absolute;
         top:0;
+        left:0;
+        right:0;
 
-        height:76px;
+        width:100%;
+        height:78px;
 
-        padding:0 5%;
+        padding:0 16px;
+
+        background:rgba(5,4,3,.86);
+        backdrop-filter:blur(12px);
+
+        border-bottom:1px solid rgba(230,193,132,.25);
+    }
+
+    .logo{
+        gap:9px;
+        min-width:0;
     }
 
     .logo-symbol{
         width:42px;
         height:42px;
-
+        min-width:42px;
         font-size:17px;
     }
 
     .logo-title{
-        font-size:18px;
+        font-size:16px;
+        letter-spacing:1px;
+        white-space:nowrap;
     }
 
     .logo-sub{
-        font-size:6px;
-        letter-spacing:3px;
+        font-size:5.5px;
+        letter-spacing:2.5px;
+        margin-top:4px;
     }
 
+    /* Hide desktop nav */
     .menu{
         display:none;
     }
 
+    /* Hamburger */
+    .mobile-menu-btn{
+        display:flex;
+
+        width:43px;
+        height:43px;
+
+        align-items:center;
+        justify-content:center;
+
+        flex-direction:column;
+        gap:5px;
+
+        background:transparent;
+        border:1px solid rgba(230,193,132,.55);
+        border-radius:8px;
+
+        cursor:pointer;
+        flex-shrink:0;
+    }
+
+    .mobile-menu-btn span{
+        display:block;
+        width:19px;
+        height:1px;
+        background:var(--gold2);
+        transition:.3s;
+    }
+
+    .mobile-menu-btn.active span:nth-child(1){
+        transform:translateY(6px) rotate(45deg);
+    }
+
+    .mobile-menu-btn.active span:nth-child(2){
+        opacity:0;
+    }
+
+    .mobile-menu-btn.active span:nth-child(3){
+        transform:translateY(-6px) rotate(-45deg);
+    }
+
+    /* Mobile dropdown */
+    .menu.mobile-open{
+        position:absolute;
+        display:flex;
+
+        top:78px;
+        left:12px;
+        right:12px;
+
+        padding:12px;
+
+        flex-direction:column;
+        align-items:stretch;
+        gap:0;
+
+        background:rgba(10,9,8,.98);
+        border:1px solid rgba(201,154,85,.35);
+        border-radius:0 0 14px 14px;
+
+        box-shadow:0 18px 45px rgba(0,0,0,.35);
+    }
+
+    .menu.mobile-open a{
+        display:flex;
+
+        align-items:center;
+
+        min-height:48px;
+
+        padding:0 15px;
+
+        border-bottom:1px solid rgba(255,255,255,.08);
+
+        font-size:10px;
+        color:#fff;
+    }
+
+    .menu.mobile-open a:last-child{
+        border-bottom:0;
+    }
+
+    .menu.mobile-open a:hover{
+        color:var(--gold2);
+        background:rgba(201,154,85,.08);
+    }
+
+    .menu.mobile-open .book-btn{
+        justify-content:center;
+        margin-top:8px;
+        border:1px solid var(--gold);
+        color:var(--gold2);
+    }
+
+    .menu.mobile-open .admin-login-btn,
+    .menu.mobile-open .customer-login-btn{
+        border:1px solid rgba(201,154,85,.35) !important;
+        margin-top:4px;
+    }
+
+
+    /* Hero */
     .hero{
         min-height:850px;
     }
 
     .hero-inner{
         min-height:850px;
+        padding:145px 7% 270px;
+    }
 
-        padding:
-        150px
-        7%
-        270px;
+    .script{
+        font-size:31px;
     }
 
     .hero h1{
-        font-size:55px;
+        font-size:52px;
+        letter-spacing:-1px;
+    }
+
+    .hero-line{
+        font-size:11px;
+    }
+
+    .hero-line i{
+        width:25px;
+    }
+
+    .hero-description{
+        font-size:12px;
+        line-height:1.8;
     }
 
     .hero-orb{
-        right:-120px;
+        right:-150px;
         top:300px;
-
-        opacity:.35;
+        opacity:.30;
     }
 
     .hero-buttons{
         flex-direction:column;
-
         align-items:flex-start;
     }
 
+    .primary-btn,
+    .secondary-btn{
+        width:100%;
+        max-width:280px;
+    }
+
+    /* Promise */
     .promise{
         left:5%;
         right:5%;
+        bottom:18px;
 
         grid-template-columns:1fr 1fr;
-
-        padding:8px;
+        padding:7px;
     }
 
     .promise-item{
-        padding:12px 9px;
-
+        padding:11px 8px;
+        gap:8px;
         border-bottom:1px solid #453622;
     }
 
@@ -1274,39 +1117,59 @@ footer{
         border-right:0;
     }
 
-    .promise-text{
-        display:none;
+    .promise-item:nth-child(3),
+    .promise-item:nth-child(4){
+        border-bottom:0;
+    }
+
+    .promise-icon{
+        font-size:21px;
     }
 
     .promise-title{
-        font-size:9px;
+        font-size:8px;
+        letter-spacing:.4px;
+    }
+
+    .promise-text{
+        display:none;
     }
 
     .scroll{
         display:none;
     }
 
+    /* Sections */
     .section{
         padding:75px 7%;
+    }
+
+    .section-heading{
+        margin-bottom:38px;
     }
 
     .section-heading h2{
         font-size:42px;
     }
 
+    .section-heading p{
+        font-size:12px;
+    }
+
+    /* Services */
     .service-grid{
         grid-template-columns:1fr 1fr;
     }
 
     .service-card{
         height:350px;
+        padding:20px;
     }
 
+    /* About */
     .about{
         grid-template-columns:1fr;
-
         gap:45px;
-
         padding:75px 7%;
     }
 
@@ -1318,11 +1181,10 @@ footer{
         font-size:43px;
     }
 
+    /* Stats */
     .stats{
         grid-template-columns:1fr 1fr;
-
         gap:35px;
-
         padding:45px 6%;
     }
 
@@ -1334,15 +1196,16 @@ footer{
         font-size:39px;
     }
 
+    /* Why */
     .why-grid{
         grid-template-columns:1fr;
+        gap:40px;
     }
 
+    /* CTA */
     .cta{
         margin:0 4% 55px;
-
         display:block;
-
         padding:55px 8%;
     }
 
@@ -1354,15 +1217,54 @@ footer{
         margin-top:20px;
     }
 
+    /* Footer */
     .footer-grid{
         grid-template-columns:1fr 1fr;
-
         gap:35px;
     }
 
+    .whatsapp{
+        width:52px;
+        height:52px;
+        right:17px;
+        bottom:17px;
+    }
 }
 
+
+/* ================= SMALL MOBILE ================= */
+
 @media(max-width:500px){
+
+    .navbar{
+        padding:0 12px;
+    }
+
+    .logo-symbol{
+        width:38px;
+        height:38px;
+        min-width:38px;
+        font-size:15px;
+    }
+
+    .logo-title{
+        font-size:14px;
+        letter-spacing:.7px;
+    }
+
+    .logo-sub{
+        font-size:5px;
+        letter-spacing:2px;
+    }
+
+    .mobile-menu-btn{
+        width:40px;
+        height:40px;
+    }
+
+    .hero h1{
+        font-size:48px;
+    }
 
     .service-grid{
         grid-template-columns:1fr;
@@ -1382,7 +1284,6 @@ footer{
 
     .about-photo.second{
         margin-top:60px;
-
         border-radius:8px 8px 110px 110px;
     }
 
@@ -1390,858 +1291,742 @@ footer{
         grid-template-columns:1fr;
     }
 
-    .hero h1{
-        font-size:49px;
+    .copyright{
+        line-height:1.7;
+    }
+}
+
+
+/* ================= EXTRA SMALL ================= */
+
+@media(max-width:360px){
+
+    .logo-title{
+        font-size:13px;
     }
 
+    .logo-sub{
+        font-size:4.5px;
+    }
+
+    .hero h1{
+        font-size:43px;
+    }
+
+    .hero-line{
+        font-size:10px;
+    }
+
+    .promise-title{
+        font-size:7px;
+    }
 }
 
 </style>
 
 </head>
 
-
 <body>
 
-
-<!-- ======================================================
-     TOP BAR
-======================================================= -->
+<!-- TOP BAR -->
 
 <div class="topbar">
-
     <div class="top-left">
-
-        <span>
-            ⌖ <strong>Shop Number 14</strong>, Near Civil Dispensary, Model Town, Patiala 147001
-        </span>
-
-        <span>
-            ☎ <strong>9056105015</strong>
-        </span>
-
-        <span>
-            ◷ <strong>Mon – Sun</strong> 10 AM – 8 PM
-        </span>
-
+        <span>⌖ <strong>Shop Number 14</strong>, Near Civil Dispensary, Model Town, Patiala 147001</span>
+        <span>☎ <strong>9056105015</strong></span>
+        <span>◷ <strong>Mon – Sun</strong> 10 AM – 8 PM</span>
     </div>
 
-    <div class="socials">
-        f　◎　◉
+```
+<div class="socials">
+    f　◎　◉
+</div>
+```
+
+</div>
+
+<!-- NAVIGATION -->
+
+<header class="navbar">
+
+```
+<a href="#home" class="logo">
+
+    <div class="logo-symbol">
+        TT
+    </div>
+
+    <div>
+        <div class="logo-title">
+            THE TIPSSY TOE
+        </div>
+
+        <div class="logo-sub">
+            MAKEOVER STUDIO
+        </div>
+    </div>
+
+</a>
+
+
+<nav class="menu" id="mainMenu">
+
+    <a href="#home">Home</a>
+
+    <a href="#about">About Us</a>
+
+    <a href="#services">Services</a>
+
+    <a href="#why">Why Us</a>
+
+    <a href="#contact">Contact</a>
+
+    <a href="booking.html" class="book-btn">
+        Book Appointment
+    </a>
+
+    <a href="admin-login.html" class="book-btn admin-login-btn">
+        Admin Login
+    </a>
+
+    <a href="customer-login.html" class="book-btn customer-login-btn">
+        Customer Login
+    </a>
+
+</nav>
+
+
+<!-- MOBILE MENU BUTTON -->
+<button
+    class="mobile-menu-btn"
+    id="mobileMenuBtn"
+    type="button"
+    aria-label="Open Menu"
+    aria-expanded="false">
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+</button>
+```
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+```
+<div class="hero-orb"></div>
+
+<div class="hero-inner">
+
+    <div class="hero-copy">
+
+        <div class="script">
+            Welcome to
+        </div>
+
+        <h1>
+            THE TIPSSY TOE
+            <br>
+            <span>MAKEOVER STUDIO</span>
+        </h1>
+
+        <div class="hero-line">
+            <i></i>
+            Where Beauty Meets Perfection
+            <i></i>
+        </div>
+
+        <p class="hero-description">
+            Unleash your confidence with our premium beauty
+            and makeover experiences. From everyday elegance
+            to unforgettable occasion looks, every detail is
+            designed especially for you.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="booking.html" class="primary-btn">
+                Book Your Appointment →
+            </a>
+
+            <a href="#services" class="secondary-btn">
+                Explore Services
+            </a>
+
+        </div>
+
     </div>
 
 </div>
 
 
+<!-- PROMISE BAR -->
+<div class="promise">
 
-<!-- ======================================================
-     NAVIGATION
-======================================================= -->
-
-<header class="navbar">
-
-    <a href="#" class="logo">
-
-        <div class="logo-symbol">
-            TT
-        </div>
+    <div class="promise-item">
+        <div class="promise-icon">♙</div>
 
         <div>
+            <span class="promise-title">
+                Expert Beauticians
+            </span>
 
-            <div class="logo-title">
-                THE TIPSSY TOE
-            </div>
-
-            <div class="logo-sub">
-                MAKEOVER STUDIO
-            </div>
-
+            <span class="promise-text">
+                Experienced professionals
+            </span>
         </div>
+    </div>
 
+
+    <div class="promise-item">
+        <div class="promise-icon">◇</div>
+
+        <div>
+            <span class="promise-title">
+                Premium Products
+            </span>
+
+            <span class="promise-text">
+                Professional quality
+            </span>
+        </div>
+    </div>
+
+
+    <div class="promise-item">
+        <div class="promise-icon">♢</div>
+
+        <div>
+            <span class="promise-title">
+                Hygiene & Safety
+            </span>
+
+            <span class="promise-text">
+                Care in every detail
+            </span>
+        </div>
+    </div>
+
+
+    <div class="promise-item">
+        <div class="promise-icon">◷</div>
+
+        <div>
+            <span class="promise-title">
+                On-Time Service
+            </span>
+
+            <span class="promise-text">
+                We value your time
+            </span>
+        </div>
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- SERVICES -->
+
+<section class="section services" id="services">
+
+```
+<div class="section-heading">
+
+    <div class="eyebrow">
+        Our Signature Menu
+    </div>
+
+    <h2>
+        Beauty, curated beautifully.
+    </h2>
+
+    <p>
+        Discover our signature beauty experiences,
+        crafted with precision, care and a touch
+        of Tipssy Toe luxury.
+    </p>
+
+</div>
+
+
+<div class="service-grid">
+
+    <article class="service-card hair">
+
+        <div class="service-icon">✂</div>
+
+        <h3>Hair Services</h3>
+
+        <p>
+            Haircut, colour, styling,
+            treatments and more.
+        </p>
+
+        <a href="booking.html" class="service-link">
+            Explore →
+        </a>
+
+    </article>
+
+
+    <article class="service-card makeup">
+
+        <div class="service-icon">♧</div>
+
+        <h3>Makeup</h3>
+
+        <p>
+            Bridal, engagement, party
+            and HD makeup.
+        </p>
+
+        <a href="booking.html" class="service-link">
+            Explore →
+        </a>
+
+    </article>
+
+
+    <article class="service-card skin">
+
+        <div class="service-icon">✧</div>
+
+        <h3>Skin & Facials</h3>
+
+        <p>
+            Glow treatments, facials,
+            cleanup and skincare.
+        </p>
+
+        <a href="booking.html" class="service-link">
+            Explore →
+        </a>
+
+    </article>
+
+
+    <article class="service-card nails">
+
+        <div class="service-icon">♢</div>
+
+        <h3>Nail Services</h3>
+
+        <p>
+            Manicure, pedicure, gel,
+            nail art and more.
+        </p>
+
+        <a href="booking.html" class="service-link">
+            Explore →
+        </a>
+
+    </article>
+
+
+    <article class="service-card spa">
+
+        <div class="service-icon">❀</div>
+
+        <h3>Spa & Relaxation</h3>
+
+        <p>
+            Body spa, massage, detan
+            and relaxation.
+        </p>
+
+        <a href="booking.html" class="service-link">
+            Explore →
+        </a>
+
+    </article>
+
+</div>
+```
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="section about" id="about">
+
+```
+<div class="about-visual">
+
+    <div class="about-photo"></div>
+
+    <div class="about-photo second"></div>
+
+    <div class="about-badge">
+        5+<br>
+        YEARS OF<br>
+        EXCELLENCE
+    </div>
+
+</div>
+
+
+<div class="about-content">
+
+    <div class="eyebrow">
+        About The Studio
+    </div>
+
+    <h2>
+        Welcome to a more beautiful
+        kind of experience.
+    </h2>
+
+    <p>
+        At The Tipssy Toe Makeover Studio,
+        we believe beauty is not only about
+        how you look — it is about how you feel.
+    </p>
+
+    <p>
+        Our mission is to bring out your natural
+        beauty with personalised care, refined
+        techniques and an atmosphere that makes
+        every visit special.
+    </p>
+
+    <p>
+        From your first consultation to your final
+        mirror moment, our team focuses on detail,
+        comfort and results you feel confident wearing.
+    </p>
+
+    <div class="signature">
+        The Tipssy Toe Team ♡
+    </div>
+
+    <a href="#contact" class="book-btn">
+        Discover Our Studio
     </a>
 
-
-    <nav class="menu">
-
-        <a href="#home">
-            Home
-        </a>
-
-        <a href="#about">
-            About Us
-        </a>
-
-        <a href="#services">
-            Services
-        </a>
-
-        <a href="#why">
-            Why Us
-        </a>
-
-        <a href="#contact">
-            Contact
-        </a>
-
-        <a href="booking.html"
-           class="book-btn">
-            Book Appointment
-        </a>
-
-        <a href="admin-login.html"
-           class="book-btn admin-login-btn"
-           aria-label="Admin Login">
-            Admin Login
-        </a>
-
-        <a href="customer-login.html"
-           class="book-btn customer-login-btn"
-           aria-label="Customer Login">
-            Customer Login
-        </a>
-
-    </nav>
-
-</header>
-
-
-
-<!-- ======================================================
-     HERO
-======================================================= -->
-
-<section class="hero" id="home">
-
-    <div class="hero-orb"></div>
-
-
-    <div class="hero-inner">
-
-        <div class="hero-copy">
-
-            <div class="script">
-                Welcome to
-            </div>
-
-            <h1>
-
-                THE TIPSSY TOE
-
-                <br>
-
-                <span>
-                    MAKEOVER STUDIO
-                </span>
-
-            </h1>
-
-
-            <div class="hero-line">
-
-                <i></i>
-
-                Where Beauty Meets Perfection
-
-                <i></i>
-
-            </div>
-
-
-            <p class="hero-description">
-
-                Unleash your confidence with our premium beauty
-                and makeover experiences. From everyday elegance
-                to unforgettable occasion looks, every detail is
-                designed especially for you.
-
-            </p>
-
-
-            <div class="hero-buttons">
-
-                <a href="booking.html"
-                   class="primary-btn">
-
-                    Book Your Appointment →
-                    
-                </a>
-
-
-                <a href="#services"
-                   class="secondary-btn">
-
-                    Explore Services
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- PROMISE BAR -->
-
-    <div class="promise">
-
-        <div class="promise-item">
-
-            <div class="promise-icon">
-                ♙
-            </div>
-
-            <div>
-
-                <span class="promise-title">
-                    Expert Beauticians
-                </span>
-
-                <span class="promise-text">
-                    Experienced professionals
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="promise-item">
-
-            <div class="promise-icon">
-                ◇
-            </div>
-
-            <div>
-
-                <span class="promise-title">
-                    Premium Products
-                </span>
-
-                <span class="promise-text">
-                    Professional quality
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="promise-item">
-
-            <div class="promise-icon">
-                ♢
-            </div>
-
-            <div>
-
-                <span class="promise-title">
-                    Hygiene & Safety
-                </span>
-
-                <span class="promise-text">
-                    Care in every detail
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="promise-item">
-
-            <div class="promise-icon">
-                ◷
-            </div>
-
-            <div>
-
-                <span class="promise-title">
-                    On-Time Service
-                </span>
-
-                <span class="promise-text">
-                    We value your time
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
+</div>
+```
 
 </section>
 
-
-
-<!-- ======================================================
-     SERVICES
-======================================================= -->
-
-<section class="section services"
-         id="services">
-
-    <div class="section-heading">
-
-        <div class="eyebrow">
-            Our Signature Menu
-        </div>
-
-        <h2>
-            Beauty, curated beautifully.
-        </h2>
-
-        <p>
-            Discover our signature beauty experiences,
-            crafted with precision, care and a touch
-            of Tipssy Toe luxury.
-        </p>
-
-    </div>
-
-
-    <div class="service-grid">
-
-
-        <article class="service-card hair">
-
-            <div class="service-icon">
-                ✂
-            </div>
-
-            <h3>
-                Hair Services
-            </h3>
-
-            <p>
-                Haircut, colour, styling,
-                treatments and more.
-            </p>
-
-            <a href="booking.html"
-               class="service-link">
-                Explore →
-            </a>
-
-        </article>
-
-
-
-        <article class="service-card makeup">
-
-            <div class="service-icon">
-                ♧
-            </div>
-
-            <h3>
-                Makeup
-            </h3>
-
-            <p>
-                Bridal, engagement, party
-                and HD makeup.
-            </p>
-
-            <a href="booking.html"
-               class="service-link">
-                Explore →
-            </a>
-
-        </article>
-
-
-
-        <article class="service-card skin">
-
-            <div class="service-icon">
-                ✧
-            </div>
-
-            <h3>
-                Skin & Facials
-            </h3>
-
-            <p>
-                Glow treatments, facials,
-                cleanup and skincare.
-            </p>
-
-            <a href="booking.html"
-               class="service-link">
-                Explore →
-            </a>
-
-        </article>
-
-
-
-        <article class="service-card nails">
-
-            <div class="service-icon">
-                ♢
-            </div>
-
-            <h3>
-                Nail Services
-            </h3>
-
-            <p>
-                Manicure, pedicure, gel,
-                nail art and more.
-            </p>
-
-            <a href="booking.html"
-               class="service-link">
-                Explore →
-            </a>
-
-        </article>
-
-
-
-        <article class="service-card spa">
-
-            <div class="service-icon">
-                ❀
-            </div>
-
-            <h3>
-                Spa & Relaxation
-            </h3>
-
-            <p>
-                Body spa, massage, detan
-                and relaxation.
-            </p>
-
-            <a href="booking.html"
-               class="service-link">
-                Explore →
-            </a>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-
-<!-- ======================================================
-     ABOUT
-======================================================= -->
-
-<section class="section about"
-         id="about">
-
-
-    <div class="about-visual">
-
-        <div class="about-photo"></div>
-
-        <div class="about-photo second"></div>
-
-        <div class="about-badge">
-
-            5+<br>
-
-            YEARS OF<br>
-
-            EXCELLENCE
-
-        </div>
-
-    </div>
-
-
-
-    <div class="about-content">
-
-        <div class="eyebrow">
-            About The Studio
-        </div>
-
-        <h2>
-            Welcome to a more beautiful
-            kind of experience.
-        </h2>
-
-        <p>
-
-            At The Tipssy Toe Makeover Studio,
-            we believe beauty is not only about
-            how you look — it is about how you feel.
-
-        </p>
-
-        <p>
-
-            Our mission is to bring out your natural
-            beauty with personalised care, refined
-            techniques and an atmosphere that makes
-            every visit special.
-
-        </p>
-
-        <p>
-
-            From your first consultation to your final
-            mirror moment, our team focuses on detail,
-            comfort and results you feel confident wearing.
-
-        </p>
-
-        <div class="signature">
-            The Tipssy Toe Team ♡
-        </div>
-
-        <a href="#contact"
-           class="book-btn">
-
-            Discover Our Studio
-
-        </a>
-
-    </div>
-
-</section>
-
-
-
-<!-- ======================================================
-     STATS
-======================================================= -->
+<!-- STATS -->
 
 <section class="stats">
 
-    <div class="stat">
+```
+<div class="stat">
+    <strong>5000+</strong>
+    <span>Happy Clients</span>
+</div>
 
-        <strong>
-            5000+
-        </strong>
+<div class="stat">
+    <strong>50+</strong>
+    <span>Beauty Services</span>
+</div>
 
-        <span>
-            Happy Clients
-        </span>
+<div class="stat">
+    <strong>5+</strong>
+    <span>Years Experience</span>
+</div>
 
-    </div>
-
-
-    <div class="stat">
-
-        <strong>
-            50+
-        </strong>
-
-        <span>
-            Beauty Services
-        </span>
-
-    </div>
-
-
-    <div class="stat">
-
-        <strong>
-            5+
-        </strong>
-
-        <span>
-            Years Experience
-        </span>
-
-    </div>
-
-
-    <div class="stat">
-
-        <strong>
-            100%
-        </strong>
-
-        <span>
-            Client Care
-        </span>
-
-    </div>
+<div class="stat">
+    <strong>100%</strong>
+    <span>Client Care</span>
+</div>
+```
 
 </section>
 
+<!-- WHY US -->
+
+<section class="section why" id="why">
+
+```
+<div class="section-heading">
+
+    <div class="eyebrow">
+        Why Tipssy Toe
+    </div>
+
+    <h2>
+        More than a salon.
+    </h2>
+
+    <p>
+        A complete beauty destination where
+        expertise, comfort and personal attention
+        come together.
+    </p>
+
+</div>
 
 
-<!-- ======================================================
-     WHY US
-======================================================= -->
+<div class="why-grid">
 
-<section class="section why"
-         id="why">
+    <article class="why-card">
 
-    <div class="section-heading">
+        <div class="why-icon">✦</div>
 
-        <div class="eyebrow">
-            Why Tipssy Toe
-        </div>
-
-        <h2>
-            More than a salon.
-        </h2>
+        <h3>Personalised</h3>
 
         <p>
-
-            A complete beauty destination where
-            expertise, comfort and personal attention
-            come together.
-
+            Every look starts with understanding
+            your style, occasion and comfort.
         </p>
 
-    </div>
+    </article>
 
 
-    <div class="why-grid">
+    <article class="why-card">
 
+        <div class="why-icon">◇</div>
 
-        <article class="why-card">
-
-            <div class="why-icon">
-                ✦
-            </div>
-
-            <h3>
-                Personalised
-            </h3>
-
-            <p>
-
-                Every look starts with understanding
-                your style, occasion and comfort.
-
-            </p>
-
-        </article>
-
-
-
-        <article class="why-card">
-
-            <div class="why-icon">
-                ◇
-            </div>
-
-            <h3>
-                Professional
-            </h3>
-
-            <p>
-
-                Detailed service, premium techniques
-                and a team that cares about the finish.
-
-            </p>
-
-        </article>
-
-
-
-        <article class="why-card">
-
-            <div class="why-icon">
-                ♡
-            </div>
-
-            <h3>
-                Beautifully Yours
-            </h3>
-
-            <p>
-
-                We don't follow one formula.
-                We create the version of beauty
-                that feels like you.
-
-            </p>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-
-<!-- ======================================================
-     BOOKING CTA
-======================================================= -->
-
-<section class="cta"
-         id="contact">
-
-    <div>
-
-        <div class="eyebrow">
-            Your Next Look
-        </div>
-
-        <h2>
-            Ready to feel beautiful?
-        </h2>
+        <h3>Professional</h3>
 
         <p>
-            Book your appointment today and
-            let our experts take care of the rest.
+            Detailed service, premium techniques
+            and a team that cares about the finish.
         </p>
 
-    </div>
+    </article>
 
 
-    <a href="booking.html"
-       class="primary-btn">
+    <article class="why-card">
 
-        Book Appointment Now →
+        <div class="why-icon">♡</div>
 
-    </a>
+        <h3>Beautifully Yours</h3>
+
+        <p>
+            We don't follow one formula.
+            We create the version of beauty
+            that feels like you.
+        </p>
+
+    </article>
+
+</div>
+```
 
 </section>
 
+<!-- BOOKING CTA -->
+
+<section class="cta" id="contact">
+
+```
+<div>
+
+    <div class="eyebrow">
+        Your Next Look
+    </div>
+
+    <h2>
+        Ready to feel beautiful?
+    </h2>
+
+    <p>
+        Book your appointment today and
+        let our experts take care of the rest.
+    </p>
+
+</div>
 
 
-<!-- ======================================================
-     FOOTER
-======================================================= -->
+<a href="booking.html" class="primary-btn">
+    Book Appointment Now →
+</a>
+```
+
+</section>
+
+<!-- FOOTER -->
 
 <footer>
 
-    <div class="footer-grid">
+```
+<div class="footer-grid">
 
+    <div>
 
-        <div>
-
-            <div class="footer-brand">
-                THE TIPSSY TOE
-            </div>
-
-            <div class="footer-sub">
-                MAKEOVER STUDIO
-            </div>
-
-            <p>
-
-                Where beauty meets perfection —
-                premium beauty, makeup, hair,
-                skin and nail artistry.
-
-            </p>
-
+        <div class="footer-brand">
+            THE TIPSSY TOE
         </div>
 
-
-
-        <div>
-
-            <h4>
-                Explore
-            </h4>
-
-            <p>
-
-                <a href="#about">
-                    About Us
-                </a>
-
-                <br>
-
-                <a href="#services">
-                    Services
-                </a>
-
-                <br>
-
-                <a href="#why">
-                    Why Us
-                </a>
-
-                <br>
-
-                <a href="booking.html">
-                    Appointments
-                </a>
-
-            </p>
-
+        <div class="footer-sub">
+            MAKEOVER STUDIO
         </div>
 
-
-
-        <div>
-
-            <h4>
-                Visit
-            </h4>
-
-            <p>
-
-                Shop Number 14, Near Civil Dispensary
-                <br>
-
-                Model Town, Patiala 147001
-                <br>
-
-                Punjab, India
-
-            </p>
-
-        </div>
-
-
-
-        <div>
-
-            <h4>
-                Contact
-            </h4>
-
-            <p>
-
-                9056105015
-
-                <br>
-
-                thetipsyytoes@gmail.com
-
-                <br>
-
-                Mon – Sun · 10 AM – 8 PM
-
-            </p>
-
-        </div>
+        <p>
+            Where beauty meets perfection —
+            premium beauty, makeup, hair,
+            skin and nail artistry.
+        </p>
 
     </div>
 
 
-    <div class="copyright">
+    <div>
 
-        © 2026 THE TIPSSY TOE MAKEOVER STUDIO
-        · ALL RIGHTS RESERVED
+        <h4>Explore</h4>
+
+        <p>
+
+            <a href="#about">
+                About Us
+            </a>
+
+            <br>
+
+            <a href="#services">
+                Services
+            </a>
+
+            <br>
+
+            <a href="#why">
+                Why Us
+            </a>
+
+            <br>
+
+            <a href="booking.html">
+                Appointments
+            </a>
+
+        </p>
 
     </div>
+
+
+    <div>
+
+        <h4>Visit</h4>
+
+        <p>
+            Shop Number 14, Near Civil Dispensary
+            <br>
+            Model Town, Patiala 147001
+            <br>
+            Punjab, India
+        </p>
+
+    </div>
+
+
+    <div>
+
+        <h4>Contact</h4>
+
+        <p>
+            9056105015
+            <br>
+            thetipsyytoes@gmail.com
+            <br>
+            Mon – Sun · 10 AM – 8 PM
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="copyright">
+    © 2026 THE TIPSSY TOE MAKEOVER STUDIO
+    · ALL RIGHTS RESERVED
+</div>
+```
 
 </footer>
 
-
-
-<!-- ======================================================
-     WHATSAPP
-======================================================= -->
+<!-- WHATSAPP -->
 
 <a href="https://wa.me/919056105015"
-   class="whatsapp"
-   target="_blank"
-   aria-label="WhatsApp">
+class="whatsapp"
+target="_blank"
+aria-label="WhatsApp">
+◉ </a>
 
-    ◉
+<!-- MOBILE MENU SCRIPT -->
 
-</a>
+<script>
 
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mainMenu = document.getElementById("mainMenu");
+
+mobileMenuBtn.addEventListener("click", function(){
+
+    const isOpen = mainMenu.classList.toggle("mobile-open");
+
+    mobileMenuBtn.classList.toggle("active", isOpen);
+
+    mobileMenuBtn.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+    );
+
+    mobileMenuBtn.setAttribute(
+        "aria-label",
+        isOpen ? "Close Menu" : "Open Menu"
+    );
+
+});
+
+
+/* Close menu after clicking a mobile link */
+
+document.querySelectorAll("#mainMenu a").forEach(function(link){
+
+    link.addEventListener("click", function(){
+
+        if(window.innerWidth <= 800){
+
+            mainMenu.classList.remove("mobile-open");
+
+            mobileMenuBtn.classList.remove("active");
+
+            mobileMenuBtn.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            mobileMenuBtn.setAttribute(
+                "aria-label",
+                "Open Menu"
+            );
+
+        }
+
+    });
+
+});
+
+
+/* Reset mobile menu when resizing to desktop */
+
+window.addEventListener("resize", function(){
+
+    if(window.innerWidth > 800){
+
+        mainMenu.classList.remove("mobile-open");
+
+        mobileMenuBtn.classList.remove("active");
+
+        mobileMenuBtn.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+
+});
+
+</script>
 
 </body>
 </html>
