@@ -1,2247 +1,1197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>The Tipssy Toe | Makeover Studio</title>
-
-<meta name="description"
-content="The Tipssy Toe Makeover Studio — Premium beauty, makeup, hair, skin and nail artistry.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Great+Vibes&display=swap"
-rel="stylesheet">
+<title>The Tipssy Toe Makeover Studio | Admin Portal</title>
 
 <style>
-
-/* =========================================================
-   ROOT
-========================================================= */
-
-:root{
-    --black:#090807;
-    --black2:#11100e;
-    --gold:#c99a55;
-    --gold2:#e6c184;
-    --cream:#f7f1e8;
-    --cream2:#eee3d4;
-    --text:#191613;
-    --muted:#756d64;
-    --white:#fff;
-}
-
 *{
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+:root{
+    --black:#0d0c0b;
+    --black2:#151311;
+    --gold:#c7a56a;
+    --gold2:#e0c28b;
+    --cream:#f7f3eb;
+    --white:#ffffff;
+    --muted:#918b81;
+    --line:rgba(199,165,106,.18);
+    --green:#5dbb8a;
+    --red:#d96c6c;
 }
 
 body{
     margin:0;
-    background:var(--cream);
-    color:var(--text);
-    font-family:"DM Sans",Arial,sans-serif;
+    background:#f5f1e9;
+    color:#171512;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-a{
-    color:inherit;
-    text-decoration:none;
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:255px;
+    height:100vh;
+    background:linear-gradient(180deg,#0b0a09,#171411);
+    color:white;
+    padding:28px 18px;
+    z-index:20;
+    border-right:1px solid rgba(199,165,106,.18);
 }
 
-button{
-    font-family:inherit;
+.brand{
+    padding:5px 12px 28px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:22px;
 }
 
+.brand small{
+    color:var(--gold);
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
 
-/* =========================================================
-   TOP BAR
-========================================================= */
+.brand h2{
+    margin:9px 0 3px;
+    font-family:Georgia,serif;
+    font-weight:normal;
+    font-size:23px;
+    line-height:1.15;
+}
+
+.brand span{
+    color:#aaa39a;
+    font-size:11px;
+    letter-spacing:1px;
+}
+
+.menu-title{
+    color:#706b63;
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    padding:0 13px 9px;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.nav button{
+    border:0;
+    width:100%;
+    background:transparent;
+    color:#bdb6ad;
+    padding:12px 13px;
+    border-radius:9px;
+    text-align:left;
+    cursor:pointer;
+    font-size:13px;
+    transition:.2s;
+}
+
+.nav button:hover,
+.nav button.active{
+    background:rgba(199,165,106,.12);
+    color:white;
+}
+
+.nav button.active{
+    border-left:2px solid var(--gold);
+}
+
+.sidebar-bottom{
+    position:absolute;
+    bottom:22px;
+    left:18px;
+    right:18px;
+}
+
+.salon-mini{
+    padding:15px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:rgba(255,255,255,.025);
+}
+
+.salon-mini b{
+    display:block;
+    font-size:11px;
+    color:var(--gold2);
+    margin-bottom:7px;
+}
+
+.salon-mini p{
+    margin:3px 0;
+    color:#aaa39a;
+    font-size:10px;
+    line-height:1.5;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+    margin-left:255px;
+    min-height:100vh;
+}
+
+/* TOPBAR */
 
 .topbar{
-    height:38px;
-    background:#050504;
-    color:#bdb5aa;
+    height:82px;
+    background:#fff;
+    border-bottom:1px solid #e8e1d6;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 5%;
-    font-size:10px;
-    letter-spacing:.7px;
-    border-bottom:1px solid rgba(201,154,85,.25);
+    padding:0 35px;
 }
 
-.top-left{
-    display:flex;
-    gap:28px;
-}
-
-.topbar strong{
-    color:#e4bd7b;
-    font-weight:500;
-}
-
-.socials{
-    color:#d9c29b;
-    letter-spacing:8px;
-}
-
-
-/* =========================================================
-   NAVBAR
-========================================================= */
-
-.navbar{
-    position:absolute;
-    z-index:100;
-    left:0;
-    right:0;
-    top:38px;
-    height:92px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:0 5%;
-
-    color:#fff;
-
-    border-bottom:1px solid rgba(255,255,255,.13);
-
-    backdrop-filter:blur(4px);
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:13px;
-}
-
-.logo-symbol{
-    width:54px;
-    height:54px;
-
-    border:1px solid var(--gold2);
-    border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    color:var(--gold2);
-
-    font-family:"Cormorant Garamond",serif;
-    font-size:22px;
-
-    position:relative;
-}
-
-.logo-symbol:after{
-    content:"";
-    position:absolute;
-    inset:5px;
-    border:1px solid rgba(230,193,132,.35);
-    border-radius:50%;
-}
-
-.logo-title{
-    font-family:"Cormorant Garamond",serif;
+.page-title h1{
+    margin:0;
+    font-family:Georgia,serif;
     font-size:25px;
-    letter-spacing:2px;
-    line-height:1;
+    font-weight:normal;
 }
 
-.logo-sub{
-    display:block;
-    margin-top:5px;
-
-    font-size:8px;
-    letter-spacing:4px;
-    color:#d5c09c;
+.page-title p{
+    margin:5px 0 0;
+    color:#928b81;
+    font-size:11px;
 }
 
-.menu{
+.admin-box{
     display:flex;
     align-items:center;
     gap:12px;
+}
 
+.admin-avatar{
+    width:39px;
+    height:39px;
+    border-radius:50%;
+    background:#171411;
+    color:var(--gold2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:Georgia,serif;
+}
+
+.admin-info strong{
+    display:block;
+    font-size:12px;
+}
+
+.admin-info span{
+    font-size:10px;
+    color:#999187;
+}
+
+/* CONTENT */
+
+.content{
+    padding:30px 35px 50px;
+}
+
+/* WELCOME */
+
+.welcome{
+    background:
+    linear-gradient(105deg,rgba(12,11,10,.98),rgba(31,25,19,.95));
+    border-radius:17px;
+    color:white;
+    padding:30px;
+    position:relative;
+    overflow:hidden;
+    margin-bottom:24px;
+}
+
+.welcome:after{
+    content:"TT";
+    position:absolute;
+    right:25px;
+    top:-35px;
+    font-family:Georgia,serif;
+    font-size:170px;
+    color:rgba(199,165,106,.06);
+}
+
+.welcome small{
+    color:var(--gold2);
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size:9px;
+}
+
+.welcome h2{
+    font-family:Georgia,serif;
+    font-size:28px;
+    font-weight:normal;
+    margin:10px 0 7px;
+}
+
+.welcome p{
+    margin:0;
+    color:#aaa39a;
+    font-size:12px;
+}
+
+/* CARDS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:24px;
+}
+
+.card{
+    background:white;
+    border:1px solid #e7e0d5;
+    border-radius:14px;
+    padding:20px;
+}
+
+.stat-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.stat-label{
+    color:#8d877d;
     font-size:10px;
     text-transform:uppercase;
-    letter-spacing:1.5px;
+    letter-spacing:1.3px;
 }
 
-.menu a{
-    transition:.3s;
+.stat-icon{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:#f5efe4;
+    color:#a9844e;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.menu a:hover{
-    color:var(--gold2);
+.stat-number{
+    font-family:Georgia,serif;
+    font-size:29px;
+    margin-top:15px;
 }
 
-.book-btn{
-    background:transparent;
-    color:#e6c184;
-    border:1px solid #c99a55;
-
-    padding:15px 23px;
-
+.stat-bottom{
+    color:#9a9389;
     font-size:10px;
-    font-weight:700;
+    margin-top:5px;
+}
 
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:1.55fr 1fr;
+    gap:20px;
+}
+
+.section{
+    background:white;
+    border:1px solid #e7e0d5;
+    border-radius:14px;
+    overflow:hidden;
+}
+
+.section-head{
+    padding:20px 22px;
+    border-bottom:1px solid #eee8df;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.section-head h3{
+    margin:0;
+    font-family:Georgia,serif;
+    font-size:18px;
+    font-weight:normal;
+}
+
+.section-head span{
+    color:#9b9388;
+    font-size:10px;
+}
+
+.section-body{
+    padding:20px;
+}
+
+/* APPOINTMENT TABLE */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:620px;
+}
+
+th{
+    text-align:left;
+    color:#968e83;
+    font-size:9px;
     letter-spacing:1px;
+    text-transform:uppercase;
+    padding:12px;
+    background:#faf8f4;
+}
 
-    border:0;
+td{
+    padding:14px 12px;
+    border-top:1px solid #eee9e1;
+    font-size:11px;
+}
 
+.client{
+    font-weight:bold;
+}
+
+.sub{
+    color:#999187;
+    font-size:9px;
+    margin-top:3px;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:9px;
+}
+
+.pending{
+    background:#fff3dc;
+    color:#9b6b20;
+}
+
+.completed{
+    background:#e7f7ee;
+    color:#36805b;
+}
+
+.cancelled{
+    background:#fbe9e9;
+    color:#a84949;
+}
+
+.action{
+    border:1px solid #ddd3c5;
+    background:white;
+    border-radius:6px;
+    padding:6px 9px;
+    font-size:9px;
     cursor:pointer;
 }
 
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-    min-height:860px;
-
-    position:relative;
-    overflow:hidden;
-
-    color:#fff;
-
-    background:
-    radial-gradient(
-        circle at 76% 38%,
-        #846648 0%,
-        #493526 22%,
-        #211913 48%,
-        #090807 75%
-    );
+.action:hover{
+    border-color:var(--gold);
+    color:#96713c;
 }
 
-.hero:before{
-    content:"";
+/* QUICK ACTIONS */
 
-    position:absolute;
-    inset:0;
-
-    background:
-    linear-gradient(
-        90deg,
-        rgba(5,4,3,.98) 0%,
-        rgba(8,6,5,.92) 28%,
-        rgba(9,7,6,.52) 57%,
-        rgba(7,6,5,.38) 100%
-    );
-}
-
-.hero:after{
-    content:"";
-
-    position:absolute;
-
-    width:650px;
-    height:650px;
-
-    right:-150px;
-    top:170px;
-
-    border:1px solid rgba(226,189,123,.25);
-
-    border-radius:50%;
-}
-
-.hero-inner{
-    position:relative;
-    z-index:3;
-
-    max-width:1400px;
-    margin:auto;
-
-    min-height:860px;
-
-    display:flex;
-    align-items:center;
-
-    padding:170px 7% 180px;
-}
-
-.hero-copy{
-    max-width:690px;
-}
-
-.script{
-    font-family:"Great Vibes",cursive;
-    font-size:38px;
-    color:var(--gold2);
-    margin-bottom:4px;
-}
-
-.hero h1{
-    margin:0;
-
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:clamp(54px,7vw,94px);
-
-    line-height:.88;
-
-    font-weight:500;
-
-    letter-spacing:-2px;
-}
-
-.hero h1 span{
-    color:#d8aa68;
-}
-
-.hero-line{
-    margin-top:25px;
-
-    display:flex;
-    align-items:center;
-    gap:13px;
-
-    color:#d6cec4;
-
-    font-size:13px;
-}
-
-.hero-line i{
-    width:45px;
-    height:1px;
-
-    background:var(--gold);
-
-    display:block;
-}
-
-.hero-description{
-    max-width:555px;
-
-    color:#d0c8bf;
-
-    font-size:14px;
-
-    line-height:1.9;
-
-    margin:25px 0 31px;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:12px;
-}
-
-.primary-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-
-    background:transparent;
-    color:#e6c184;
-    border:1px solid #c99a55;
-
-    padding:16px 26px;
-
-    font-size:10px;
-    font-weight:700;
-
-    letter-spacing:1.2px;
-
-    text-transform:uppercase;
-}
-
-.secondary-btn{
-    display:inline-flex;
-    align-items:center;
-
-    border:1px solid rgba(226,189,123,.55);
-
-    color:#fff;
-
-    padding:15px 24px;
-
-    font-size:10px;
-
-    letter-spacing:1.2px;
-
-    text-transform:uppercase;
-}
-
-.hero-orb{
-    position:absolute;
-
-    right:10%;
-    top:25%;
-
-    width:390px;
-    height:500px;
-
-    border-radius:50% 50% 8px 8px;
-
-    background:
-    linear-gradient(
-        135deg,
-        rgba(220,185,130,.7),
-        rgba(90,62,40,.5),
-        rgba(20,15,11,.1)
-    );
-
-    filter:blur(.2px);
-
-    opacity:.65;
-
-    box-shadow:
-    0 0 120px rgba(191,143,80,.15);
-}
-
-.hero-orb:before{
-    content:"";
-
-    position:absolute;
-
-    width:220px;
-    height:360px;
-
-    right:75px;
-    top:55px;
-
-    border-radius:48% 48% 35% 35%;
-
-    background:
-    radial-gradient(
-        ellipse at 50% 25%,
-        #c69b70,
-        #634837 45%,
-        #17110d 80%
-    );
-
-    opacity:.7;
-}
-
-.scroll{
-    position:absolute;
-
-    bottom:135px;
-    left:7%;
-
-    color:#9f958b;
-
-    font-size:9px;
-
-    letter-spacing:3px;
-
-    z-index:4;
-}
-
-
-/* =========================================================
-   PROMISE BAR
-========================================================= */
-
-.promise{
-    position:absolute;
-
-    z-index:5;
-
-    left:5%;
-    right:5%;
-    bottom:27px;
-
+.quick{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-
-    background:rgba(10,9,8,.92);
-
-    border:1px solid #76572e;
-
-    border-radius:14px;
-
-    padding:21px;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
 
-.promise-item{
-    display:flex;
-    align-items:center;
-    gap:15px;
-
-    padding:5px 24px;
-
-    border-right:1px solid #453622;
+.quick button{
+    background:#faf8f4;
+    border:1px solid #e6ded2;
+    border-radius:10px;
+    padding:16px 10px;
+    cursor:pointer;
+    text-align:left;
+    transition:.2s;
 }
 
-.promise-item:last-child{
-    border-right:0;
+.quick button:hover{
+    border-color:var(--gold);
+    transform:translateY(-1px);
 }
 
-.promise-icon{
-    color:var(--gold2);
-    font-size:28px;
-}
-
-.promise-title{
+.quick strong{
     display:block;
-
-    color:#fff;
-
     font-size:11px;
-
-    text-transform:uppercase;
-
-    letter-spacing:.6px;
-
     margin-bottom:5px;
 }
 
-.promise-text{
-    color:#9f968d;
-
-    font-size:10px;
+.quick span{
+    color:#989086;
+    font-size:9px;
 }
 
+/* INFO */
 
-/* =========================================================
-   SECTION
-========================================================= */
-
-.section{
-    padding:105px 6%;
-}
-
-.section-heading{
-    text-align:center;
-
-    max-width:700px;
-
-    margin:0 auto 50px;
-}
-
-.eyebrow{
-    color:#b17c38;
-
-    font-size:10px;
-
-    font-weight:700;
-
-    letter-spacing:3px;
-
-    text-transform:uppercase;
-}
-
-.section-heading h2{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:52px;
-
-    line-height:1;
-
-    font-weight:500;
-
-    margin:10px 0 15px;
-}
-
-.section-heading p{
-    color:var(--muted);
-
-    font-size:13px;
-
-    line-height:1.8;
-
-    margin:0;
-}
-
-
-/* =========================================================
-   SERVICES
-========================================================= */
-
-.services{
-    background:var(--cream);
-}
-
-.service-grid{
-    max-width:1320px;
-
-    margin:auto;
-
+.info{
+    margin-top:20px;
     display:grid;
-
-    grid-template-columns:repeat(5,1fr);
-
-    gap:14px;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
 }
 
-.service-card{
-    height:405px;
-
+.info-card{
+    background:#171411;
+    color:white;
     border-radius:13px;
-
-    overflow:hidden;
-
-    position:relative;
-
-    background:#111;
-
-    color:#fff;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:flex-end;
-
-    padding:25px;
-
-    isolation:isolate;
-
-    transition:.4s;
+    padding:20px;
 }
 
-.service-card:hover{
-    transform:translateY(-8px);
-
-    box-shadow:
-    0 25px 50px rgba(25,18,10,.2);
-}
-
-.service-card:before{
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    z-index:-2;
-
-    transition:.5s;
-}
-
-.service-card:hover:before{
-    transform:scale(1.06);
-}
-
-.service-card:after{
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    z-index:-1;
-
-    background:
-    linear-gradient(
-        to bottom,
-        transparent 30%,
-        rgba(5,4,3,.3) 50%,
-        #090807 82%
-    );
-}
-
-.hair:before{
-    background:
-    radial-gradient(
-        circle at 50% 28%,
-        #b58a5d,
-        #624832 45%,
-        #15100c
-    );
-}
-
-.makeup:before{
-    background:
-    radial-gradient(
-        circle at 55% 28%,
-        #d1a895,
-        #744f47 43%,
-        #15100c
-    );
-}
-
-.skin:before{
-    background:
-    radial-gradient(
-        circle at 50% 25%,
-        #dfd0bc,
-        #84715f 43%,
-        #17120e
-    );
-}
-
-.nails:before{
-    background:
-    radial-gradient(
-        circle at 50% 28%,
-        #d69b98,
-        #744746 45%,
-        #15100c
-    );
-}
-
-.spa:before{
-    background:
-    radial-gradient(
-        circle at 50% 28%,
-        #aa9773,
-        #584832 45%,
-        #15100c
-    );
-}
-
-.service-icon{
-    width:48px;
-    height:48px;
-
-    border:1px solid var(--gold2);
-
-    border-radius:50%;
-
-    display:grid;
-    place-items:center;
-
+.info-card small{
     color:var(--gold2);
-
-    margin-bottom:15px;
-
-    background:rgba(8,7,6,.75);
-}
-
-.service-card h3{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:25px;
-
-    font-weight:500;
-
-    margin:0 0 8px;
-}
-
-.service-card p{
-    color:#c7beb4;
-
-    font-size:10px;
-
-    line-height:1.65;
-
-    margin:0 0 15px;
-}
-
-.service-link{
-    color:var(--gold2);
-
     font-size:9px;
-
-    letter-spacing:1.5px;
-
+    letter-spacing:2px;
     text-transform:uppercase;
 }
 
-
-/* =========================================================
-   ABOUT
-========================================================= */
-
-.about{
-    background:#e9ded0;
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:80px;
-
-    align-items:center;
+.info-card h4{
+    font-family:Georgia,serif;
+    font-weight:normal;
+    margin:10px 0;
+    font-size:17px;
 }
 
-.about-visual{
-    min-height:570px;
-
-    position:relative;
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:14px;
+.info-card p{
+    color:#aaa39a;
+    font-size:10px;
+    line-height:1.6;
+    margin:3px 0;
 }
 
-.about-photo{
-    border-radius:170px 170px 10px 10px;
+/* MOBILE */
 
-    background:
-    radial-gradient(
-        circle at 50% 25%,
-        #b9936d,
-        #594334 47%,
-        #1a1410
-    );
-}
-
-.about-photo.second{
-    margin-top:90px;
-
-    border-radius:10px 10px 170px 170px;
-
-    background:
-    radial-gradient(
-        circle at 50% 30%,
-        #b7a07f,
-        #554434 45%,
-        #18130f
-    );
-}
-
-.about-badge{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-50%);
-
-    width:115px;
-    height:115px;
-
-    border-radius:50%;
-
-    background:#11100e;
-
-    border:1px solid var(--gold2);
-
-    color:#fff;
-
-    display:grid;
-    place-items:center;
-
-    text-align:center;
-
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:16px;
-
-    line-height:1.1;
-}
-
-.about-content .eyebrow{
-    margin-bottom:8px;
-}
-
-.about-content h2{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:52px;
-
-    line-height:.98;
-
-    font-weight:500;
-
-    margin:0 0 23px;
-}
-
-.about-content p{
-    color:#70675f;
-
-    font-size:13px;
-
-    line-height:1.95;
-}
-
-.signature{
-    font-family:"Great Vibes",cursive;
-
-    color:#956b36;
-
-    font-size:29px;
-
-    margin:23px 0;
-}
-
-
-/* =========================================================
-   STATS
-========================================================= */
-
-.stats{
-    background:#0e0d0b;
-
-    color:#fff;
-
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    padding:55px 7%;
-}
-
-.stat{
-    text-align:center;
-
-    border-right:1px solid #443522;
-}
-
-.stat:last-child{
+.mobile-menu{
+    display:none;
     border:0;
-}
-
-.stat strong{
-    display:block;
-
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:51px;
-
-    font-weight:500;
-
+    background:#171411;
     color:var(--gold2);
+    width:40px;
+    height:40px;
+    border-radius:8px;
+    font-size:18px;
 }
 
-.stat span{
-    color:#aaa198;
-
-    font-size:9px;
-
-    text-transform:uppercase;
-
-    letter-spacing:2px;
-}
-
-
-/* =========================================================
-   WHY US
-========================================================= */
-
-.why{
-    background:#f7f1e8;
-}
-
-.why-grid{
-    max-width:1050px;
-
-    margin:auto;
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:45px;
-}
-
-.why-card{
-    text-align:center;
-}
-
-.why-icon{
-    width:55px;
-    height:55px;
-
-    margin:auto;
-
-    border:1px solid #c9a16b;
-
-    border-radius:50%;
-
-    display:grid;
-
-    place-items:center;
-
-    color:#a8793c;
-
-    font-size:21px;
-}
-
-.why-card h3{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:25px;
-
-    font-weight:500;
-
-    margin:15px 0 8px;
-}
-
-.why-card p{
-    color:#777068;
-
-    font-size:12px;
-
-    line-height:1.8;
-}
-
-
-/* =========================================================
-   CTA
-========================================================= */
-
-.cta{
-    margin:0 5% 80px;
-
-    padding:75px 7%;
-
-    border-radius:18px;
-
-    background:
-    radial-gradient(
-        circle at 85% 20%,
-        #654a2d,
-        transparent 38%
-    ),
-    linear-gradient(
-        105deg,
-        #100e0c,
-        #282016
-    );
-
-    color:#fff;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:40px;
-
-    overflow:hidden;
-
-    position:relative;
-}
-
-.cta:before{
-    content:"";
-
-    position:absolute;
-
-    width:420px;
-    height:420px;
-
-    right:-120px;
-    top:-170px;
-
-    border:1px solid rgba(215,176,111,.25);
-
-    border-radius:50%;
-}
-
-.cta h2{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:51px;
-
-    font-weight:500;
-
-    margin:8px 0;
-}
-
-.cta p{
-    color:#b8afa5;
-
-    font-size:13px;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer{
-    background:#070605;
-
-    color:#aaa;
-
-    padding:65px 6% 25px;
-}
-
-.footer-grid{
-    max-width:1300px;
-
-    margin:auto;
-
-    display:grid;
-
-    grid-template-columns:1.5fr 1fr 1fr 1fr;
-
-    gap:55px;
-}
-
-.footer-brand{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:25px;
-
-    color:#fff;
-
-    letter-spacing:2px;
-}
-
-.footer-sub{
-    color:#cba66b;
-
-    font-size:8px;
-
-    letter-spacing:4px;
-
-    margin-top:4px;
-}
-
-.footer h4{
-    color:#e1c18c;
-
-    font-size:10px;
-
-    letter-spacing:2px;
-
-    text-transform:uppercase;
-
-    margin:0 0 15px;
-}
-
-.footer p,
-.footer a{
-    font-size:11px;
-
-    line-height:2;
-
-    color:#aaa29a;
-}
-
-.footer a:hover{
-    color:var(--gold2);
-}
-
-.copyright{
-    max-width:1300px;
-
-    margin:45px auto 0;
-
-    padding-top:20px;
-
-    border-top:1px solid #29231c;
-
-    text-align:center;
-
-    color:#6e665e;
-
-    font-size:9px;
-
-    letter-spacing:1.5px;
-}
-
-
-/* =========================================================
-   WHATSAPP
-========================================================= */
-
-.whatsapp{
-    position:fixed;
-
-    z-index:200;
-
-    right:25px;
-    bottom:25px;
-
-    width:57px;
-    height:57px;
-
-    border-radius:50%;
-
-    background:#25D366;
-
-    color:#fff;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:27px;
-
-    box-shadow:0 8px 30px rgba(0,0,0,.25);
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:1100px){
-
-    .menu{
-        gap:14px;
+@media(max-width:1000px){
+
+    .sidebar{
+        transform:translateX(-100%);
+        transition:.25s;
     }
 
-    .service-grid{
-        grid-template-columns:repeat(3,1fr);
+    .sidebar.open{
+        transform:translateX(0);
     }
 
-    .promise{
+    .main{
+        margin-left:0;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .topbar{
+        padding:0 18px;
+    }
+
+    .content{
+        padding:20px 18px 40px;
+    }
+
+    .stats{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .promise-item:nth-child(2){
-        border-right:0;
+    .grid{
+        grid-template-columns:1fr;
     }
-
 }
 
-@media(max-width:800px){
+@media(max-width:600px){
 
     .topbar{
-        display:none;
+        height:70px;
     }
 
-    .navbar{
-        top:0;
-
-        height:76px;
-
-        padding:0 5%;
+    .page-title h1{
+        font-size:19px;
     }
 
-    .logo-symbol{
-        width:42px;
-        height:42px;
-
-        font-size:17px;
-    }
-
-    .logo-title{
-        font-size:18px;
-    }
-
-    .logo-sub{
-        font-size:6px;
-        letter-spacing:3px;
-    }
-
-    .menu{
-        display:none;
-    }
-
-    .hero{
-        min-height:850px;
-    }
-
-    .hero-inner{
-        min-height:850px;
-
-        padding:
-        150px
-        7%
-        270px;
-    }
-
-    .hero h1{
-        font-size:55px;
-    }
-
-    .hero-orb{
-        right:-120px;
-        top:300px;
-
-        opacity:.35;
-    }
-
-    .hero-buttons{
-        flex-direction:column;
-
-        align-items:flex-start;
-    }
-
-    .promise{
-        left:5%;
-        right:5%;
-
-        grid-template-columns:1fr 1fr;
-
-        padding:8px;
-    }
-
-    .promise-item{
-        padding:12px 9px;
-
-        border-bottom:1px solid #453622;
-    }
-
-    .promise-item:nth-child(2),
-    .promise-item:nth-child(4){
-        border-right:0;
-    }
-
-    .promise-text{
-        display:none;
-    }
-
-    .promise-title{
+    .page-title p{
         font-size:9px;
     }
 
-    .scroll{
+    .admin-info{
         display:none;
     }
 
-    .section{
-        padding:75px 7%;
+    .welcome{
+        padding:23px;
     }
 
-    .section-heading h2{
-        font-size:42px;
-    }
-
-    .service-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .service-card{
-        height:350px;
-    }
-
-    .about{
-        grid-template-columns:1fr;
-
-        gap:45px;
-
-        padding:75px 7%;
-    }
-
-    .about-visual{
-        min-height:400px;
-    }
-
-    .about-content h2{
-        font-size:43px;
+    .welcome h2{
+        font-size:23px;
     }
 
     .stats{
         grid-template-columns:1fr 1fr;
-
-        gap:35px;
-
-        padding:45px 6%;
+        gap:10px;
     }
 
-    .stat:nth-child(2){
-        border:0;
+    .card{
+        padding:15px;
     }
 
-    .stat strong{
-        font-size:39px;
+    .stat-number{
+        font-size:24px;
     }
 
-    .why-grid{
+    .info{
         grid-template-columns:1fr;
     }
-
-    .cta{
-        margin:0 4% 55px;
-
-        display:block;
-
-        padding:55px 8%;
-    }
-
-    .cta h2{
-        font-size:43px;
-    }
-
-    .cta .primary-btn{
-        margin-top:20px;
-    }
-
-    .footer-grid{
-        grid-template-columns:1fr 1fr;
-
-        gap:35px;
-    }
-
 }
-
-@media(max-width:500px){
-
-    .service-grid{
-        grid-template-columns:1fr;
-    }
-
-    .service-card{
-        height:370px;
-    }
-
-    .about-visual{
-        min-height:330px;
-    }
-
-    .about-photo{
-        border-radius:110px 110px 8px 8px;
-    }
-
-    .about-photo.second{
-        margin-top:60px;
-
-        border-radius:8px 8px 110px 110px;
-    }
-
-    .footer-grid{
-        grid-template-columns:1fr;
-    }
-
-    .hero h1{
-        font-size:49px;
-    }
-
-}
-
 </style>
-
 </head>
-
 
 <body>
 
+<!-- =========================
+     SIDEBAR
+========================= -->
 
-<!-- ======================================================
-     TOP BAR
-======================================================= -->
+<aside class="sidebar" id="sidebar">
 
-<div class="topbar">
-
-    <div class="top-left">
-
-        <span>
-            ⌖ <strong>Shop Number 14</strong>, Near Civil Dispensary, Model Town, Patiala 147001
-        </span>
-
-        <span>
-            ☎ <strong>9056105015</strong>
-        </span>
-
-        <span>
-            ◷ <strong>Mon – Sun</strong> 10 AM – 8 PM
-        </span>
-
+    <div class="brand">
+        <small>Luxury Salon Management</small>
+        <h2>The Tipssy Toe</h2>
+        <span>Makeover Studio</span>
     </div>
 
-    <div class="socials">
-        f　◎　◉
-    </div>
+    <div class="menu-title">Management</div>
 
-</div>
+    <nav class="nav">
 
+        <button class="active" onclick="go('dashboard')">
+            ◈ &nbsp; Dashboard
+        </button>
 
+        <button onclick="go('clients')">
+            ♡ &nbsp; Client Records
+        </button>
 
-<!-- ======================================================
-     NAVIGATION
-======================================================= -->
+        <button onclick="go('appointments')">
+            ◷ &nbsp; Appointments
+        </button>
 
-<header class="navbar">
+        <button onclick="go('billing')">
+            ₹ &nbsp; Billing & POS
+        </button>
 
-    <a href="#" class="logo">
+        <button onclick="go('services')">
+            ✦ &nbsp; Services
+        </button>
 
-        <div class="logo-symbol">
-            TT
+        <button onclick="go('staff')">
+            ◉ &nbsp; Staff
+        </button>
+
+        <button onclick="go('inventory')">
+            ▣ &nbsp; Inventory
+        </button>
+
+        <button onclick="go('reports')">
+            ◫ &nbsp; Reports
+        </button>
+
+        <div class="menu-title" style="margin-top:15px">
+            System
         </div>
 
-        <div>
-
-            <div class="logo-title">
-                THE TIPSSY TOE
-            </div>
-
-            <div class="logo-sub">
-                MAKEOVER STUDIO
-            </div>
-
-        </div>
-
-    </a>
-
-
-    <nav class="menu">
-
-        <a href="#home">
-            Home
-        </a>
-
-        <a href="#about">
-            About Us
-        </a>
-
-        <a href="#services">
-            Services
-        </a>
-
-        <a href="#why">
-            Why Us
-        </a>
-
-        <a href="#contact">
-            Contact
-        </a>
-
-        <a href="appointments.html"
-           class="book-btn">
-            Book Appointment
-        </a>
-
-        <a href="admin-login.html"
-           class="book-btn admin-login-btn"
-           aria-label="Admin Login">
-            Admin Login
-        </a>
-
-        <a href="customer-login.html"
-           class="book-btn customer-login-btn"
-           aria-label="Customer Login">
-            Customer Login
-        </a>
+        <button onclick="go('settings')">
+            ⚙ &nbsp; Settings
+        </button>
 
     </nav>
 
-</header>
+    <div class="sidebar-bottom">
+
+        <div class="salon-mini">
+            <b>THE TIPSSY TOE</b>
+
+            <p>
+                Near Civil Dispensary,<br>
+                Model Town, Patiala<br>
+                Punjab — 147001
+            </p>
+
+            <p>☎ 9056105015</p>
+            <p>✉ thethipsyytoes@gmail.com</p>
+        </div>
+
+    </div>
+
+</aside>
 
 
+<!-- =========================
+     MAIN
+========================= -->
 
-<!-- ======================================================
-     HERO
-======================================================= -->
+<main class="main">
 
-<section class="hero" id="home">
+    <header class="topbar">
 
-    <div class="hero-orb"></div>
+        <div style="display:flex;align-items:center;gap:12px">
 
+            <button class="mobile-menu" onclick="toggleMenu()">☰</button>
 
-    <div class="hero-inner">
-
-        <div class="hero-copy">
-
-            <div class="script">
-                Welcome to
+            <div class="page-title">
+                <h1>Executive Dashboard</h1>
+                <p>Salon operations & business overview</p>
             </div>
 
-            <h1>
+        </div>
 
-                THE TIPSSY TOE
+        <div class="admin-box">
 
-                <br>
+            <div class="admin-info">
+                <strong>Administrator</strong>
+                <span>Studio Management</span>
+            </div>
 
-                <span>
-                    MAKEOVER STUDIO
+            <div class="admin-avatar">
+                TT
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <section class="content">
+
+        <!-- WELCOME -->
+
+        <div class="welcome">
+
+            <small>Welcome Back</small>
+
+            <h2>The Tipssy Toe Makeover Studio</h2>
+
+            <p>
+                Your premium salon command centre — manage clients,
+                appointments, billing and daily operations from one place.
+            </p>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="stats">
+
+            <div class="card">
+
+                <div class="stat-top">
+                    <span class="stat-label">Total Clients</span>
+                    <span class="stat-icon">♡</span>
+                </div>
+
+                <div class="stat-number" id="totalClients">0</div>
+
+                <div class="stat-bottom">
+                    Registered client records
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="stat-top">
+                    <span class="stat-label">Appointments</span>
+                    <span class="stat-icon">◷</span>
+                </div>
+
+                <div class="stat-number" id="totalAppointments">0</div>
+
+                <div class="stat-bottom">
+                    Total booking requests
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="stat-top">
+                    <span class="stat-label">Pending</span>
+                    <span class="stat-icon">!</span>
+                </div>
+
+                <div class="stat-number" id="pendingAppointments">0</div>
+
+                <div class="stat-bottom">
+                    Appointments awaiting action
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="stat-top">
+                    <span class="stat-label">Today</span>
+                    <span class="stat-icon">✓</span>
+                </div>
+
+                <div class="stat-number" id="todayAppointments">0</div>
+
+                <div class="stat-bottom">
+                    Today's scheduled visits
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MAIN GRID -->
+
+        <div class="grid">
+
+            <!-- APPOINTMENTS -->
+
+            <div class="section">
+
+                <div class="section-head">
+
+                    <h3>Recent Appointments</h3>
+
+                    <span id="appointmentCount">
+                        0 records
+                    </span>
+
+                </div>
+
+                <div class="section-body">
+
+                    <div class="table-wrap">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>Client</th>
+                                    <th>Service</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="appointmentTable">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="section">
+
+                <div class="section-head">
+
+                    <h3>Quick Actions</h3>
+
+                    <span>Studio control</span>
+
+                </div>
+
+                <div class="section-body">
+
+                    <div class="quick">
+
+                        <button onclick="go('appointments')">
+                            <strong>＋ New Appointment</strong>
+                            <span>Create a new booking</span>
+                        </button>
+
+                        <button onclick="go('clients')">
+                            <strong>＋ Add Client</strong>
+                            <span>Create client record</span>
+                        </button>
+
+                        <button onclick="go('billing')">
+                            <strong>₹ New Invoice</strong>
+                            <span>Create salon bill</span>
+                        </button>
+
+                        <button onclick="go('reports')">
+                            <strong>▣ View Reports</strong>
+                            <span>Business performance</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SALON INFO -->
+
+        <div class="info">
+
+            <div class="info-card">
+
+                <small>Studio Information</small>
+
+                <h4>The Tipssy Toe Makeover Studio</h4>
+
+                <p>
+                    Near Civil Dispensary, Model Town,
+                    Patiala, Punjab — 147001
+                </p>
+
+                <p>
+                    Mobile: 9056105015
+                </p>
+
+                <p>
+                    Email: thethipsyytoes@gmail.com
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <small>System Status</small>
+
+                <h4>Salon Portal Active</h4>
+
+                <p>
+                    Client records, appointments and salon
+                    management modules are ready.
+                </p>
+
+                <p>
+                    Data currently stored in this browser.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+/* =========================
+   LOGIN PROTECTION
+========================= */
+
+if(sessionStorage.getItem("tipssyToeAdminLoggedIn") !== "true"){
+    window.location.href="admin-login.html";
+}
+
+
+/* =========================
+   LOAD DATA
+========================= */
+
+let appointments =
+JSON.parse(
+    localStorage.getItem("tipssy_appointments") || "[]"
+);
+
+let clients =
+JSON.parse(
+    localStorage.getItem("tipssy_clients") || "[]"
+);
+
+
+/* =========================
+   STATS
+========================= */
+
+function loadStats(){
+
+    document.getElementById("totalClients").textContent =
+        clients.length;
+
+    document.getElementById("totalAppointments").textContent =
+        appointments.length;
+
+    let pending =
+        appointments.filter(a =>
+            a.status === "Pending"
+        ).length;
+
+    document.getElementById("pendingAppointments").textContent =
+        pending;
+
+
+    let today =
+        new Date().toISOString().split("T")[0];
+
+    let todayCount =
+        appointments.filter(a =>
+            a.date === today
+        ).length;
+
+    document.getElementById("todayAppointments").textContent =
+        todayCount;
+
+    document.getElementById("appointmentCount").textContent =
+        appointments.length + " records";
+}
+
+
+/* =========================
+   APPOINTMENT TABLE
+========================= */
+
+function loadAppointments(){
+
+    let table =
+        document.getElementById("appointmentTable");
+
+    table.innerHTML = "";
+
+    if(appointments.length === 0){
+
+        table.innerHTML = `
+        <tr>
+            <td colspan="6"
+                style="text-align:center;padding:35px;color:#999">
+                No appointments recorded yet.
+            </td>
+        </tr>
+        `;
+
+        return;
+    }
+
+
+    let list =
+        [...appointments]
+        .sort((a,b) =>
+            new Date((b.date || "") + " " + (b.time || ""))
+            -
+            new Date((a.date || "") + " " + (a.time || ""))
+        )
+        .slice(0,8);
+
+
+    list.forEach((a,index)=>{
+
+        let status =
+            a.status || "Pending";
+
+        let statusClass =
+            status.toLowerCase();
+
+        let row = document.createElement("tr");
+
+        row.innerHTML = `
+
+            <td>
+
+                <div class="client">
+                    ${escapeHTML(a.name || "Unknown")}
+                </div>
+
+                <div class="sub">
+                    ${escapeHTML(a.phone || "")}
+                </div>
+
+            </td>
+
+            <td>
+                ${escapeHTML(a.service || "-")}
+            </td>
+
+            <td>
+                ${escapeHTML(a.date || "-")}
+            </td>
+
+            <td>
+                ${escapeHTML(a.time || "-")}
+            </td>
+
+            <td>
+
+                <span class="badge ${statusClass}">
+                    ${escapeHTML(status)}
                 </span>
 
-            </h1>
+            </td>
 
+            <td>
 
-            <div class="hero-line">
+                ${
+                    status !== "Completed"
+                    ?
+                    `<button
+                        class="action"
+                        onclick="markDone('${a.id}')">
+                        Mark Done
+                    </button>`
+                    :
+                    `<span style="color:#999;font-size:9px">
+                        Completed
+                    </span>`
+                }
 
-                <i></i>
+            </td>
+        `;
 
-                Where Beauty Meets Perfection
+        table.appendChild(row);
 
-                <i></i>
+    });
+}
 
-            </div>
 
+/* =========================
+   MARK COMPLETED
+========================= */
 
-            <p class="hero-description">
+function markDone(id){
 
-                Unleash your confidence with our premium beauty
-                and makeover experiences. From everyday elegance
-                to unforgettable occasion looks, every detail is
-                designed especially for you.
+    let found =
+        appointments.find(a => String(a.id) === String(id));
 
-            </p>
+    if(!found) return;
 
+    found.status = "Completed";
 
-            <div class="hero-buttons">
+    localStorage.setItem(
+        "tipssy_appointments",
+        JSON.stringify(appointments)
+    );
 
-                <a href="appointments.html"
-                   class="primary-btn">
+    loadStats();
+    loadAppointments();
+}
 
-                    Book Your Appointment →
-                    
-                </a>
 
+/* =========================
+   NAVIGATION
+========================= */
 
-                <a href="#services"
-                   class="secondary-btn">
+function go(page){
 
-                    Explore Services
+    const pages = {
 
-                </a>
+        dashboard:"admin-dashboard.html",
 
-            </div>
+        clients:"clients.html",
 
-        </div>
+        appointments:"appointments.html",
 
-    </div>
+        billing:"billing.html",
 
+        services:"services.html",
 
-    <!-- PROMISE BAR -->
+        staff:"staff.html",
 
-    <div class="promise">
+        inventory:"inventory.html",
 
-        <div class="promise-item">
+        reports:"reports.html",
 
-            <div class="promise-icon">
-                ♙
-            </div>
+        settings:"settings.html"
 
-            <div>
+    };
 
-                <span class="promise-title">
-                    Expert Beauticians
-                </span>
+    if(pages[page]){
+        window.location.href = pages[page];
+    }
 
-                <span class="promise-text">
-                    Experienced professionals
-                </span>
+}
 
-            </div>
 
-        </div>
+/* =========================
+   MOBILE MENU
+========================= */
 
+function toggleMenu(){
 
-        <div class="promise-item">
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
 
-            <div class="promise-icon">
-                ◇
-            </div>
+}
 
-            <div>
 
-                <span class="promise-title">
-                    Premium Products
-                </span>
+/* =========================
+   SAFE HTML
+========================= */
 
-                <span class="promise-text">
-                    Professional quality
-                </span>
+function escapeHTML(value){
 
-            </div>
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
 
-        </div>
 
+/* =========================
+   INITIAL LOAD
+========================= */
 
-        <div class="promise-item">
+loadStats();
+loadAppointments();
 
-            <div class="promise-icon">
-                ♢
-            </div>
-
-            <div>
-
-                <span class="promise-title">
-                    Hygiene & Safety
-                </span>
-
-                <span class="promise-text">
-                    Care in every detail
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="promise-item">
-
-            <div class="promise-icon">
-                ◷
-            </div>
-
-            <div>
-
-                <span class="promise-title">
-                    On-Time Service
-                </span>
-
-                <span class="promise-text">
-                    We value your time
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ======================================================
-     SERVICES
-======================================================= -->
-
-<section class="section services"
-         id="services">
-
-    <div class="section-heading">
-
-        <div class="eyebrow">
-            Our Signature Menu
-        </div>
-
-        <h2>
-            Beauty, curated beautifully.
-        </h2>
-
-        <p>
-            Discover our signature beauty experiences,
-            crafted with precision, care and a touch
-            of Tipssy Toe luxury.
-        </p>
-
-    </div>
-
-
-    <div class="service-grid">
-
-
-        <article class="service-card hair">
-
-            <div class="service-icon">
-                ✂
-            </div>
-
-            <h3>
-                Hair Services
-            </h3>
-
-            <p>
-                Haircut, colour, styling,
-                treatments and more.
-            </p>
-
-            <a href="appointments.html"
-               class="service-link">
-                Explore →
-            </a>
-
-        </article>
-
-
-
-        <article class="service-card makeup">
-
-            <div class="service-icon">
-                ♧
-            </div>
-
-            <h3>
-                Makeup
-            </h3>
-
-            <p>
-                Bridal, engagement, party
-                and HD makeup.
-            </p>
-
-            <a href="appointments.html"
-               class="service-link">
-                Explore →
-            </a>
-
-        </article>
-
-
-
-        <article class="service-card skin">
-
-            <div class="service-icon">
-                ✧
-            </div>
-
-            <h3>
-                Skin & Facials
-            </h3>
-
-            <p>
-                Glow treatments, facials,
-                cleanup and skincare.
-            </p>
-
-            <a href="appointments.html"
-               class="service-link">
-                Explore →
-            </a>
-
-        </article>
-
-
-
-        <article class="service-card nails">
-
-            <div class="service-icon">
-                ♢
-            </div>
-
-            <h3>
-                Nail Services
-            </h3>
-
-            <p>
-                Manicure, pedicure, gel,
-                nail art and more.
-            </p>
-
-            <a href="appointments.html"
-               class="service-link">
-                Explore →
-            </a>
-
-        </article>
-
-
-
-        <article class="service-card spa">
-
-            <div class="service-icon">
-                ❀
-            </div>
-
-            <h3>
-                Spa & Relaxation
-            </h3>
-
-            <p>
-                Body spa, massage, detan
-                and relaxation.
-            </p>
-
-            <a href="appointments.html"
-               class="service-link">
-                Explore →
-            </a>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-
-<!-- ======================================================
-     ABOUT
-======================================================= -->
-
-<section class="section about"
-         id="about">
-
-
-    <div class="about-visual">
-
-        <div class="about-photo"></div>
-
-        <div class="about-photo second"></div>
-
-        <div class="about-badge">
-
-            5+<br>
-
-            YEARS OF<br>
-
-            EXCELLENCE
-
-        </div>
-
-    </div>
-
-
-
-    <div class="about-content">
-
-        <div class="eyebrow">
-            About The Studio
-        </div>
-
-        <h2>
-            Welcome to a more beautiful
-            kind of experience.
-        </h2>
-
-        <p>
-
-            At The Tipssy Toe Makeover Studio,
-            we believe beauty is not only about
-            how you look — it is about how you feel.
-
-        </p>
-
-        <p>
-
-            Our mission is to bring out your natural
-            beauty with personalised care, refined
-            techniques and an atmosphere that makes
-            every visit special.
-
-        </p>
-
-        <p>
-
-            From your first consultation to your final
-            mirror moment, our team focuses on detail,
-            comfort and results you feel confident wearing.
-
-        </p>
-
-        <div class="signature">
-            The Tipssy Toe Team ♡
-        </div>
-
-        <a href="#contact"
-           class="book-btn">
-
-            Discover Our Studio
-
-        </a>
-
-    </div>
-
-</section>
-
-
-
-<!-- ======================================================
-     STATS
-======================================================= -->
-
-<section class="stats">
-
-    <div class="stat">
-
-        <strong>
-            5000+
-        </strong>
-
-        <span>
-            Happy Clients
-        </span>
-
-    </div>
-
-
-    <div class="stat">
-
-        <strong>
-            50+
-        </strong>
-
-        <span>
-            Beauty Services
-        </span>
-
-    </div>
-
-
-    <div class="stat">
-
-        <strong>
-            5+
-        </strong>
-
-        <span>
-            Years Experience
-        </span>
-
-    </div>
-
-
-    <div class="stat">
-
-        <strong>
-            100%
-        </strong>
-
-        <span>
-            Client Care
-        </span>
-
-    </div>
-
-</section>
-
-
-
-<!-- ======================================================
-     WHY US
-======================================================= -->
-
-<section class="section why"
-         id="why">
-
-    <div class="section-heading">
-
-        <div class="eyebrow">
-            Why Tipssy Toe
-        </div>
-
-        <h2>
-            More than a salon.
-        </h2>
-
-        <p>
-
-            A complete beauty destination where
-            expertise, comfort and personal attention
-            come together.
-
-        </p>
-
-    </div>
-
-
-    <div class="why-grid">
-
-
-        <article class="why-card">
-
-            <div class="why-icon">
-                ✦
-            </div>
-
-            <h3>
-                Personalised
-            </h3>
-
-            <p>
-
-                Every look starts with understanding
-                your style, occasion and comfort.
-
-            </p>
-
-        </article>
-
-
-
-        <article class="why-card">
-
-            <div class="why-icon">
-                ◇
-            </div>
-
-            <h3>
-                Professional
-            </h3>
-
-            <p>
-
-                Detailed service, premium techniques
-                and a team that cares about the finish.
-
-            </p>
-
-        </article>
-
-
-
-        <article class="why-card">
-
-            <div class="why-icon">
-                ♡
-            </div>
-
-            <h3>
-                Beautifully Yours
-            </h3>
-
-            <p>
-
-                We don't follow one formula.
-                We create the version of beauty
-                that feels like you.
-
-            </p>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-
-<!-- ======================================================
-     BOOKING CTA
-======================================================= -->
-
-<section class="cta"
-         id="contact">
-
-    <div>
-
-        <div class="eyebrow">
-            Your Next Look
-        </div>
-
-        <h2>
-            Ready to feel beautiful?
-        </h2>
-
-        <p>
-            Book your appointment today and
-            let our experts take care of the rest.
-        </p>
-
-    </div>
-
-
-    <a href="appointments.html"
-       class="primary-btn">
-
-        Book Appointment Now →
-
-    </a>
-
-</section>
-
-
-
-<!-- ======================================================
-     FOOTER
-======================================================= -->
-
-<footer>
-
-    <div class="footer-grid">
-
-
-        <div>
-
-            <div class="footer-brand">
-                THE TIPSSY TOE
-            </div>
-
-            <div class="footer-sub">
-                MAKEOVER STUDIO
-            </div>
-
-            <p>
-
-                Where beauty meets perfection —
-                premium beauty, makeup, hair,
-                skin and nail artistry.
-
-            </p>
-
-        </div>
-
-
-
-        <div>
-
-            <h4>
-                Explore
-            </h4>
-
-            <p>
-
-                <a href="#about">
-                    About Us
-                </a>
-
-                <br>
-
-                <a href="#services">
-                    Services
-                </a>
-
-                <br>
-
-                <a href="#why">
-                    Why Us
-                </a>
-
-                <br>
-
-                <a href="appointments.html">
-                    Appointments
-                </a>
-
-            </p>
-
-        </div>
-
-
-
-        <div>
-
-            <h4>
-                Visit
-            </h4>
-
-            <p>
-
-                Shop Number 14, Near Civil Dispensary
-                <br>
-
-                Model Town, Patiala 147001
-                <br>
-
-                Punjab, India
-
-            </p>
-
-        </div>
-
-
-
-        <div>
-
-            <h4>
-                Contact
-            </h4>
-
-            <p>
-
-                9056105015
-
-                <br>
-
-                thetipsyytoes@gmail.com
-
-                <br>
-
-                Mon – Sun · 10 AM – 8 PM
-
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="copyright">
-
-        © 2026 THE TIPSSY TOE MAKEOVER STUDIO
-        · ALL RIGHTS RESERVED
-
-    </div>
-
-</footer>
-
-
-
-<!-- ======================================================
-     WHATSAPP
-======================================================= -->
-
-<a href="https://wa.me/919056105015"
-   class="whatsapp"
-   target="_blank"
-   aria-label="WhatsApp">
-
-    ◉
-
-</a>
-
+</script>
 
 </body>
 </html>
