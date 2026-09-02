@@ -27,30 +27,24 @@ table{width:100%;border-collapse:collapse}th{text-align:left;font-size:9px;text-
 <section class="card"><div class="toolbar"><input id="search" class="search" placeholder="Search customer, mobile or service..." oninput="render()"><select id="filter" class="filter" onchange="render()"><option value="all">All Appointments</option><option value="today">Today</option><option value="pending">Pending</option><option value="confirmed">Confirmed</option></select></div>
 <div style="overflow-x:auto"><table><thead><tr><th>Customer</th><th>Service</th><th>Date</th><th>Time</th><th>Mobile</th><th>Status</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table></div></section>
 </main>
-<script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script>
 if(sessionStorage.getItem("tipssyToeAdminLoggedIn")!=="true")window.location.href="admin-login.html";
-let appointments=JSON.parse(localStorage.getItem("tipssy_appointments")||"[]");
-
-function val(o,...keys){for(const k of keys)if(o&&o[k]!=null&&o[k]!=="")return o[k];return ""}
-function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function sameToday(d){if(!d)return false;let x=new Date(d+"T00:00:00"),n=new Date();return x.getFullYear()===n.getFullYear()&&x.getMonth()===n.getMonth()&&x.getDate()===n.getDate()}
+const db=window.tipssySupabase; let appointments=[];
+const val=(o,...keys)=>{for(const k of keys)if(o&&o[k]!=null&&o[k]!=="")return o[k];return ""};
+const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+const sameToday=d=>{if(!d)return false;let x=new Date(d+"T00:00:00"),n=new Date();return x.getFullYear()===n.getFullYear()&&x.getMonth()===n.getMonth()&&x.getDate()===n.getDate()};
+async function load(){let {data,error}=await db.from("appointments").select("*").order("date",{ascending:false}).order("time",{ascending:false}); if(!error){appointments=data||[]; render()} else {appointments=JSON.parse(localStorage.getItem("tipssy_appointments")||"[]");render(); console.error(error)}}
 function render(){
- let q=document.getElementById("search").value.toLowerCase().trim(), f=document.getElementById("filter").value;
- let rows=appointments.filter(a=>{
-   let name=val(a,"name","customerName","clientName","fullName"),phone=val(a,"phone","mobile","customerPhone"),service=val(a,"service","serviceName"),date=val(a,"date","appointmentDate"),status=(val(a,"status")||"Pending").toLowerCase();
-   let match=[name,phone,service,date].join(" ").toLowerCase().includes(q);
-   let ok=f==="all"||(f==="today"&&sameToday(date))||(f===status);
-   return match&&ok;
- });
- let pending=appointments.filter(a=>(val(a,"status")||"Pending").toLowerCase()==="pending").length;
- let confirmed=appointments.filter(a=>(val(a,"status")||"Pending").toLowerCase()==="confirmed").length;
- document.getElementById("total").textContent=appointments.length;document.getElementById("today").textContent=appointments.filter(a=>sameToday(val(a,"date","appointmentDate"))).length;document.getElementById("pending").textContent=pending;document.getElementById("confirmed").textContent=confirmed;
- document.getElementById("rows").innerHTML=rows.length?rows.map(a=>{let id=a.id||a.appointmentId||"",name=val(a,"name","customerName","clientName","fullName")||"Customer",service=val(a,"service","serviceName")||"—",date=val(a,"date","appointmentDate")||"—",time=val(a,"time","appointmentTime")||"—",phone=val(a,"phone","mobile","customerPhone")||"—",status=val(a,"status")||"Pending";return `<tr><td><div class="name">${esc(name)}</div><div class="muted">${esc(val(a,"email","customerEmail"))}</div></td><td>${esc(service)}</td><td>${esc(date)}</td><td><b>${esc(time)}</b></td><td>${esc(phone)}</td><td><span class="badge">${esc(status)}</span></td><td class="actions"><button onclick="setStatus('${esc(id)}','Confirmed')">Confirm</button><button class="del" onclick="removeAppt('${esc(id)}')">Delete</button></td></tr>`}).join(""):'<tr><td colspan="7" class="empty">No appointments found.</td></tr>';
+ let q=document.getElementById("search").value.toLowerCase().trim(),f=document.getElementById("filter").value;
+ let rows=appointments.filter(a=>{let name=val(a,"name"),phone=val(a,"phone"),service=val(a,"service"),date=val(a,"date"),status=(val(a,"status")||"Pending").toLowerCase();return [name,phone,service,date].join(" ").toLowerCase().includes(q)&&(f==="all"||(f==="today"&&sameToday(date))||f===status)});
+ let pending=appointments.filter(a=>(a.status||"Pending").toLowerCase()==="pending").length,confirmed=appointments.filter(a=>(a.status||"Pending").toLowerCase()==="confirmed").length;
+ total.textContent=appointments.length;today.textContent=appointments.filter(a=>sameToday(a.date)).length;document.getElementById("pending").textContent=pending;document.getElementById("confirmed").textContent=confirmed;
+ rowsEl=document.getElementById("rows"); rowsEl.innerHTML=rows.length?rows.map(a=>`<tr><td><div class="name">${esc(a.name)}</div><div class="muted">${esc(a.email||"")}</div></td><td>${esc(a.service)}</td><td>${esc(a.date)}</td><td><b>${esc(a.time)}</b></td><td>${esc(a.phone)}</td><td><span class="badge">${esc(a.status||"Pending")}</span></td><td class="actions"><button onclick="setStatus('${a.id}','Confirmed')">Confirm</button><button class="del" onclick="removeAppt('${a.id}')">Delete</button></td></tr>`).join(""):'<tr><td colspan="7" class="empty">No appointments found.</td></tr>';
 }
-function setStatus(id,status){let a=appointments.find(x=>(x.id||x.appointmentId)==id);if(a){a.status=status;localStorage.setItem("tipssy_appointments",JSON.stringify(appointments));render()}}
-function removeAppt(id){if(!confirm("Delete this appointment?"))return;appointments=appointments.filter(x=>(x.id||x.appointmentId)!=id);localStorage.setItem("tipssy_appointments",JSON.stringify(appointments));render()}
-function go(p){let m={dashboard:"admin-dashboard.html",clients:"clients.html",appointments:"appointments.html"};if(m[p])location.href=m[p]}
+async function setStatus(id,status){let {error}=await db.from("appointments").update({status}).eq("id",id);if(error)return alert(error.message);await load()}
+async function removeAppt(id){if(!confirm("Delete this appointment?"))return;let {error}=await db.from("appointments").delete().eq("id",id);if(error)return alert(error.message);await load()}
+function go(p){let m={dashboard:"admin-dashboard.html",clients:"customer-billing.html",appointments:"admin-appointments.html"};if(m[p])location.href=m[p]}
 function logout(){sessionStorage.removeItem("tipssyToeAdminLoggedIn");location.href="admin-login.html"}
-render();setInterval(()=>{appointments=JSON.parse(localStorage.getItem("tipssy_appointments")||"[]");render()},3000);
+load();setInterval(load,10000);
 </script>
 </body></html>
